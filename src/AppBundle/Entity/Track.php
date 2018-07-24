@@ -1,7 +1,5 @@
 <?php
-
 namespace AppBundle\Entity;
-
 /**
  * Track
  */
@@ -11,112 +9,90 @@ class Track
      * @var integer
      */
     private $idUser;
-
     /**
      * @var string
      */
     private $idGenre;
-
     /**
      * @var string
      */
     private $type;
-
     /**
      * @var string
      */
     private $description;
-
     /**
      * @var string
      */
     private $urlPicture;
-
     /**
      * @var string
      */
     private $compositor;
-
     /**
      * @var boolean
      */
     private $explicitContent;
-
     /**
      * @var string
      */
     private $downloadAuthorization;
-
     /**
      * @var \DateTime
      */
     private $transferredAt;
-
     /**
      * @var \DateTime
      */
     private $duration;
-
     /**
      * @var integer
      */
     private $nbListenings;
-
     /**
      * @var integer
      */
     private $nbDownloads;
-
     /**
      * @var integer
      */
     private $nbViews;
-
     /**
      * @var integer
      */
     private $nbLikes;
-
     /**
      * @var \DateTime
      */
     private $updatedAt;
-
     /**
      * @var \DateTime
      */
     private $createdAt;
-
     /**
      * @var integer
      */
     private $nbComments;
-
     /**
      * @var boolean
      */
     private $isValidated;
-
     /**
      * @var integer
      */
     private $id;
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $genre;
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $playlist;
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $user;
-
     /**
      * Constructor
      */
@@ -126,7 +102,6 @@ class Track
         $this->playlist = new \Doctrine\Common\Collections\ArrayCollection();
         $this->user = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Set idUser
      *
@@ -137,10 +112,8 @@ class Track
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
-
         return $this;
     }
-
     /**
      * Get idUser
      *
@@ -150,7 +123,6 @@ class Track
     {
         return $this->idUser;
     }
-
     /**
      * Set idGenre
      *
@@ -161,10 +133,8 @@ class Track
     public function setIdGenre($idGenre)
     {
         $this->idGenre = $idGenre;
-
         return $this;
     }
-
     /**
      * Get idGenre
      *
@@ -174,7 +144,6 @@ class Track
     {
         return $this->idGenre;
     }
-
     /**
      * Set type
      *
@@ -185,10 +154,8 @@ class Track
     public function setType($type)
     {
         $this->type = $type;
-
         return $this;
     }
-
     /**
      * Get type
      *
@@ -198,7 +165,6 @@ class Track
     {
         return $this->type;
     }
-
     /**
      * Set description
      *
@@ -209,10 +175,8 @@ class Track
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
-
     /**
      * Get description
      *
@@ -222,7 +186,6 @@ class Track
     {
         return $this->description;
     }
-
     /**
      * Set urlPicture
      *
@@ -233,10 +196,8 @@ class Track
     public function setUrlPicture($urlPicture)
     {
         $this->urlPicture = $urlPicture;
-
         return $this;
     }
-
     /**
      * Get urlPicture
      *
@@ -246,7 +207,6 @@ class Track
     {
         return $this->urlPicture;
     }
-
     /**
      * Set compositor
      *
@@ -257,10 +217,8 @@ class Track
     public function setCompositor($compositor)
     {
         $this->compositor = $compositor;
-
         return $this;
     }
-
     /**
      * Get compositor
      *
@@ -270,7 +228,6 @@ class Track
     {
         return $this->compositor;
     }
-
     /**
      * Set explicitContent
      *
@@ -281,10 +238,8 @@ class Track
     public function setExplicitContent($explicitContent)
     {
         $this->explicitContent = $explicitContent;
-
         return $this;
     }
-
     /**
      * Get explicitContent
      *
@@ -294,7 +249,6 @@ class Track
     {
         return $this->explicitContent;
     }
-
     /**
      * Set downloadAuthorization
      *
@@ -305,10 +259,8 @@ class Track
     public function setDownloadAuthorization($downloadAuthorization)
     {
         $this->downloadAuthorization = $downloadAuthorization;
-
         return $this;
     }
-
     /**
      * Get downloadAuthorization
      *
@@ -318,7 +270,6 @@ class Track
     {
         return $this->downloadAuthorization;
     }
-
     /**
      * Set transferredAt
      *
@@ -329,10 +280,8 @@ class Track
     public function setTransferredAt($transferredAt)
     {
         $this->transferredAt = $transferredAt;
-
         return $this;
     }
-
     /**
      * Get transferredAt
      *
@@ -342,7 +291,6 @@ class Track
     {
         return $this->transferredAt;
     }
-
     /**
      * Set duration
      *
@@ -353,10 +301,8 @@ class Track
     public function setDuration($duration)
     {
         $this->duration = $duration;
-
         return $this;
     }
-
     /**
      * Get duration
      *
@@ -366,7 +312,6 @@ class Track
     {
         return $this->duration;
     }
-
     /**
      * Set nbListenings
      *
@@ -377,10 +322,8 @@ class Track
     public function setNbListenings($nbListenings)
     {
         $this->nbListenings = $nbListenings;
-
         return $this;
     }
-
     /**
      * Get nbListenings
      *
@@ -390,7 +333,6 @@ class Track
     {
         return $this->nbListenings;
     }
-
     /**
      * Set nbDownloads
      *
@@ -401,10 +343,8 @@ class Track
     public function setNbDownloads($nbDownloads)
     {
         $this->nbDownloads = $nbDownloads;
-
         return $this;
     }
-
     /**
      * Get nbDownloads
      *
@@ -414,7 +354,6 @@ class Track
     {
         return $this->nbDownloads;
     }
-
     /**
      * Set nbViews
      *
@@ -425,10 +364,8 @@ class Track
     public function setNbViews($nbViews)
     {
         $this->nbViews = $nbViews;
-
         return $this;
     }
-
     /**
      * Get nbViews
      *
@@ -438,7 +375,6 @@ class Track
     {
         return $this->nbViews;
     }
-
     /**
      * Set nbLikes
      *
@@ -449,10 +385,8 @@ class Track
     public function setNbLikes($nbLikes)
     {
         $this->nbLikes = $nbLikes;
-
         return $this;
     }
-
     /**
      * Get nbLikes
      *
@@ -462,7 +396,6 @@ class Track
     {
         return $this->nbLikes;
     }
-
     /**
      * Set updatedAt
      *
@@ -473,10 +406,8 @@ class Track
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
-
     /**
      * Get updatedAt
      *
@@ -486,7 +417,6 @@ class Track
     {
         return $this->updatedAt;
     }
-
     /**
      * Set createdAt
      *
@@ -497,10 +427,8 @@ class Track
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
-
     /**
      * Get createdAt
      *
@@ -510,7 +438,6 @@ class Track
     {
         return $this->createdAt;
     }
-
     /**
      * Set nbComments
      *
@@ -521,10 +448,8 @@ class Track
     public function setNbComments($nbComments)
     {
         $this->nbComments = $nbComments;
-
         return $this;
     }
-
     /**
      * Get nbComments
      *
@@ -534,7 +459,6 @@ class Track
     {
         return $this->nbComments;
     }
-
     /**
      * Set isValidated
      *
@@ -545,10 +469,8 @@ class Track
     public function setIsValidated($isValidated)
     {
         $this->isValidated = $isValidated;
-
         return $this;
     }
-
     /**
      * Get isValidated
      *
@@ -558,7 +480,6 @@ class Track
     {
         return $this->isValidated;
     }
-
     /**
      * Get id
      *
@@ -568,7 +489,6 @@ class Track
     {
         return $this->id;
     }
-
     /**
      * Add genre
      *
@@ -579,10 +499,8 @@ class Track
     public function addGenre(\AppBundle\Entity\Genre $genre)
     {
         $this->genre[] = $genre;
-
         return $this;
     }
-
     /**
      * Remove genre
      *
@@ -592,7 +510,6 @@ class Track
     {
         $this->genre->removeElement($genre);
     }
-
     /**
      * Get genre
      *
@@ -602,7 +519,6 @@ class Track
     {
         return $this->genre;
     }
-
     /**
      * Add playlist
      *
@@ -613,10 +529,8 @@ class Track
     public function addPlaylist(\AppBundle\Entity\Playlist $playlist)
     {
         $this->playlist[] = $playlist;
-
         return $this;
     }
-
     /**
      * Remove playlist
      *
@@ -626,7 +540,6 @@ class Track
     {
         $this->playlist->removeElement($playlist);
     }
-
     /**
      * Get playlist
      *
@@ -636,7 +549,6 @@ class Track
     {
         return $this->playlist;
     }
-
     /**
      * Add user
      *
@@ -647,10 +559,8 @@ class Track
     public function addUser(\AppBundle\Entity\User $user)
     {
         $this->user[] = $user;
-
         return $this;
     }
-
     /**
      * Remove user
      *
@@ -660,7 +570,6 @@ class Track
     {
         $this->user->removeElement($user);
     }
-
     /**
      * Get user
      *
@@ -671,4 +580,3 @@ class Track
         return $this->user;
     }
 }
-

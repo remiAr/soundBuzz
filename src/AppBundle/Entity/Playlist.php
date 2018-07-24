@@ -1,7 +1,5 @@
 <?php
-
 namespace AppBundle\Entity;
-
 /**
  * Playlist
  */
@@ -11,42 +9,34 @@ class Playlist
      * @var string
      */
     private $name;
-
     /**
      * @var integer
      */
     private $idUser;
-
     /**
      * @var string
      */
     private $description;
-
     /**
      * @var \DateTime
      */
     private $duration;
-
     /**
      * @var \DateTime
      */
     private $createdAt;
-
     /**
      * @var \DateTime
      */
     private $updatedAt;
-
     /**
      * @var integer
      */
     private $id;
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $track;
-
     /**
      * Constructor
      */
@@ -54,7 +44,6 @@ class Playlist
     {
         $this->track = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Set name
      *
@@ -65,10 +54,8 @@ class Playlist
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -78,7 +65,6 @@ class Playlist
     {
         return $this->name;
     }
-
     /**
      * Set idUser
      *
@@ -89,10 +75,8 @@ class Playlist
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
-
         return $this;
     }
-
     /**
      * Get idUser
      *
@@ -102,7 +86,6 @@ class Playlist
     {
         return $this->idUser;
     }
-
     /**
      * Set description
      *
@@ -113,10 +96,8 @@ class Playlist
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
-
     /**
      * Get description
      *
@@ -126,7 +107,6 @@ class Playlist
     {
         return $this->description;
     }
-
     /**
      * Set duration
      *
@@ -137,10 +117,8 @@ class Playlist
     public function setDuration($duration)
     {
         $this->duration = $duration;
-
         return $this;
     }
-
     /**
      * Get duration
      *
@@ -150,7 +128,6 @@ class Playlist
     {
         return $this->duration;
     }
-
     /**
      * Set createdAt
      *
@@ -161,10 +138,8 @@ class Playlist
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
-
     /**
      * Get createdAt
      *
@@ -174,7 +149,6 @@ class Playlist
     {
         return $this->createdAt;
     }
-
     /**
      * Set updatedAt
      *
@@ -185,10 +159,8 @@ class Playlist
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
-
     /**
      * Get updatedAt
      *
@@ -198,7 +170,6 @@ class Playlist
     {
         return $this->updatedAt;
     }
-
     /**
      * Get id
      *
@@ -208,7 +179,6 @@ class Playlist
     {
         return $this->id;
     }
-
     /**
      * Add track
      *
@@ -219,10 +189,8 @@ class Playlist
     public function addTrack(\AppBundle\Entity\Track $track)
     {
         $this->track[] = $track;
-
         return $this;
     }
-
     /**
      * Remove track
      *
@@ -232,7 +200,6 @@ class Playlist
     {
         $this->track->removeElement($track);
     }
-
     /**
      * Get track
      *
@@ -243,4 +210,3 @@ class Playlist
         return $this->track;
     }
 }
-

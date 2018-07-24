@@ -42,7 +42,7 @@ doctrine:
         driver: pdo_mysql
         host: '%database_host%'
         port: '%database_port%'
-        dbname: '%database_name%'
+        dbname: 'sound_buzz'
         user: '%database_user%'
         password: '%database_password%'
         charset: UTF8
@@ -69,3 +69,14 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+#FOS USER BUNDLE
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    service:                               # this lines
+        mailer: fos_user.mailer.twig_swift # this lines
+    from_email:
+        address: "sound_buzz@gmail.com"
+        sender_name: "soundBuzz"

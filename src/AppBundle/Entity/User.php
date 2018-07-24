@@ -1,62 +1,49 @@
 <?php
 
+
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * User
+ * @ORM\Entity
+ * @ORM\Table(name="user")
  */
-class User
+class User extends BaseUser
 {
     /**
-     * @var string
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $username;
+    protected $id;
 
-    /**
-     * @var string
-     */
-    private $email;
-
-    /**
-     * @var string
-     */
-    private $password;
-
-    /**
+     /**
      * @var string
      */
     private $firstName;
-
     /**
      * @var string
      */
     private $lastName;
-
     /**
      * @var string
      */
     private $avatarUrl;
-
     /**
      * @var boolean
      */
     private $isActivated;
-
-    /**
-     * @var integer
-     */
-    private $id;
-
+    
     /**
      * @var \AppBundle\Entity\Comments
      */
     private $comments;
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $track;
-
     /**
      * Constructor
      */
@@ -64,79 +51,7 @@ class User
     {
         $this->track = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
+   
     /**
      * Set firstName
      *
@@ -147,10 +62,8 @@ class User
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-
         return $this;
     }
-
     /**
      * Get firstName
      *
@@ -160,7 +73,6 @@ class User
     {
         return $this->firstName;
     }
-
     /**
      * Set lastName
      *
@@ -171,10 +83,8 @@ class User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-
         return $this;
     }
-
     /**
      * Get lastName
      *
@@ -184,7 +94,6 @@ class User
     {
         return $this->lastName;
     }
-
     /**
      * Set avatarUrl
      *
@@ -195,10 +104,8 @@ class User
     public function setAvatarUrl($avatarUrl)
     {
         $this->avatarUrl = $avatarUrl;
-
         return $this;
     }
-
     /**
      * Get avatarUrl
      *
@@ -208,7 +115,6 @@ class User
     {
         return $this->avatarUrl;
     }
-
     /**
      * Set isActivated
      *
@@ -219,10 +125,8 @@ class User
     public function setIsActivated($isActivated)
     {
         $this->isActivated = $isActivated;
-
         return $this;
     }
-
     /**
      * Get isActivated
      *
@@ -232,17 +136,7 @@ class User
     {
         return $this->isActivated;
     }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
+   
     /**
      * Set comments
      *
@@ -253,10 +147,8 @@ class User
     public function setComments(\AppBundle\Entity\Comments $comments = null)
     {
         $this->comments = $comments;
-
         return $this;
     }
-
     /**
      * Get comments
      *
@@ -266,7 +158,6 @@ class User
     {
         return $this->comments;
     }
-
     /**
      * Add track
      *
@@ -277,10 +168,8 @@ class User
     public function addTrack(\AppBundle\Entity\Track $track)
     {
         $this->track[] = $track;
-
         return $this;
     }
-
     /**
      * Remove track
      *
@@ -290,7 +179,6 @@ class User
     {
         $this->track->removeElement($track);
     }
-
     /**
      * Get track
      *
@@ -301,4 +189,3 @@ class User
         return $this->track;
     }
 }
-

@@ -1,7 +1,6 @@
 <?php
 
 namespace AppBundle\Entity;
-
 /**
  * Comments
  */
@@ -11,28 +10,22 @@ class Comments
      * @var integer
      */
     private $idUser;
-
     /**
      * @var string
      */
     private $content;
-
     /**
      * @var \DateTime
      */
     private $createdAt;
-
     /**
      * @var integer
      */
     private $id;
-
     /**
      * @var \AppBundle\Entity\Track
      */
     private $track;
-
-
     /**
      * Set idUser
      *
@@ -43,10 +36,8 @@ class Comments
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
-
         return $this;
     }
-
     /**
      * Get idUser
      *
@@ -56,7 +47,6 @@ class Comments
     {
         return $this->idUser;
     }
-
     /**
      * Set content
      *
@@ -67,10 +57,8 @@ class Comments
     public function setContent($content)
     {
         $this->content = $content;
-
         return $this;
     }
-
     /**
      * Get content
      *
@@ -80,7 +68,6 @@ class Comments
     {
         return $this->content;
     }
-
     /**
      * Set createdAt
      *
@@ -91,10 +78,8 @@ class Comments
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
-
     /**
      * Get createdAt
      *
@@ -104,7 +89,6 @@ class Comments
     {
         return $this->createdAt;
     }
-
     /**
      * Get id
      *
@@ -114,7 +98,6 @@ class Comments
     {
         return $this->id;
     }
-
     /**
      * Set track
      *
@@ -125,10 +108,8 @@ class Comments
     public function setTrack(\AppBundle\Entity\Track $track = null)
     {
         $this->track = $track;
-
         return $this;
     }
-
     /**
      * Get track
      *
@@ -139,4 +120,3 @@ class Comments
         return $this->track;
     }
 }
-

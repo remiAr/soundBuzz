@@ -1,7 +1,5 @@
 <?php
-
 namespace AppBundle\Entity;
-
 /**
  * Genre
  */
@@ -11,17 +9,14 @@ class Genre
      * @var string
      */
     private $name;
-
     /**
      * @var integer
      */
     private $id;
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $track;
-
     /**
      * Constructor
      */
@@ -29,7 +24,6 @@ class Genre
     {
         $this->track = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Set name
      *
@@ -40,10 +34,8 @@ class Genre
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -53,7 +45,6 @@ class Genre
     {
         return $this->name;
     }
-
     /**
      * Get id
      *
@@ -63,7 +54,6 @@ class Genre
     {
         return $this->id;
     }
-
     /**
      * Add track
      *
@@ -74,10 +64,8 @@ class Genre
     public function addTrack(\AppBundle\Entity\Track $track)
     {
         $this->track[] = $track;
-
         return $this;
     }
-
     /**
      * Remove track
      *
@@ -87,7 +75,6 @@ class Genre
     {
         $this->track->removeElement($track);
     }
-
     /**
      * Get track
      *
@@ -98,4 +85,3 @@ class Genre
         return $this->track;
     }
 }
-
