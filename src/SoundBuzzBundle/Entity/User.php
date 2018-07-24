@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AppBundle\Entity;
+namespace SoundBuzzBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -40,7 +40,7 @@ class User extends BaseUser
     private $isActivated;
     
     /**
-    * @ORM\Column(type="datetime")
+    * @ORM\Column(type="string")
     */
     private $createdAt;
 
@@ -143,9 +143,18 @@ class User extends BaseUser
         return $this;
     }
     /**
-     * Get createdAt
+     * Get isActivated
      *
      * @return boolean
+     */
+    public function getIsActivated()
+    {
+        return $this->isActivated;
+    }
+    /**
+     * Get createdAt
+     *
+     * @return string
      */
     public function getCreatedAt()
     {
@@ -154,7 +163,7 @@ class User extends BaseUser
     /**
      * Set createdAt
      *
-     * @param boolean $createdAt
+     * @param string $createdAt
      *
      * @return User
      */
@@ -163,14 +172,17 @@ class User extends BaseUser
         $this->createdAt = $createdAt;
         return $this;
     }
-    /**
-     * Get isActivated
+
+     /**
+     * Overridden so that username is now optional
      *
-     * @return boolean
+     * @param string $email
+     * @return User
      */
-    public function getIsActivated()
+    public function setEmail($email)
     {
-        return $this->isActivated;
+        $this->setUsername($email);
+        return parent::setEmail($email);
     }
    
     

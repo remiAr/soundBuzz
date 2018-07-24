@@ -1,0 +1,3 @@
+soundbuzz_homepage:
+ path: /
+ default: { _controller: SoundBuzzBundle:Default:index }
