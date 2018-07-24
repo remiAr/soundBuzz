@@ -45,10 +45,9 @@ class User extends BaseUser
     private $createdAt;
 
      /**
-     * @ORM\ManyToMany(targetEntity="Track", inversedBy="track")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="user")
      */
-    private $track;
+    private $tracks;
 
     /**
      * Constructor

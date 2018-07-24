@@ -99,9 +99,16 @@ class Track
     private $isValidated;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="track")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tracks")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $users;
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Genre", inversedBy="tracks")
+     * @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
+     */
+    private $genre;
     
     /**
      * Constructor

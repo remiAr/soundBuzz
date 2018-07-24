@@ -21,6 +21,11 @@ class Genre
      * @ORM\Column(type="string")
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Genre", mappedBy="genre")
+     */
+    private $tracks;
     
     /**
      * Constructor
