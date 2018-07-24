@@ -44,10 +44,20 @@ class User extends BaseUser
     */
     private $createdAt;
 
-     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="user")
+    /**
+    * @ORM\OneToMany(targetEntity="User", mappedBy="user")
+    */
+   private $tracks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="playlist")
      */
-    private $tracks;
+    private $playlist;
+
+    /**
+    * @ORM\OneToMany(targetEntity="User", mappedBy="userComment")
+    */
+   private $comments;
 
     /**
      * Constructor

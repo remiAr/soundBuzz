@@ -36,11 +36,17 @@ class Playlist
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
-    
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="playlist")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $users;
     
    
     /**
@@ -48,7 +54,7 @@ class Playlist
      */
     public function __construct()
     {
-        
+        $this->users = new ArrayCollection();
     }
     /**
      * Set name

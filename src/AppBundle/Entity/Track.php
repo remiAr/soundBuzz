@@ -110,12 +110,19 @@ class Track
      */
     private $genre;
     
+
+    /**
+    * @ORM\OneToMany(targetEntity="User", mappedBy="trackComment")
+    */
+   private $comments;
+    
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->genre = new ArrayCollection();
     }
 
     /**

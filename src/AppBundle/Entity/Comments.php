@@ -27,6 +27,18 @@ class Comments
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $userComment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Track", inversedBy="comments")
+     * @ORM\JoinColumn(name="track_id", referencedColumnName="id")
+     */
+    private $trackComment;
+
     
     /**
      * Constructor
