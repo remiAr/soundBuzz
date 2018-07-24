@@ -20,38 +20,44 @@ class User extends BaseUser
     protected $id;
 
      /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     private $firstName;
+
     /**
-     * @var string
-     */
+    * @ORM\Column(type="string")
+    */
     private $lastName;
+    
     /**
-     * @var string
-     */
+    * @ORM\Column(type="string")
+    */
     private $avatarUrl;
+    
     /**
-     * @var boolean
-     */
+    * @ORM\Column(type="boolean")
+    */
     private $isActivated;
     
     /**
-     * @var \AppBundle\Entity\Comments
-     */
-    private $comments;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
+    * @ORM\Column(type="datetime")
+    */
+    private $createdAt;
+
+     /**
+     * @ORM\ManyToMany(targetEntity="Track", inversedBy="track")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $track;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->track = new \Doctrine\Common\Collections\ArrayCollection();
+        
     }
-   
+
     /**
      * Set firstName
      *
@@ -128,6 +134,27 @@ class User extends BaseUser
         return $this;
     }
     /**
+     * Get createdAt
+     *
+     * @return boolean
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+    /**
+     * Set createdAt
+     *
+     * @param boolean $createdAt
+     *
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+    /**
      * Get isActivated
      *
      * @return boolean
@@ -137,55 +164,6 @@ class User extends BaseUser
         return $this->isActivated;
     }
    
-    /**
-     * Set comments
-     *
-     * @param \AppBundle\Entity\Comments $comments
-     *
-     * @return User
-     */
-    public function setComments(\AppBundle\Entity\Comments $comments = null)
-    {
-        $this->comments = $comments;
-        return $this;
-    }
-    /**
-     * Get comments
-     *
-     * @return \AppBundle\Entity\Comments
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
-    /**
-     * Add track
-     *
-     * @param \AppBundle\Entity\Track $track
-     *
-     * @return User
-     */
-    public function addTrack(\AppBundle\Entity\Track $track)
-    {
-        $this->track[] = $track;
-        return $this;
-    }
-    /**
-     * Remove track
-     *
-     * @param \AppBundle\Entity\Track $track
-     */
-    public function removeTrack(\AppBundle\Entity\Track $track)
-    {
-        $this->track->removeElement($track);
-    }
-    /**
-     * Get track
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTrack()
-    {
-        return $this->track;
-    }
+    
+    
 }

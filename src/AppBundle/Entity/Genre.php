@@ -1,28 +1,33 @@
 <?php
 namespace AppBundle\Entity;
+
+
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * Genre
+ * @ORM\Entity
+ * @ORM\Table(name="genre")
  */
 class Genre
 {
+     /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
     /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     private $name;
-    /**
-     * @var integer
-     */
-    private $id;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $track;
+    
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->track = new \Doctrine\Common\Collections\ArrayCollection();
+        
     }
     /**
      * Set name
@@ -53,35 +58,5 @@ class Genre
     public function getId()
     {
         return $this->id;
-    }
-    /**
-     * Add track
-     *
-     * @param \AppBundle\Entity\Track $track
-     *
-     * @return Genre
-     */
-    public function addTrack(\AppBundle\Entity\Track $track)
-    {
-        $this->track[] = $track;
-        return $this;
-    }
-    /**
-     * Remove track
-     *
-     * @param \AppBundle\Entity\Track $track
-     */
-    public function removeTrack(\AppBundle\Entity\Track $track)
-    {
-        $this->track->removeElement($track);
-    }
-    /**
-     * Get track
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTrack()
-    {
-        return $this->track;
     }
 }

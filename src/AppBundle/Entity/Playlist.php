@@ -1,48 +1,54 @@
 <?php
 namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * Playlist
+ * @ORM\Entity
+ * @ORM\Table(name="playlist")
  */
+
 class Playlist
 {
     /**
-     * @var string
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string")
      */
     private $name;
+    
     /**
-     * @var integer
-     */
-    private $idUser;
-    /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     private $description;
+    
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $duration;
+
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
+    
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
-    /**
-     * @var integer
-     */
-    private $id;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $track;
+    
+   
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->track = new \Doctrine\Common\Collections\ArrayCollection();
+        
     }
     /**
      * Set name
@@ -65,27 +71,7 @@ class Playlist
     {
         return $this->name;
     }
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Playlist
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-        return $this;
-    }
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
+   
     /**
      * Set description
      *
@@ -179,34 +165,5 @@ class Playlist
     {
         return $this->id;
     }
-    /**
-     * Add track
-     *
-     * @param \AppBundle\Entity\Track $track
-     *
-     * @return Playlist
-     */
-    public function addTrack(\AppBundle\Entity\Track $track)
-    {
-        $this->track[] = $track;
-        return $this;
-    }
-    /**
-     * Remove track
-     *
-     * @param \AppBundle\Entity\Track $track
-     */
-    public function removeTrack(\AppBundle\Entity\Track $track)
-    {
-        $this->track->removeElement($track);
-    }
-    /**
-     * Get track
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTrack()
-    {
-        return $this->track;
-    }
+   
 }

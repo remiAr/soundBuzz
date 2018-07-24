@@ -1,52 +1,41 @@
 <?php
 
 namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * Comments
+ * @ORM\Entity
+ * @ORM\Table(name="comments")
  */
 class Comments
 {
+
     /**
-     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idUser;
+    protected $id;
+    
     /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     private $content;
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    
     /**
-     * @var integer
+     * Constructor
      */
-    private $id;
-    /**
-     * @var \AppBundle\Entity\Track
-     */
-    private $track;
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Comments
-     */
-    public function setIdUser($idUser)
+    public function __construct()
     {
-        $this->idUser = $idUser;
-        return $this;
+        
     }
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
+    
     /**
      * Set content
      *
@@ -97,26 +86,5 @@ class Comments
     public function getId()
     {
         return $this->id;
-    }
-    /**
-     * Set track
-     *
-     * @param \AppBundle\Entity\Track $track
-     *
-     * @return Comments
-     */
-    public function setTrack(\AppBundle\Entity\Track $track = null)
-    {
-        $this->track = $track;
-        return $this;
-    }
-    /**
-     * Get track
-     *
-     * @return \AppBundle\Entity\Track
-     */
-    public function getTrack()
-    {
-        return $this->track;
     }
 }

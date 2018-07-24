@@ -1,170 +1,138 @@
 <?php
 namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
- * Track
+ * @ORM\Entity
+ * @ORM\Table(name="track")
  */
+
 class Track
 {
     /**
-     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idUser;
+    protected $id;
+    
     /**
-     * @var string
+     * @ORM\Column(type="string")
      */
-    private $idGenre;
+    private $extention;
+    
     /**
-     * @var string
-     */
-    private $type;
-    /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     private $description;
+   
     /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     private $urlPicture;
+    
     /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     private $compositor;
+    
     /**
-     * @var boolean
+     * @ORM\Column(type="boolean")
      */
     private $explicitContent;
+    
     /**
-     * @var string
+     * @ORM\Column(type="boolean")
      */
     private $downloadAuthorization;
+    
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $transferredAt;
+    
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $duration;
+    
     /**
-     * @var integer
+     * @ORM\Column(type="integer")
      */
     private $nbListenings;
+    
     /**
-     * @var integer
+     * @ORM\Column(type="integer")
      */
     private $nbDownloads;
+    
     /**
-     * @var integer
+     * @ORM\Column(type="integer")
      */
     private $nbViews;
+    
     /**
-     * @var integer
+     * @ORM\Column(type="integer")
      */
     private $nbLikes;
+    
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+    
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
+    
     /**
-     * @var integer
+     * @ORM\Column(type="integer")
      */
     private $nbComments;
+    
     /**
-     * @var boolean
+     * @ORM\Column(type="boolean")
      */
     private $isValidated;
+
     /**
-     * @var integer
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="track")
      */
-    private $id;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $genre;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $playlist;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $user;
+    private $users;
+    
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->playlist = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new ArrayCollection();
     }
+
     /**
-     * Set idUser
+     * Set extention
      *
-     * @param integer $idUser
+     * @param string $extention
      *
      * @return Track
      */
-    public function setIdUser($idUser)
+    public function setExtention($extention)
     {
-        $this->idUser = $idUser;
+        $this->extention = $extention;
         return $this;
     }
     /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-    /**
-     * Set idGenre
-     *
-     * @param string $idGenre
-     *
-     * @return Track
-     */
-    public function setIdGenre($idGenre)
-    {
-        $this->idGenre = $idGenre;
-        return $this;
-    }
-    /**
-     * Get idGenre
+     * Get extention
      *
      * @return string
      */
-    public function getIdGenre()
+    public function getExtention()
     {
-        return $this->idGenre;
+        return $this->extention;
     }
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Track
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
+
     /**
      * Set description
      *
@@ -489,94 +457,5 @@ class Track
     {
         return $this->id;
     }
-    /**
-     * Add genre
-     *
-     * @param \AppBundle\Entity\Genre $genre
-     *
-     * @return Track
-     */
-    public function addGenre(\AppBundle\Entity\Genre $genre)
-    {
-        $this->genre[] = $genre;
-        return $this;
-    }
-    /**
-     * Remove genre
-     *
-     * @param \AppBundle\Entity\Genre $genre
-     */
-    public function removeGenre(\AppBundle\Entity\Genre $genre)
-    {
-        $this->genre->removeElement($genre);
-    }
-    /**
-     * Get genre
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getGenre()
-    {
-        return $this->genre;
-    }
-    /**
-     * Add playlist
-     *
-     * @param \AppBundle\Entity\Playlist $playlist
-     *
-     * @return Track
-     */
-    public function addPlaylist(\AppBundle\Entity\Playlist $playlist)
-    {
-        $this->playlist[] = $playlist;
-        return $this;
-    }
-    /**
-     * Remove playlist
-     *
-     * @param \AppBundle\Entity\Playlist $playlist
-     */
-    public function removePlaylist(\AppBundle\Entity\Playlist $playlist)
-    {
-        $this->playlist->removeElement($playlist);
-    }
-    /**
-     * Get playlist
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPlaylist()
-    {
-        return $this->playlist;
-    }
-    /**
-     * Add user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Track
-     */
-    public function addUser(\AppBundle\Entity\User $user)
-    {
-        $this->user[] = $user;
-        return $this;
-    }
-    /**
-     * Remove user
-     *
-     * @param \AppBundle\Entity\User $user
-     */
-    public function removeUser(\AppBundle\Entity\User $user)
-    {
-        $this->user->removeElement($user);
-    }
-    /**
-     * Get user
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
+   
 }
