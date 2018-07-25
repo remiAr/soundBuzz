@@ -1,3 +1,7 @@
 soundbuzz_homepage:
- path: /
- default: { _controller: SoundBuzzBundle:Default:index }
+    path: /
+    default: { _controller: SoundBuzzBundle:Default:index }
+
+soundbuzz_profil:
+    path: /profil/{id}
+    defaults: { _controller: SoundBuzzBundle:User:getprofil }

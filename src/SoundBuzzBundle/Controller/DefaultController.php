@@ -12,6 +12,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('SoundBuzzBundle:Default:index.html.twig');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        return $this->render('SoundBuzzBundle:Default:index.html.twig', [
+            'user' => $user
+        ]);
     }
 }

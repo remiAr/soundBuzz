@@ -1,1 +1,18 @@
-Hello World!
+{% extends "SoundBuzzBundle:default:layout.html.twig" %}
+{% block title %} Accueil - SoundBuzz {% endblock %}
+
+{% block body %}
+
+ {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                Bonjour, {{user.firstName}}
+                            <a href="{{ path('soundbuzz_profil', {'id': user.id}) }}"><button>Profil</button></a>
+                        {% else %}
+                            <a href="{{ path('fos_user_registration_register') }}"><button>Register</button></a>
+                        {% endif %}
+                        {% if is_granted('ROLE_USER') %}
+                            <a href="{{ path('fos_user_security_logout') }}"><button>Logout</button></a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}"><button>Login</button></a>
+                        {% endif %}
+
+{% endblock %}

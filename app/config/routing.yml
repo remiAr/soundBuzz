@@ -9,3 +9,7 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+soundbuzz_profil:
+    path: /profil/{id}
+    defaults: { _controller: SoundBuzzBundle:User:getProfil }
