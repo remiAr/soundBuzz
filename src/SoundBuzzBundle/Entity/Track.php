@@ -22,7 +22,12 @@ class Track
     /**
      * @ORM\Column(type="string")
      */
-    private $extention;
+    private $extension;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $title;
     
     /**
      * @ORM\Column(type="string")
@@ -128,25 +133,41 @@ class Track
     }
 
     /**
-     * Set extention
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Set extension
      *
-     * @param string $extention
+     * @param string $extension
      *
      * @return Track
      */
-    public function setExtention($extention)
+    public function setExtension($extension)
     {
-        $this->extention = $extention;
+        $this->extension = $extension;
         return $this;
     }
     /**
-     * Get extention
+     * Get extension
      *
      * @return string
      */
-    public function getExtention()
+    public function getExtension()
     {
-        return $this->extention;
+        return $this->extension;
     }
 
     /**
@@ -472,6 +493,54 @@ class Track
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlaylist()
+    {
+        return $this->playlist;
+    }
+
+    /**
+     * @param mixed $playlist
+     */
+    public function setPlaylist($playlist)
+    {
+        $this->playlist = $playlist;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * @param mixed $genre
+     */
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
     }
    
 }

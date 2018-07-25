@@ -178,5 +178,37 @@ class Playlist
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrack()
+    {
+        return $this->track;
+    }
+
+    /**
+     * @param mixed $track
+     */
+    public function setTrack($track)
+    {
+        $this->track = $track;
+    }
    
 }

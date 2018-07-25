@@ -2,6 +2,8 @@
 
 namespace SoundBuzzBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
+use FOS\UserBundle\Model\GroupInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -168,7 +170,21 @@ class User extends BaseUser
         $this->setUsername($email);
         return parent::setEmail($email);
     }
-   
-    
-    
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
 }
