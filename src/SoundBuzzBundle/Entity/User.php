@@ -1,6 +1,5 @@
 <?php
 
-
 namespace SoundBuzzBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
@@ -43,21 +42,6 @@ class User extends BaseUser
     * @ORM\Column(type="string")
     */
     private $createdAt;
-
-    /**
-    * @ORM\OneToMany(targetEntity="User", mappedBy="user")
-    */
-   private $tracks;
-
-    /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="playlist")
-     */
-    private $playlist;
-
-    /**
-    * @ORM\OneToMany(targetEntity="User", mappedBy="userComment")
-    */
-   private $comments;
 
     /**
      * Constructor

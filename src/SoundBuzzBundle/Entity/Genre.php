@@ -1,6 +1,6 @@
 <?php
-namespace SoundBuzzBundle\Entity;
 
+namespace SoundBuzzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,16 +23,18 @@ class Genre
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Genre", mappedBy="genre")
+     * Many Genres have Many Tracks.
+     * @ORM\ManyToMany(targetEntity="Track", mappedBy="genre")
+     * @ORM\JoinTable(name="track_genres")
      */
-    private $tracks;
-    
+    private $track;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        
+
     }
     /**
      * Set name

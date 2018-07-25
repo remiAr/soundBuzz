@@ -1,4 +1,5 @@
 <?php
+
 namespace SoundBuzzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -43,18 +44,24 @@ class Playlist
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="playlist")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $users;
-    
-   
+    private $user;
+
+    /**
+     * Many Playlists have Many Tracks.
+     * @ORM\ManyToMany(targetEntity="Track", inversedBy="playlist")
+     * @ORM\JoinTable(name="playlist_tracks")
+     */
+    private $track;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+
     }
     /**
      * Set name

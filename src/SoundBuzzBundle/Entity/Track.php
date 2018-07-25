@@ -1,4 +1,5 @@
 <?php
+
 namespace SoundBuzzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -99,30 +100,31 @@ class Track
     private $isValidated;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="tracks")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Genre", inversedBy="tracks")
-     * @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
+     * Many Tracks have Many Playlists.
+     * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="track")
+     * @ORM\JoinTable(name="playlist_tracks")
      */
-    private $genre;
-    
+    private $playlist;
 
     /**
-    * @ORM\OneToMany(targetEntity="User", mappedBy="trackComment")
-    */
-   private $comments;
-    
+     * Many Tracks have Many Genres.
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="track")
+     * @ORM\JoinTable(name="track_genres")
+     */
+    private $genre;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->users = new ArrayCollection();
-        $this->genre = new ArrayCollection();
+
     }
 
     /**
