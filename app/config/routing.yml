@@ -18,3 +18,8 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /admin
+    
+#TRACK
+upload_track:
+    path: /trackUplodad/
+    defaults: { _controller: SoundBuzzBundle:Track:uploadTrack }

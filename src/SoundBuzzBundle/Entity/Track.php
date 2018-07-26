@@ -10,8 +10,15 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="track")
  */
 
-class Track
+use Symfony\Component\Validator\Constraints as Assert; class Track
 {
+    
+    /** 
+      * @Assert\NotBlank(message="Please, upload the photo.") 
+      * @Assert\File(mimeTypes={ "audio/mp3", "audio/mpeg","audio/mp4" }) 
+   */ 
+   private $song; 
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -542,5 +549,13 @@ class Track
     {
         $this->genre = $genre;
     }
+
+    public function getSong() { 
+        return $this->song; 
+     } 
+     public function setSong($song) { 
+        $this->song = $song; 
+        return $this; 
+     } 
    
 }
