@@ -83,4 +83,9 @@ class Genre
         $this->track = $track;
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+
+    }
 }

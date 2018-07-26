@@ -67,7 +67,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     private $transferredAt;
     
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="integer")
      */
     private $duration;
     
@@ -558,4 +558,6 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
         return $this; 
      } 
    
+
+     
 }
