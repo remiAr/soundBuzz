@@ -1,0 +1,4 @@
+services:
+#    soun_buzz.example:
+#        class: SoundBuzzBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

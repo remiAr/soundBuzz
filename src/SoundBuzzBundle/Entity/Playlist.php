@@ -1,49 +1,58 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace SoundBuzzBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Playlist
+ * @ORM\Entity
+ * @ORM\Table(name="playlist")
  */
+
 class Playlist
 {
     /**
-     * @var string
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string")
      */
     private $name;
-
+    
     /**
-     * @var integer
-     */
-    private $idUser;
-
-    /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     private $description;
-
+    
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $duration;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
     /**
-     * @var integer
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $id;
+    private $user;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * Many Playlists have Many Tracks.
+     * @ORM\ManyToMany(targetEntity="Track", inversedBy="playlist")
+     * @ORM\JoinTable(name="playlist_tracks")
      */
     private $track;
 
@@ -52,9 +61,8 @@ class Playlist
      */
     public function __construct()
     {
-        $this->track = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
+    }
     /**
      * Set name
      *
@@ -65,10 +73,8 @@ class Playlist
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -78,31 +84,7 @@ class Playlist
     {
         return $this->name;
     }
-
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Playlist
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-
+   
     /**
      * Set description
      *
@@ -113,10 +95,8 @@ class Playlist
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
-
     /**
      * Get description
      *
@@ -126,7 +106,6 @@ class Playlist
     {
         return $this->description;
     }
-
     /**
      * Set duration
      *
@@ -137,10 +116,8 @@ class Playlist
     public function setDuration($duration)
     {
         $this->duration = $duration;
-
         return $this;
     }
-
     /**
      * Get duration
      *
@@ -150,7 +127,6 @@ class Playlist
     {
         return $this->duration;
     }
-
     /**
      * Set createdAt
      *
@@ -161,10 +137,8 @@ class Playlist
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
-
     /**
      * Get createdAt
      *
@@ -174,7 +148,6 @@ class Playlist
     {
         return $this->createdAt;
     }
-
     /**
      * Set updatedAt
      *
@@ -185,10 +158,8 @@ class Playlist
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
-
     /**
      * Get updatedAt
      *
@@ -198,7 +169,6 @@ class Playlist
     {
         return $this->updatedAt;
     }
-
     /**
      * Get id
      *
@@ -210,37 +180,35 @@ class Playlist
     }
 
     /**
-     * Add track
-     *
-     * @param \AppBundle\Entity\Track $track
-     *
-     * @return Playlist
+     * @return mixed
      */
-    public function addTrack(\AppBundle\Entity\Track $track)
+    public function getUser()
     {
-        $this->track[] = $track;
-
-        return $this;
+        return $this->user;
     }
 
     /**
-     * Remove track
-     *
-     * @param \AppBundle\Entity\Track $track
+     * @param mixed $user
      */
-    public function removeTrack(\AppBundle\Entity\Track $track)
+    public function setUser($user)
     {
-        $this->track->removeElement($track);
+        $this->user = $user;
     }
 
     /**
-     * Get track
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
     public function getTrack()
     {
         return $this->track;
     }
-}
 
+    /**
+     * @param mixed $track
+     */
+    public function setTrack($track)
+    {
+        $this->track = $track;
+    }
+   
+}

@@ -1,62 +1,52 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace SoundBuzzBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Comments
+ * @ORM\Entity
+ * @ORM\Table(name="comments")
  */
 class Comments
 {
-    /**
-     * @var integer
-     */
-    private $idUser;
 
     /**
-     * @var string
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="string")
      */
     private $content;
-
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var integer
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $id;
+    private $user;
 
     /**
-     * @var \AppBundle\Entity\Track
+     * @ORM\ManyToOne(targetEntity="Track")
+     * @ORM\JoinColumn(name="track_id", referencedColumnName="id")
      */
     private $track;
 
-
     /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Comments
+     * Constructor
      */
-    public function setIdUser($idUser)
+    public function __construct()
     {
-        $this->idUser = $idUser;
-
-        return $this;
+        
     }
-
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-
+    
     /**
      * Set content
      *
@@ -67,10 +57,8 @@ class Comments
     public function setContent($content)
     {
         $this->content = $content;
-
         return $this;
     }
-
     /**
      * Get content
      *
@@ -80,7 +68,6 @@ class Comments
     {
         return $this->content;
     }
-
     /**
      * Set createdAt
      *
@@ -91,10 +78,8 @@ class Comments
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
-
     /**
      * Get createdAt
      *
@@ -104,7 +89,6 @@ class Comments
     {
         return $this->createdAt;
     }
-
     /**
      * Get id
      *
@@ -116,27 +100,35 @@ class Comments
     }
 
     /**
-     * Set track
-     *
-     * @param \AppBundle\Entity\Track $track
-     *
-     * @return Comments
+     * @return mixed
      */
-    public function setTrack(\AppBundle\Entity\Track $track = null)
+    public function getUser()
     {
-        $this->track = $track;
-
-        return $this;
+        return $this->user;
     }
 
     /**
-     * Get track
-     *
-     * @return \AppBundle\Entity\Track
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
      */
     public function getTrack()
     {
         return $this->track;
     }
-}
 
+    /**
+     * @param mixed $track
+     */
+    public function setTrack($track)
+    {
+        $this->track = $track;
+    }
+
+}

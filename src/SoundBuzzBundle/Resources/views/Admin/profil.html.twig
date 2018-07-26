@@ -1,0 +1,20 @@
+{% extends "SoundBuzzBundle:default:layout.html.twig" %}
+
+{% block title %} SoundBuzz - Profil {% endblock %}
+
+{% block body %}
+    <div class="container profil">
+        <div class="entete">
+            <h2>Profil</h2>
+            {# <a href="{{ path('emotion_deleteuser', {'id': user.id}) }}">Supprimer</a>
+            <a href="{{ path('emotion_updateprofil', {'id': user.id}) }}">Modifier</a> #}
+        </div>
+        <img src="{{user.avatarUrl}}"/>
+        <ul>
+            <li><b>Nom :</b> {{ user.lastName }}</li>
+            <li><b>Prénom :</b> {{ user.firstname }}</li>
+            <li><b>Compte créé le :</b> {{ user.createdAt|date("d/m/Y") }}</li>
+            <li><b>Email :</b> {{ user.username }}</li>
+        </ul>
+    </div>
+{% endblock %}
