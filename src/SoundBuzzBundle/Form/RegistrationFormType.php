@@ -16,9 +16,6 @@ class RegistrationFormType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('avatarUrl')
-            ->add('isActivated', HiddenType::class, array(
-                "data"=> "1",
-            ))
             ->add('createdAt', HiddenType::class, array(
                 "data" => date("Y-m-d"),
             ))

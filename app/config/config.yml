@@ -84,3 +84,17 @@ fos_user:
     registration:
         form:
             type: SoundBuzzBundle\Form\RegistrationFormType
+
+easy_admin:
+    entities:
+        # change the following to the namespaces of your own entities
+        Comments:
+            class: SoundBuzzBundle\Entity\Comments
+        Genre:
+            class: SoundBuzzBundle\Entity\Genre
+        Playlist:
+            class: SoundBuzzBundle\Entity\Playlist
+        Track:
+            class: SoundBuzzBundle\Entity\Track
+        User:
+            class: SoundBuzzBundle\Entity\User
