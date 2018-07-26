@@ -67,29 +67,29 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     private $transferredAt;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="time")
      */
     private $duration;
     
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbListenings;
+    private $nbListenings = 0;
     
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbDownloads;
+    private $nbDownloads = 0;
     
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbViews;
+    private $nbViews = 0;
     
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbLikes;
+    private $nbLikes = 0;
     
     /**
      * @ORM\Column(type="datetime")
