@@ -13,3 +13,8 @@ fos_user:
 soundbuzz_profil:
     path: /profil/{id}
     defaults: { _controller: SoundBuzzBundle:User:getProfil }
+
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin

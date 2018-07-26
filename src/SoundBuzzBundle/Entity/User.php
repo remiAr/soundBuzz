@@ -36,11 +36,6 @@ class User extends BaseUser
     private $avatarUrl;
     
     /**
-    * @ORM\Column(type="boolean")
-    */
-    private $isActivated;
-    
-    /**
     * @ORM\Column(type="string")
     */
     private $createdAt;
@@ -115,27 +110,6 @@ class User extends BaseUser
     public function getAvatarUrl()
     {
         return $this->avatarUrl;
-    }
-    /**
-     * Set isActivated
-     *
-     * @param boolean $isActivated
-     *
-     * @return User
-     */
-    public function setIsActivated($isActivated)
-    {
-        $this->isActivated = $isActivated;
-        return $this;
-    }
-    /**
-     * Get isActivated
-     *
-     * @return boolean
-     */
-    public function getIsActivated()
-    {
-        return $this->isActivated;
     }
     /**
      * Get createdAt
