@@ -12,9 +12,35 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+
+        $em = $this->getDoctrine()->getManager();
+        dump($this->getUser()->getId());
+
+        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));  
+        
+        foreach($playlists as $p) { 
+    
+            $tracks=$p->getTrack()->toArray();      
+    
+        }
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
         return $this->render('SoundBuzzBundle:Default:index.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'playlists'=>$playlists,
+            'tracks'=>$tracks
         ]);
     }
+
+
+    public function likeAction()
+    {
+
+
+
+    }
+
+
+
+
 }

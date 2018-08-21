@@ -17,7 +17,17 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
       * @Assert\NotBlank(message="Please, upload the photo.") 
       * @Assert\File(mimeTypes={ "audio/mp3", "audio/mpeg","audio/mp4" }) 
    */ 
-   private $song; 
+   private $song;
+   
+   
+        
+    /** 
+      * @Assert\NotBlank(message="Please, upload the photo.") 
+      * @Assert\File(mimeTypes={ "image/jpg", "image/png","image/jpeg"}) 
+   */ 
+   private $songPicture; 
+
+
 
     /**
      * @ORM\Id
@@ -25,6 +35,11 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $urlTrack;
     
     /**
      * @ORM\Column(type="string")
@@ -119,14 +134,15 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
 
     /**
      * Many Tracks have Many Playlists.
-     * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="track")
+     * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="track", cascade={"remove"})
      * @ORM\JoinTable(name="playlist_tracks")
+     * 
      */
     private $playlist;
 
     /**
      * Many Tracks have Many Genres.
-     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="track")
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="track",  cascade={"remove"})
      * @ORM\JoinTable(name="track_genres")
      */
     private $genre;
@@ -219,6 +235,30 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     {
         return $this->urlPicture;
     }
+    
+    /**
+     * Set urlTrack
+     *
+     * @param string $urlTrack
+     *
+     * @return Track
+     */
+    public function setUrlTrack($urlTrack)
+    {
+        $this->urlTrack = $urlTrack;
+        return $this;
+    }
+    
+    /**
+     * Get urlTrack
+     *
+     * @return string
+     */
+    public function getUrlTrack()
+    {
+        return $this->urlTrack;
+    }
+    
     /**
      * Set compositor
      *
@@ -555,6 +595,14 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
      } 
      public function setSong($song) { 
         $this->song = $song; 
+        return $this; 
+     } 
+
+     public function getSongPicture() { 
+        return $this->songPicture; 
+     } 
+     public function setSongPicture($songPicture) { 
+        $this->songPicture = $songPicture; 
         return $this; 
      } 
    

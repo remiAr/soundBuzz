@@ -1,2 +1,13 @@
-Hello World!
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> Create a new track</h1>
 {{ form(form) }}
+
+<ul>
+        <li>
+            <a href="{{ path('track_index') }}">Back to the list</a>
+        </li>
+</ul>
+        {% endblock %}
