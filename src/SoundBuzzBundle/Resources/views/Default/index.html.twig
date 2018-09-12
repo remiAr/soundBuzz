@@ -27,19 +27,14 @@
                 <td>{{ track.nbDownloads }}</td>
                 <td>{{ track.nbLikes }} </td>
                 <td>
-             <audio controls="controls">
-                <source src="../uploads/tracks/{{user.id}}/{{ track.urlTrack }}" type="audio/mp3" />
-                
+                    <audio controls="controls">
+                    <source src="../uploads/tracks/{{user.id}}/{{ track.urlTrack }}" type="audio/mp3" />
                 </td>
                 <td>
-
-     <ul>
-
-                        </li>
+                    <ul>
                          <li>
                            <a href="{{ track.urlTrack }}" download> Download</a>
                             <a href="{{ track.urlTrack }}">LIKE</a>
-                            
                         </li>
                     </ul>
                 </td>
