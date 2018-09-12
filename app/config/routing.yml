@@ -20,7 +20,7 @@ easy_admin_bundle:
     prefix:   /admin
 
 #TRACK
-upload_track:
+track_new:
     path: /trackUpload
     defaults: { _controller: SoundBuzzBundle:Track:uploadTrack }
 
