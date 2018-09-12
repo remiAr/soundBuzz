@@ -16,26 +16,34 @@
             <th></th>
         </tr>
         {% for playlist in playlists %}
-        {% for track in tracks %}
-        <tr>
-            <td>{{ track.title }}</td>
-            <td>{{ track.description }}</td>
-            <td><img src={{ track.urlPicture }}></td>
-            <td>{{ track.compositor }}</td>
-            <td>{{ track.duration }}</td>
-            <td>{{ track.nbListenings }}</td>
-            <td>{{ track.nbDownloads }}</td>
-            <td>{{ track.nbLikes }} </td>
-            <td>
-                <audio controls="controls" />
-                <source src="{{ track.urlTrack }}" type="audio/mp3" />
-            </td>
-            <td>
-                <a href="{{ track.urlTrack }}" download> Download</a>
-                <a href="{{ track.urlTrack }}">LIKE</a>
-            </td>
-        </tr>
-        {% endfor %}
+            {% for track in tracks %}
+            <tr>    
+                <td>{{ track.title }}</td>
+                <td>{{ track.description }}</td>
+                <td><img style="width: 200px;" src="../uploads/tracks/{{ track.urlPicture }}"></td>
+                <td>{{ track.compositor }}</td>
+                <td>{{ track.duration }}</td>
+                <td>{{ track.nbListenings }}</td>
+                <td>{{ track.nbDownloads }}</td>
+                <td>{{ track.nbLikes }} </td>
+                <td>
+             <audio controls="controls">
+                <source src="../uploads/tracks/{{ track.urlTrack }}" type="audio/mp3" />
+                
+                </td>
+                <td>
+
+     <ul>
+
+                        </li>
+                         <li>
+                           <a href="{{ track.urlTrack }}" download> Download</a>
+                            <a href="{{ track.urlTrack }}">LIKE</a>
+                            
+                        </li>
+                    </ul>
+                </td>
+            </tr>
         {% endfor %}
     </table>
         #}
