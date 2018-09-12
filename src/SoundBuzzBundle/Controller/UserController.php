@@ -38,7 +38,6 @@ class UserController extends Controller
             $tracks =$p->getTrack()->toArray();
 
         }
-
         $user = $this->get('security.token_storage')->getToken()->getUser();
         return $this->render('SoundBuzzBundle:Default:index.html.twig', [
             'user' => $user,
@@ -47,7 +46,7 @@ class UserController extends Controller
         ]);
     }
 
-    /* public function updateProfilAction(Request $request, $id) {
+    public function updateProfilAction(Request $request, $id) {
 
         $repository = $this->getDoctrine()->getRepository('EmotionBundle:User');
 
@@ -84,5 +83,5 @@ class UserController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('emotion_homepage');
-    } */
+    }
 }
