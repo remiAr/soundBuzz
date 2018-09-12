@@ -20,13 +20,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TrackController extends Controller
 {
- 
- 
-     /**
-     * Display tracks
-     *
-     * @Route("/tracks", name="track_index")
-     */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -42,9 +35,6 @@ class TrackController extends Controller
         ));
     }
 
-    /**
-     * @Route("/trackUplodad", name="track_new")
-     */
     public function uploadTrackAction(Request $request)
     {
 
