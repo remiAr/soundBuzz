@@ -1,4 +1,4 @@
-{% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+{% extends "SoundBuzzBundle:default:layout.html.twig" %}
 {% block title %} Accueil - SoundBuzz {% endblock %}
 
 {% block body %}
@@ -20,7 +20,7 @@
             <tr>    
                 <td>{{ track.title }}</td>
                 <td>{{ track.description }}</td>
-                <td><img style="width: 200px;" src="../uploads/tracks/{{ track.urlPicture }}"></td>
+                <td><img style="width: 200px;" src="../uploads/tracks/{{user.id}}/{{ track.urlPicture }}"></td>
                 <td>{{ track.compositor }}</td>
                 <td>{{ track.duration }}</td>
                 <td>{{ track.nbListenings }}</td>
@@ -28,7 +28,7 @@
                 <td>{{ track.nbLikes }} </td>
                 <td>
              <audio controls="controls">
-                <source src="../uploads/tracks/{{ track.urlTrack }}" type="audio/mp3" />
+                <source src="../uploads/tracks/{{user.id}}/{{ track.urlTrack }}" type="audio/mp3" />
                 
                 </td>
                 <td>
