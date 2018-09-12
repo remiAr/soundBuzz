@@ -16,12 +16,12 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         dump($this->getUser()->getId());
 
-        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));  
-        
-        foreach($playlists as $p) { 
-    
-            $tracks=$p->getTrack()->toArray();      
-    
+        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
+        //$tracks = $playlists;
+        //dump($playlists);
+        foreach($playlists as $p) {
+            $tracks =$p->getTrack()->toArray();
+
         }
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -30,6 +30,7 @@ class DefaultController extends Controller
             'playlists'=>$playlists,
             'tracks'=>$tracks
         ]);
+        /*return $this->render('SoundBuzzBundle:Default:index.html.twig');*/
     }
 
 

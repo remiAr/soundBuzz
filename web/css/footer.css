@@ -1,0 +1,29 @@
+footer {
+    
+    width: 100%;
+    background: #383838;
+    padding: 20px 0;
+}
+footer .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+footer ul li {
+    padding-left: 1%;
+    padding-right: 1%;
+}
+footer .navbar-nav a {
+    color: white;
+}
+footer h3 {
+    text-align: center;
+}
+footer h3 img {
+    width: 200px;
+}
+@media screen and (max-width: 675px) {
+    footer .navbar-nav {
+        display: none;
+    }
+}
