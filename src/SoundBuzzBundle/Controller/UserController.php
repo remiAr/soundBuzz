@@ -26,6 +26,7 @@ class UserController extends Controller
             'user' => $profil,
         ]);
     }
+
     public function getplaylists() {
         $em = $this->getDoctrine()->getManager();
         dump($this->getUser()->getId());
@@ -45,6 +46,7 @@ class UserController extends Controller
             'tracks'=>$tracks
         ]);
     }
+
     /* public function updateProfilAction(Request $request, $id) {
 
         $repository = $this->getDoctrine()->getRepository('EmotionBundle:User');
