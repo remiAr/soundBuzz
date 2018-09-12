@@ -51,7 +51,7 @@ class Playlist
 
     /**
      * Many Playlists have Many Tracks.
-     * @ORM\ManyToMany(targetEntity="Track", inversedBy="playlist")
+     * @ORM\ManyToMany(targetEntity="Track", inversedBy="playlist", fetch="EAGER")
      * @ORM\JoinTable(name="playlist_tracks")
      */
     private $track;

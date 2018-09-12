@@ -2,41 +2,69 @@
 
 namespace SoundBuzzBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SoundBuzzBundle\Entity\Track;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
 use SoundBuzzBundle\Form\TrackFormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType; 
 use Symfony\Component\Form\Extension\Core\Type\FileType; 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;  
-use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\HttpFoundation\Response;
-
-use \DateTime;
-
-
+/**
+ * Track controller.
+ *
+ */
 class TrackController extends Controller
 {
-    /**
-     * @Route("/")
-     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        dump($this->getUser()->getId());
+
+
+        $tracks = $em->getRepository('SoundBuzzBundle:Track')->findBy( array('user' => $this->getUser()));
+        
+       
+
+        return $this->render('SoundBuzzBundle:Track:index.html.twig', array(
+            'tracks' => $tracks,
+        ));
+    }
+
     public function uploadTrackAction(Request $request)
     {
 
 
         $track = new Track(); 
-        $form = $this->createForm(TrackFormType::class, $track) ;
+       $form= $this->createForm('SoundBuzzBundle\Form\TrackType', $track);
+
          
          
            $form->handleRequest($request); 
            if ($form->isSubmitted() && $form->isValid()) { 
-              $file = $track->getSong(); 
-              $fileName =$file->getClientOriginalName();
-              $file->move($this->getParameter('tracks_directory'), $fileName); 
-              $track->setSong($fileName); 
+             
+              //SONG
+              $fileSong = $track->getSong(); 
+              $fileNameSong =$fileSong->getClientOriginalName();
+              $fileSong->move($this->getParameter('tracks_directory'), $fileNameSong); 
+              $track->setSong($fileNameSong); 
               
-               //Get connected user
-               $user = $this->getUser();
+
+                //PICTURE
+                $filePictureSong = $track->getSongPicture(); 
+                $fileNamePictureSong =$filePictureSong->getClientOriginalName();
+                $filePictureSong->move($this->getParameter('tracks_directory'), $fileNamePictureSong); 
+                $track->setSongPicture($fileNamePictureSong); 
+                
+
+     
+              
+             //Get connected user
+             $user = $this->getUser();
 
 
                //GET DATA FORM
@@ -45,10 +73,11 @@ class TrackController extends Controller
         
                  //Query Doctrine
                $track = new Track();
-               $track->setExtension($file->getClientOriginalExtension());
+               $track->setExtension($fileSong->getClientOriginalExtension());
                $track->setTitle($data->getTitle());
                $track->setDescription($data->getDescription());
-               $track->setUrlPicture($this->getParameter('tracks_directory').'/'. $fileName);
+               $track->setUrlPicture($this->getParameter('tracks_directory').'/'. $fileNameSong);
+               $track->setUrlTrack($this->getParameter('tracks_directory').'/'. $fileNamePictureSong);
                $track->setCompositor($user->getFirstName());
                $track->setExplicitContent("0");
                $track->setDownloadAuthorization("0");
@@ -79,5 +108,71 @@ class TrackController extends Controller
         ));
 
     }
+}
+
+    /**
+     * Delete a track
+     *
+     * @Route("/{id}/edit", name="track_edit")
+     * @Method("DELETE")
+     */
+    public function editAction(Request $request, Track $track)
+    {
+        $deleteForm = $this->createDeleteForm($track);
+        $editForm = $this->createForm('SoundBuzzBundle\Form\TrackType', $track);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('track_edit', array('id' => $track->getId()));
+        }
+
+        return $this->render('SoundBuzzBundle:Track:edit.html.twig', array(
+            'track' => $track,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+
+    /**
+     * Delete a track
+     *
+     * @Route("/{id}/delete", name="track_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, Track $track)
+    {
+        dump("test");
+        $form = $this->createDeleteForm($track);
+        $form->handleRequest($request);
+        
+            dump($track);
+            $em = $this->getDoctrine()->getManager();
+            $tracke = $em->getRepository(Track::class)->find($track->getId());
+            $em->remove($tracke);
+            $em->flush();
+        
+
+        return $this->redirectToRoute('track_display');
+    }
+
+
+
+    /**
+     * Creates a form to delete a track entity.
+     *
+     * @param Track $track The track entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Track $track)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('track_index ', array('id' => $track->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
     }
 }
