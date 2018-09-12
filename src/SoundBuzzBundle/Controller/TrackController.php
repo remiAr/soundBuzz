@@ -57,7 +57,7 @@ class TrackController extends Controller
                 //PICTURE
                 $filePictureSong = $track->getSongPicture(); 
                 $fileNamePictureSong =$filePictureSong->getClientOriginalName();
-                $filePictureSong->move($this->getParameter('tracks_directory'), $fileNamePictureSong); 
+                $filePictureSong->move($this->getParameter('pictures_directory'), $fileNamePictureSong); 
                 $track->setSongPicture($fileNamePictureSong); 
                 
 
@@ -76,8 +76,8 @@ class TrackController extends Controller
                $track->setExtension($fileSong->getClientOriginalExtension());
                $track->setTitle($data->getTitle());
                $track->setDescription($data->getDescription());
-               $track->setUrlPicture($this->getParameter('tracks_directory').'/'. $fileNameSong);
-               $track->setUrlTrack($this->getParameter('tracks_directory').'/'. $fileNamePictureSong);
+               $track->setUrlPicture($fileNamePictureSong);
+               $track->setUrlTrack($fileNameSong);
                $track->setCompositor($user->getFirstName());
                $track->setExplicitContent("0");
                $track->setDownloadAuthorization("0");
