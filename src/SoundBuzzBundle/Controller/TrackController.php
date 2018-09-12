@@ -46,30 +46,27 @@ class TrackController extends Controller
          
            $form->handleRequest($request); 
            if ($form->isSubmitted() && $form->isValid()) { 
-             
-              //SONG
-              $fileSong = $track->getSong(); 
-              $fileNameSong =$fileSong->getClientOriginalName();
-              $fileSong->move($this->getParameter('tracks_directory'), $fileNameSong); 
-              $track->setSong($fileNameSong); 
-              
-
-                //PICTURE
-                $filePictureSong = $track->getSongPicture(); 
-                $fileNamePictureSong =$filePictureSong->getClientOriginalName();
-                $filePictureSong->move($this->getParameter('pictures_directory'), $fileNamePictureSong); 
-                $track->setSongPicture($fileNamePictureSong); 
-                
-
-     
-              
              //Get connected user
              $user = $this->getUser();
 
 
                //GET DATA FORM
                $data = $form->getData();
-            
+             
+              //SONG
+              $fileSong = $track->getSong(); 
+              $fileNameSong =$fileSong->getClientOriginalName();
+              $fileSong->move($this->getParameter('tracks_directory')."/". $user->getId(), $fileNameSong); 
+              $track->setSong($fileNameSong); 
+              
+
+                //PICTURE
+                $filePictureSong = $track->getSongPicture(); 
+                $fileNamePictureSong =$filePictureSong->getClientOriginalName();
+                $filePictureSong->move($this->getParameter('pictures_directory')."/". $user->getId(), $fileNamePictureSong); 
+                $track->setSongPicture($fileNamePictureSong); 
+                
+
         
                  //Query Doctrine
                $track = new Track();
