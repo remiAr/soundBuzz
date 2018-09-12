@@ -5,3 +5,7 @@ soundbuzz_homepage:
 soundbuzz_profil:
     path: /profil/{id}
     defaults: { _controller: SoundBuzzBundle:User:getprofil }
+
+soundbuzz_profil:
+    path: /profil/{id}/playlists
+    defaults: { _controller: SoundBuzzBundle:User:getplaylists }

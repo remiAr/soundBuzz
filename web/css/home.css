@@ -1,0 +1,19 @@
+#highlight {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+#highlight img {
+    width: 48%;
+    height: 200px;
+}
+
+@media screen and (max-width: 600px) {
+    #highlight {
+        flex-direction: column;
+    }
+     #highlight img {
+        width: 100%;
+         margin-bottom: 40px;
+    }
+}

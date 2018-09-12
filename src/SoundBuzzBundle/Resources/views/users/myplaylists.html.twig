@@ -1,0 +1,43 @@
+{% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+{% block title %} Accueil - SoundBuzz {% endblock %}
+
+{% block body %}
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Urlpicture</th>
+            <th>Compositor</th>
+            <th>Durée</th>
+            <th>Nombre d'écoutes</th>
+            <th>Nombre de telechargements</th>
+            <th>Nombre de likes</th>
+            <th></th>
+        </tr>
+        {% for playlist in playlists %}
+            {% for track in tracks %}
+                <tr>
+                    <td>{{ track.title }}</td>
+                    <td>{{ track.description }}</td>
+                    <td><img src={{ track.urlPicture }}></td>
+                    <td>{{ track.compositor }}</td>
+                    <td>{{ track.duration }}</td>
+                    <td>{{ track.nbListenings }}</td>
+                    <td>{{ track.nbDownloads }}</td>
+                    <td>{{ track.nbLikes }} </td>
+                    <td>
+                        <audio controls="controls" />
+                        <source src="{{ track.urlTrack }}" type="audio/mp3" />
+                    </td>
+                    <td>
+                        <a href="{{ track.urlTrack }}" download> Download</a>
+                        <a href="{{ track.urlTrack }}">LIKE</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

@@ -3,66 +3,42 @@
 
 {% block body %}
 
- {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
-                Bonjour, {{user.firstName}}
-                            <a href="{{ path('soundbuzz_profil', {'id': user.id}) }}"><button>Profil</button></a>
-                        {% else %}
-                            <a href="{{ path('fos_user_registration_register') }}"><button>Register</button></a>
-                        {% endif %}
-                        {% if is_granted('ROLE_USER') %}
-                            <a href="{{ path('fos_user_security_logout') }}"><button>Logout</button></a>
-                        {% else %}
-                            <a href="{{ path('fos_user_security_login') }}"><button>Login</button></a>
-                        {% endif %}
-
-<table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Urlpicture</th>
-                <th>Compositor</th>
-                <th>Durée</th>
-                <th>Nombre d'écoutes</th>
-                <th>Nombre de telechargements</th>
-                 <th>Nombre de likes</th>
-                 <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        
+    {#<table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Urlpicture</th>
+            <th>Compositor</th>
+            <th>Durée</th>
+            <th>Nombre d'écoutes</th>
+            <th>Nombre de telechargements</th>
+            <th>Nombre de likes</th>
+            <th></th>
+        </tr>
         {% for playlist in playlists %}
-            {% for track in tracks %}
-            <tr>    
-                <td>{{ track.title }}</td>
-                <td>{{ track.description }}</td>
-                <td><img style="width: 200px;" src="../uploads/tracks/{{ track.urlPicture }}"></td>
-                <td>{{ track.compositor }}</td>
-                <td>{{ track.duration }}</td>
-                <td>{{ track.nbListenings }}</td>
-                <td>{{ track.nbDownloads }}</td>
-                <td>{{ track.nbLikes }} </td>
-                <td>
-             <audio controls="controls">
-                <source src="../uploads/tracks/{{ track.urlTrack }}" type="audio/mp3" />
-                
-                </td>
-                <td>
-
-     <ul>
-
-                            
-                        </li>
-                         <li>
-                           <a href="{{ track.urlTrack }}" download> Download</a>
-                            <a href="{{ track.urlTrack }}">LIKE</a>
-                            
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+        {% for track in tracks %}
+        <tr>
+            <td>{{ track.title }}</td>
+            <td>{{ track.description }}</td>
+            <td><img src={{ track.urlPicture }}></td>
+            <td>{{ track.compositor }}</td>
+            <td>{{ track.duration }}</td>
+            <td>{{ track.nbListenings }}</td>
+            <td>{{ track.nbDownloads }}</td>
+            <td>{{ track.nbLikes }} </td>
+            <td>
+                <audio controls="controls" />
+                <source src="{{ track.urlTrack }}" type="audio/mp3" />
+            </td>
+            <td>
+                <a href="{{ track.urlTrack }}" download> Download</a>
+                <a href="{{ track.urlTrack }}">LIKE</a>
+            </td>
+        </tr>
         {% endfor %}
-    {% endfor %}
+        {% endfor %}
+    </table>
+        #}
 
 
 {% endblock %}
