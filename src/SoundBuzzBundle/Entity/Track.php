@@ -12,20 +12,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\Validator\Constraints as Assert; class Track
 {
-    
-    /** 
-      * @Assert\NotBlank(message="Please, upload the photo.") 
-      * @Assert\File(mimeTypes={ "audio/mp3", "audio/mpeg","audio/mp4" }) 
-   */ 
-   private $song;
-   
-   
-        
-    /** 
-      * @Assert\NotBlank(message="Please, upload the photo.") 
-      * @Assert\File(mimeTypes={ "image/jpg", "image/png","image/jpeg"}) 
-   */ 
-   private $songPicture; 
+
+    /**
+     * @Assert\NotBlank(message="Please, upload the photo.")
+     * @Assert\File(mimeTypes={ "audio/mp3", "audio/mpeg","audio/mp4" })
+     */
+    private $song;
+
+
+
+    /**
+     * @Assert\NotBlank(message="Please, upload the photo.")
+     * @Assert\File(mimeTypes={ "image/jpg", "image/png","image/jpeg"})
+     */
+    private $songPicture;
 
 
 
@@ -35,12 +35,12 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string")
      */
     private $urlTrack;
-    
+
     /**
      * @ORM\Column(type="string")
      */
@@ -50,77 +50,77 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
      * @ORM\Column(type="string")
      */
     private $title;
-    
+
     /**
      * @ORM\Column(type="string")
      */
     private $description;
-   
+
     /**
      * @ORM\Column(type="string")
      */
     private $urlPicture;
-    
+
     /**
      * @ORM\Column(type="string")
      */
     private $compositor;
-    
+
     /**
      * @ORM\Column(type="boolean")
      */
     private $explicitContent;
-    
+
     /**
      * @ORM\Column(type="boolean")
      */
     private $downloadAuthorization;
-    
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $transferredAt;
-    
+
     /**
      * @ORM\Column(type="integer")
      */
     private $duration;
-    
+
     /**
      * @ORM\Column(type="integer")
      */
     private $nbListenings = 0;
-    
+
     /**
      * @ORM\Column(type="integer")
      */
     private $nbDownloads = 0;
-    
+
     /**
      * @ORM\Column(type="integer")
      */
     private $nbViews = 0;
-    
+
     /**
      * @ORM\Column(type="integer")
      */
     private $nbLikes = 0;
-    
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
-    
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
-    
+
     /**
      * @ORM\Column(type="integer")
      */
     private $nbComments;
-    
+
     /**
      * @ORM\Column(type="boolean")
      */
@@ -136,7 +136,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
      * Many Tracks have Many Playlists.
      * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="track", cascade={"remove"})
      * @ORM\JoinTable(name="playlist_tracks")
-     * 
+     *
      */
     private $playlist;
 
@@ -235,7 +235,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     {
         return $this->urlPicture;
     }
-    
+
     /**
      * Set urlTrack
      *
@@ -248,7 +248,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
         $this->urlTrack = $urlTrack;
         return $this;
     }
-    
+
     /**
      * Get urlTrack
      *
@@ -258,7 +258,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     {
         return $this->urlTrack;
     }
-    
+
     /**
      * Set compositor
      *
@@ -481,6 +481,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
         $this->createdAt = $createdAt;
         return $this;
     }
+
     /**
      * Get createdAt
      *
@@ -502,6 +503,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
         $this->nbComments = $nbComments;
         return $this;
     }
+
     /**
      * Get nbComments
      *
@@ -511,6 +513,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     {
         return $this->nbComments;
     }
+
     /**
      * Set isValidated
      *
@@ -523,6 +526,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
         $this->isValidated = $isValidated;
         return $this;
     }
+
     /**
      * Get isValidated
      *
@@ -532,6 +536,7 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     {
         return $this->isValidated;
     }
+
     /**
      * Get id
      *
@@ -590,22 +595,22 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
         $this->genre = $genre;
     }
 
-    public function getSong() { 
-        return $this->song; 
-     } 
-     public function setSong($song) { 
-        $this->song = $song; 
-        return $this; 
-     } 
+    public function getSong() {
+        return $this->song;
+    }
 
-     public function getSongPicture() { 
-        return $this->songPicture; 
-     } 
-     public function setSongPicture($songPicture) { 
-        $this->songPicture = $songPicture; 
-        return $this; 
-     } 
-   
+    public function setSong($song) {
+        $this->song = $song;
+        return $this;
+    }
 
-     
+    public function getSongPicture() {
+        return $this->songPicture;
+    }
+
+    public function setSongPicture($songPicture) {
+        $this->songPicture = $songPicture;
+        return $this;
+    }
+
 }
