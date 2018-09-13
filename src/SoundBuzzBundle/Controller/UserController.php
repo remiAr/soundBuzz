@@ -26,30 +26,9 @@ class UserController extends Controller
             'user' => $profil,
         ]);
     }
+    public function updateProfilAction(Request $request, $id) {
 
-    public function getplaylists() {
-        $em = $this->getDoctrine()->getManager();
-        dump($this->getUser()->getId());
-
-        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
-        //$tracks = $playlists;
-        //dump($playlists);
-        foreach($playlists as $p) {
-            $tracks =$p->getTrack()->toArray();
-
-        }
-
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        return $this->render('SoundBuzzBundle:Default:index.html.twig', [
-            'user' => $user,
-            'playlists'=>$playlists,
-            'tracks'=>$tracks
-        ]);
-    }
-
-    /* public function updateProfilAction(Request $request, $id) {
-
-        $repository = $this->getDoctrine()->getRepository('EmotionBundle:User');
+        $repository = $this->getDoctrine()->getRepository('SoundBuzzBundle:User');
 
         $profil = $repository->find($id);
 
@@ -65,17 +44,19 @@ class UserController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('emotion_profil', ['id' => $profil->getId()]);
+            return $this->redirectToRoute('soundbuzz_profil', ['id' => $profil->getId()]);
         }
 
-        return $this->render('EmotionBundle:Admin:updateProfil.html.twig', ['form' => $form->createView()]);
+        return $this->render('SoundBuzzBundle:Admin:updateProfil.html.twig', [
+            'user' => $profil,
+            'form' => $form->createView()]);
     }
 
     public function deleteUserAction($id) {
 
         $em = $this->getDoctrine()->getManager();
 
-        $repository = $this->getDoctrine()->getRepository('EmotionBundle:User');
+        $repository = $this->getDoctrine()->getRepository('SoundBuzzBundle:User');
 
         $user = $repository->find($id);
 
@@ -83,6 +64,25 @@ class UserController extends Controller
 
         $em->flush();
 
-        return $this->redirectToRoute('emotion_homepage');
-    } */
+        return $this->redirectToRoute('soundbuzz_homepage');
+    }
+
+    public function getplaylists() {
+        $em = $this->getDoctrine()->getManager();
+        dump($this->getUser()->getId());
+
+        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
+        //$tracks = $playlists;
+        //dump($playlists);
+        foreach($playlists as $p) {
+            $tracks =$p->getTrack()->toArray();
+
+        }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        return $this->render('SoundBuzzBundle:Default:index.html.twig', [
+            'user' => $user,
+            'playlists'=>$playlists,
+            'tracks'=>$tracks
+        ]);
+    }
 }

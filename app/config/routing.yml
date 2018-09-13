@@ -10,6 +10,12 @@ app:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+
+soundbuzz_homepage:
+    path: /
+    defaults: { _controller: SoundBuzzBundle:Default:index }
+
+#PROFIL
 soundbuzz_profil:
     path: /profil/{id}
     defaults: { _controller: SoundBuzzBundle:User:getProfil }
@@ -19,6 +25,13 @@ easy_admin_bundle:
     type:     annotation
     prefix:   /admin
 
+soundbuzz_updateprofil:
+    path: /profil/update/{id}
+    defaults: { _controller: SoundBuzzBundle:User:updateprofil }
+
+soundbuzz_deleteuser:
+    path:     /profil/delete/{id}
+    defaults: { _controller:SoundBuzzBundle:User:deleteuser }
 #TRACK
 track_new:
     path: /trackUpload

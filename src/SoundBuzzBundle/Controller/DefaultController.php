@@ -14,7 +14,7 @@ class DefaultController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        dump($this->getUser()->getId());
+        //dump($this->getUser()->getId());
 
         $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
         //$tracks = $playlists;
@@ -30,7 +30,7 @@ class DefaultController extends Controller
             'playlists'=>$playlists,
             'tracks'=>$tracks
         ]);
-        /*return $this->render('SoundBuzzBundle:Default:index.html.twig');*/
+        return $this->render('SoundBuzzBundle:Default:index.html.twig');
     }
 
 

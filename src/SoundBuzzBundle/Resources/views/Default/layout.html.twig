@@ -27,7 +27,7 @@
                 <div id="mainNav">
                     <!--<h1><img src="logo.png" alt="SoundBuzz" title="SoundBuzz" /></h1>-->
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <h1><a class="navbar-brand" href="#"><img src="{{ asset('img/logo.png') }}" alt="SoundBuzz" title="SoundBuzz" /></a></h1>
+                        <h1><a class="navbar-brand" href="{{ path('soundbuzz_homepage') }}"><img src="{{ asset('img/logo.png') }}" alt="SoundBuzz" title="SoundBuzz" /></a></h1>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -35,7 +35,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i>Accueil <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="{{ path('soundbuzz_homepage') }}"><i class="fa fa-home" aria-hidden="true"></i>Accueil <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-music" aria-hidden="true"></i>
