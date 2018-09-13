@@ -1,7 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <h2 class="title_form">S'enregister</h2>
-
+<p class="infosForms">Remplissez les champs demandés pour vous inscrire</p>
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_widget(form) }}
         {{ form_row(form.email) }}
@@ -10,6 +10,6 @@
         {{ form_row(form.avatarUrl) }}
         {{ form_row(form.createdAt) }}
         <div class="submit_form">
-            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+            <input type="submit" value="S'enregistrer" />
         </div>
 {{ form_end(form) }}

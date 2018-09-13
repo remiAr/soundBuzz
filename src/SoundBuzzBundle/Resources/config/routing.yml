@@ -6,6 +6,6 @@ soundbuzz_profil:
     path: /profil/{id}
     defaults: { _controller: SoundBuzzBundle:User:getprofil }
 
-soundbuzz_profil:
-    path: /profil/{id}/playlists
-    defaults: { _controller: SoundBuzzBundle:User:getplaylists }
+soundbuzz_updateprofil:
+    path: /profil/update/{id}
+    defaults: { _controller: SoundBuzzBundle:User:updateprofil }

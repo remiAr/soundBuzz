@@ -1,0 +1,13 @@
+{% extends "SoundBuzzBundle:default:layout.html.twig" %}
+
+{% block title %} SoundBuzz - Modification du profil {% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('css/form.css')}}">
+{% endblock %}
+{% block body %}
+    <div class="admin_forms">
+            <h2>Modification du profil</h2>
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

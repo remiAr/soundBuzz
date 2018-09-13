@@ -1,0 +1,120 @@
+.error-text {
+    max-width: 300px;
+    margin: 0 auto;
+    border: 1px solid red;
+    color: red;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+form {
+    margin-bottom: 50px;
+}
+.infosForms {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.fos_user_registration_register {
+    margin-bottom: 50px;
+}
+.fos_user_registration_register>div>div, #update_user>div {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+label {
+    width: 200px;
+    text-align: right;
+    padding:10px;
+    padding-right: 3%;
+    font-weight: bold;
+}
+div>input {
+    width: 35%;
+    padding:10px 20px;
+}
+.submit_form {
+    display: flex;
+}
+.submit_form input, #login_form input[type="submit"], #update_user button[type="submit"] {
+    width: 20%;
+    min-width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 120%;
+    background: #535353;
+    color: #FF9601;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #FF9601;
+    padding: 10px 20px;
+}
+.submit_form input:hover, #login_form input[type="submit"]:hover, #update_user button[type="submit"]:hover {
+    color: white;
+    background: #FF9601;
+}
+@media screen and (max-width: 950px) {
+    .fos_user_registration_register>div>div {
+        flex-direction: column;
+    }
+    label {
+        width: 100%;
+        text-align: left;
+    }
+    div>input {
+        width:100%;
+    }
+}
+/*LOGIN*/
+
+#login_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#login_form>label,#login_form>input, #login_form>div {
+    width: 40%;
+    margin: 0 30%;
+}
+#login_form>input {
+    padding: 10px 20px;
+}
+#login_form>label {
+    text-align: left;
+}
+#login_form>div>input {
+    width:auto;
+}
+#login_form>div>label {
+    text-align: left;
+}
+@media screen and (max-width: 1005px) {
+    #login_form>label,#login_form>input, #login_form>div {
+        width: 60%;
+        margin: 0 20%;
+    }
+    #login_form>div {
+        margin-top: 10px;
+        padding-left: 10px;
+    }
+    #login_form>div>label {
+        display: inline;
+    }
+    #login_form input[type="submit"] {
+        margin-top:20px;
+    }
+}
+@media screen and (max-width: 750px) {
+    #update_user > div {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 650px) {
+    #login_form>label,#login_form>input, #login_form>div {
+        width: 90%;
+        margin: 0 5%;
+    }
+    #login_form>div {
+        margin-top: 10px;
+    }
+}

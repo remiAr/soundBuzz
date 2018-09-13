@@ -26,6 +26,46 @@ class UserController extends Controller
             'user' => $profil,
         ]);
     }
+    public function updateProfilAction(Request $request, $id) {
+
+        $repository = $this->getDoctrine()->getRepository('SoundBuzzBundle:User');
+
+        $profil = $repository->find($id);
+
+        $form =$this->createForm(UpdateUserType::class, $profil);
+
+        if($request->isMethod('POST')) {
+
+            $form->handleRequest($request);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($profil);
+
+            $em->flush();
+
+            return $this->redirectToRoute('soundbuzz_profil', ['id' => $profil->getId()]);
+        }
+
+        return $this->render('SoundBuzzBundle:Admin:updateProfil.html.twig', [
+            'user' => $profil,
+            'form' => $form->createView()]);
+    }
+
+    public function deleteUserAction($id) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $repository = $this->getDoctrine()->getRepository('SoundBuzzBundle:User');
+
+        $user = $repository->find($id);
+
+        $em->remove($user);
+
+        $em->flush();
+
+        return $this->redirectToRoute('soundbuzz_homepage');
+    }
 
     public function getplaylists() {
         $em = $this->getDoctrine()->getManager();
@@ -44,44 +84,5 @@ class UserController extends Controller
             'playlists'=>$playlists,
             'tracks'=>$tracks
         ]);
-    }
-
-    public function updateProfilAction(Request $request, $id) {
-
-        $repository = $this->getDoctrine()->getRepository('EmotionBundle:User');
-
-        $profil = $repository->find($id);
-
-        $form =$this->createForm(UpdateUserType::class, $profil);
-
-        if($request->isMethod('POST')) {
-
-            $form->handleRequest($request);
-
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($profil);
-
-            $em->flush();
-
-            return $this->redirectToRoute('emotion_profil', ['id' => $profil->getId()]);
-        }
-
-        return $this->render('EmotionBundle:Admin:updateProfil.html.twig', ['form' => $form->createView()]);
-    }
-
-    public function deleteUserAction($id) {
-
-        $em = $this->getDoctrine()->getManager();
-
-        $repository = $this->getDoctrine()->getRepository('EmotionBundle:User');
-
-        $user = $repository->find($id);
-
-        $em->remove($user);
-
-        $em->flush();
-
-        return $this->redirectToRoute('emotion_homepage');
     }
 }
