@@ -31,3 +31,11 @@ track_index:
 track_information:
     path: /tracks/{id}
     defaults: { _controller: SoundBuzzBundle:Track:getTrack }
+
+track_edit:
+    path: /tracks/{id}/edit
+    defaults: { _controller: SoundBuzzBundle:Track:edit }
+
+track_delete:
+    path: /tracks/{id}/delete
+    defaults: { _controller: SoundBuzzBundle:Track:delete }
