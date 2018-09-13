@@ -2,19 +2,14 @@
 
 namespace SoundBuzzBundle\Controller;
 
-use Doctrine\ORM\Mapping\Id;
 use SoundBuzzBundle\Entity\Comments;
 use SoundBuzzBundle\Entity\Track;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
+use SoundBuzzBundle\Form\AddComment;
 use SoundBuzzBundle\Form\TrackFormType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class TrackController extends Controller
@@ -35,12 +30,13 @@ class TrackController extends Controller
         ));
     }
 
-    public function getTrackAction($id)
+    public function getTrackAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $track = $em->getRepository('SoundBuzzBundle:Track')->find($id);
 
+        // Traitement de l'ArrayCollection $genres du track
         $genres = $track->getGenres();
         dump($genres);
 
@@ -48,21 +44,41 @@ class TrackController extends Controller
 
         foreach ($genres as $genre) {
             array_push($tmp, [
-                'foo' => $genre->getName(),
+                'name' => $genre->getName(),
             ]);
         }
 
-        var_dump($tmp);
+        dump($tmp[0]['name']);
+        // ------------------------------------------------
 
         $user= $track->getUser();
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
             ->findBy(array('track' => $track));
 
+        $newComment = new Comments();
+        $addCommentForm = $this->createForm(AddComment::class, $newComment);
+
+        $addCommentForm->handleRequest($request);
+
+        if ($addCommentForm->isSubmitted() && $addCommentForm->isValid()) {
+            $newComment = $addCommentForm->getData();
+            $newComment->setUser($user);
+            $newComment->setCreatedAt(
+                \DateTime::createFromFormat(
+                    'Y-m-d h:i:s', date('Y-m-d h:i:s'))
+            );
+            $newComment->setTrack($track);
+
+            $em->persist($newComment);
+            $em->flush();
+        }
+
         return $this->render('SoundBuzzBundle:Track:trackInformation.html.twig', array(
             'track' => $track,
             'user' => $user,
             'comments' => $comments,
+            'addCommentForm' => $addCommentForm->createView(),
         ));
     }
 

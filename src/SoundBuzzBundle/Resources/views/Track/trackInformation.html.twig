@@ -64,13 +64,13 @@
 
         <div id="coms">
             <div id="entete-coms">
-                <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
-                <form>
-                    <textarea></textarea>
-                    <button type="submit" class="btn-outline-success">Envoyer</button>
-                </form>
+                {#<div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>#}
+                {#<form>#}
+                {#<textarea></textarea>#}
+                {#<button type="submit" class="btn-outline-success">Envoyer</button>#}
+                {#</form>#}
+                {{ form(addCommentForm) }}
             </div>
-
             <div class="commentaires">
                 {% for comment in comments %}
                     <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
