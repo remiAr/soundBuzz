@@ -37,7 +37,7 @@
             <tbody>
             {% for track in tracks %}
                 <tr>
-                    <td><img src="{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" /> </td>
+                    <td><img src="../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" /> </td>
                     <td><a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a></td>
                     <td>{{ track.extension }}</td>
                     <td class="displayTD">{{ track.description }}</td>
