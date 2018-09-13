@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Track Information</h1>
+
+    <h2>Titre</h2>
+    <p>{{ track.title }}</p>
+
+    <h2>Description</h2>
+    <p>{{ track.description }}</p>
+
+    <h2>Auteur</h2>
+    <p>{{ user.firstName|capitalize }} {{ user.lastName|first|lower|capitalize }}</p>
+
+    <h2>Compositeur</h2>
+    <p>{{ track.compositor|capitalize }}</p>
+
+    <h2>Genre</h2>
+    <p>track.genre</p>
+
+    <h2>Durée</h2>
+    <p>{{ track.duration}}</p>
+
+    <h2>Écoutes</h2>
+    <p>{{ track.nbListenings}}</p>
+
+    <h2>Téléchargements</h2>
+    <p>{{ track.nbDownloads}}</p>
+
+    <h2>Vues</h2>
+    <p>{{ track.nbViews}}</p>
+
+    <h2>Likes</h2>}}
+    <p>{{ track.nbLikes}}</p>
+
+    <h2>Commentaires</h2>
+    {% for comment in comments %}
+        <h3>{{ comment.user.firstName|capitalize }} {{ comment.user.lastName|first|lower|capitalize  }}</h3>
+        <li>{{ comment.content }}</li>
+    {% endfor %}
+{% endblock %}

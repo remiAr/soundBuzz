@@ -27,3 +27,7 @@ track_new:
 track_index:
     path: /tracks
     defaults: { _controller: SoundBuzzBundle:Track:index }
+
+track_information:
+    path: /tracks/{id}
+    defaults: { _controller: SoundBuzzBundle:Track:getTrack }
