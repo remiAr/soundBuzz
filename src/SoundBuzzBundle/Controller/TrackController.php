@@ -117,15 +117,9 @@ class TrackController extends Controller
         }
     }
 
-    /**
-     * Delete a track
-     *
-     * @Route("/{id}/edit", name="track_edit")
-     * @Method("DELETE")
-     */
+
     public function editAction(Request $request, Track $track)
     {
-        $deleteForm = $this->createDeleteForm($track);
         $editForm = $this->createForm('SoundBuzzBundle\Form\TrackType', $track);
         $editForm->handleRequest($request);
 
@@ -137,46 +131,20 @@ class TrackController extends Controller
 
         return $this->render('SoundBuzzBundle:Track:edit.html.twig', array(
             'track' => $track,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
-
-    /**
-     * Delete a track
-     *
-     * @Route("/{id}/delete", name="track_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Track $track)
+    
+    public function deleteAction($id)
     {
-        dump("test");
-        $form = $this->createDeleteForm($track);
-        $form->handleRequest($request);
-
-        dump($track);
         $em = $this->getDoctrine()->getManager();
-        $tracke = $em->getRepository(Track::class)->find($track->getId());
-        $em->remove($tracke);
+        $track = $em->getRepository(Track::class)->find($id);
+        
+        $em->remove($track);
         $em->flush();
 
 
-        return $this->redirectToRoute('track_display');
-    }
-
-    /**
-     * Creates a form to delete a track entity.
-     *
-     * @param Track $track The track entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Track $track)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('track_index ', array('id' => $track->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
+        return $this->redirectToRoute('track_index');
     }
 
 }
