@@ -1,76 +1,77 @@
-{% extends 'base.html.twig' %}
-
+{% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+{% block title %}
+    SoundBuzz - Mes Musiques
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ asset('css/track.css')}}">
+{%  endblock %}
 {% block body %}
-    <h1>Tracks list</h1>
+    <h2 class="titretrack">Mes musiques </h2>
+    <div class="addTracks"><a href="{{ path('track_new') }}">Ajouter un nouveau morceau</a></div>
+    <div class="table-list">
+        <table class="table-tracks">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Titre</th>
+                    <th>Extension</th>
+                    <th class="displayTD">Description</th>
+                    {#<th>Urlpicture</th>#}
+                    <th>Compositeur</th>
+                    <th>Duration</th>
+                    <th class="displayTD">Nb. écoute</th>
+                    <th class="displayTD">Nb. téléchargement</th>
+                    <th class="displayTD">Nb. vues</th>
+                    <th class="displayTD">Nb. likes</th>
+                    {#<th>Updatedat</th>
+                    <th>Createdat</th>
+                    <th>Nbcomments</th>
+                    <th>Isvalidated</th>#}
+                    <th>Actions</th>
+                    {#
+                    <th>Explicitcontent</th>
+                    <th>Downloadauthorization</th>
+                    <th>Transferredat</th>#}
+                </tr>
+            </thead>
+            <tbody>
+            {% for track in tracks %}
+                <tr>
+                    <td><img src="{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" /> </td>
+                    <td><a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a></td>
+                    <td>{{ track.extension }}</td>
+                    <td class="displayTD">{{ track.description }}</td>
+                    <td>{{ track.compositor }}</td>
+                    {#<td>{% if track.explicitContent %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if track.downloadAuthorization %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if track.transferredAt %}{{ track.transferredAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                    <td>{{ track.duration }}</td>
+                    <td class="displayTD">{{ track.nbListenings }}</td>
+                    <td class="displayTD">{{ track.nbDownloads }}</td>
+                    <td class="displayTD">{{ track.nbViews }}</td>
+                    <td class="displayTD">{{ track.nbLikes }}</td>
+                    {#<td>{% if track.updatedAt %}{{ track.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if track.createdAt %}{{ track.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ track.nbComments }}</td>
+                    <td>{% if track.isValidated %}Yes{% else %}No{% endif %}</td>#}
+                    <td>
+                        <ul>
+                            <li>
+                              <a href="{{ path('track_delete', { 'id': track.id }) }}">Supprimer</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('track_edit', { 'id': track.id }) }}">Modifier</a>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Extension</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Urlpicture</th>
-                <th>Compositor</th>
-                <th>Explicitcontent</th>
-                <th>Downloadauthorization</th>
-                <th>Transferredat</th>
-                <th>Duration</th>
-                <th>Nblistenings</th>
-                <th>Nbdownloads</th>
-                <th>Nbviews</th>
-                <th>Nblikes</th>
-                <th>Updatedat</th>
-                <th>Createdat</th>
-                <th>Nbcomments</th>
-                <th>Isvalidated</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for track in tracks %}
-            <tr>
-                <td></a></td>
-                <td>{{ track.extension }}</td>
-                <td>{{ track.title }}</td>
-                <td>{{ track.description }}</td>
-                <td>{{ track.urlPicture }}</td>
-                <td>{{ track.compositor }}</td>
-                <td>{% if track.explicitContent %}Yes{% else %}No{% endif %}</td>
-                <td>{% if track.downloadAuthorization %}Yes{% else %}No{% endif %}</td>
-                <td>{% if track.transferredAt %}{{ track.transferredAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ track.duration }}</td>
-                <td>{{ track.nbListenings }}</td>
-                <td>{{ track.nbDownloads }}</td>
-                <td>{{ track.nbViews }}</td>
-                <td>{{ track.nbLikes }}</td>
-                <td>{% if track.updatedAt %}{{ track.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if track.createdAt %}{{ track.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ track.nbComments }}</td>
-                <td>{% if track.isValidated %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                          <a href="{{ path('track_delete', { 'id': track.id }) }}">Delete</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('track_edit', { 'id': track.id }) }}">edit</a>
+                            </li>
+                             <li>
+                                <a href="https://archive.org/download/testmp3testfile/testmp3testfile_64kb.m3u">Télécharger</a>
 
-                        </li>
-                         <li>
-                            <a href="https://archive.org/download/testmp3testfile/testmp3testfile_64kb.m3u">Download</a>
-
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('track_new') }}">Create a new track</a>
-        </li>
-    </ul>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

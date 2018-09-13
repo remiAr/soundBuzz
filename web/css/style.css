@@ -2,6 +2,9 @@ body {
     font-family: 'Lato', sans-serif;
 }
 #wrapper {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom:185px;
     display: flex;
     flex-direction: column;
 }
@@ -9,6 +12,7 @@ body {
     margin: 150px 5% 0 ;
     font-size: 110%;
     color: #383838;
+    /*min-height: 61vh;*/
 }
 #content h2 {
     color: #383838;
@@ -59,7 +63,7 @@ body {
     border-bottom:1px solid rgba(0, 0, 0, .10);
 }
 .table-list table tr:nth-child(2n+1 ) td {
-    background: #C8C8C8;
+    background: #dbdada;
 }
 .table-list table td:first-of-type{
     width: 5%;
@@ -71,6 +75,7 @@ body {
     text-align: center;
     width: 5%;
 }
+
 #content a {
     color: #FF9601;
     font-weight: bold;

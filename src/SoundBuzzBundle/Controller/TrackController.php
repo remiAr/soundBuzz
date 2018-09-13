@@ -27,9 +27,11 @@ class TrackController extends Controller
         $tracks = $em->getRepository('SoundBuzzBundle:Track')->findBy(
             array('user' => $this->getUser())
         );
+        $user= $this->getUser();
 
         return $this->render('SoundBuzzBundle:Track:index.html.twig', array(
             'tracks' => $tracks,
+            'user' => $user
         ));
     }
 

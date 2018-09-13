@@ -1,41 +1,89 @@
-{% extends 'base.html.twig' %}
-
+{% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+{% block title %}
+SoundBuzz - Musique : {{ track.title }}
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('css/track.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/coms.css')}}">
+{% endblock %}
 {% block body %}
-    <h1>Track Information</h1>
+    <section id="track">
+        <img class="img-artist" src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" />
 
-    <h2>Titre</h2>
-    <p>{{ track.title }}</p>
+        <h2>Information : {{ track.title }}</h2>
+        <div class="bloc-info">
+            <img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" />
 
-    <h2>Description</h2>
-    <p>{{ track.description }}</p>
+            <table>
+                <tr>
+                    <th>Titre</th>
+                    <td>{{ track.title }}</td>
+                </tr>
+                <tr>
+                    <th>Auteur</th>
+                    <td>{{ user.firstName|capitalize }} {{ user.lastName|first|lower|capitalize }}</td>
+                </tr>
+                <tr>
+                    <th>Compositeur</th>
+                    <td>{{ track.compositor|capitalize }}</td>
+                </tr>
+                <tr>
+                    <th>Genre</th>
+                    <td>track.genre</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ track.description }}</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Durée</th>
+                    <td>{{ track.duration}}</td>
+                </tr>
+                <tr>
+                    <th>Nombre d'écoute</th>
+                    <td>{{ track.nbListenings}}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de téléchargements</th>
+                    <td>{{ track.nbDownloads}}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de vues</th>
+                    <td>{{ track.nbViews}}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de coup de coeur</th>
+                    <td>{{ track.nbLikes}}</td>
+                </tr>
+            </table>
+        </div>
 
-    <h2>Auteur</h2>
-    <p>{{ user.firstName|capitalize }} {{ user.lastName|first|lower|capitalize }}</p>
+        <div id="coms">
+            <div id="entete-coms">
+                <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
+                <form>
+                    <textarea></textarea>
+                    <button type="submit" class="btn-outline-success">Envoyer</button>
+                </form>
+            </div>
 
-    <h2>Compositeur</h2>
-    <p>{{ track.compositor|capitalize }}</p>
+            <div class="commentaires">
+                <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
+                <div>
+                    <h5>Mr bla - 17/06/2018</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eleifend sem vitae nulla fermentum, a ornare dui porttitor. Nam rhoncus rhoncus semper. Etiam porttitor nisl sit amet faucibus lobortis. Cras vel enim vitae tellus egestas hendrerit et eget ante. Pellentesque at sem a turpis rhoncus porttitor. Nam tincidunt ornare urna id mollis. Aenean non rutrum mauris. Vestibulum vestibulum dolor eget gravida pulvinar. Integer malesuada sit amet ligula et malesuada. Nam eget sem ac tortor molestie venenatis eget vel neque. Curabitur rhoncus tortor ac urna tristique pellentesque. Nullam ornare vel enim id eleifend.</p>
+                    <!--<button class="button-coms">Répondre</button>-->
+                </div>
 
-    <h2>Genre</h2>
-    <p>track.genre</p>
+            </div>
+        </div>
 
-    <h2>Durée</h2>
-    <p>{{ track.duration}}</p>
+        {% for comment in comments %}
+            <h3>{{ comment.user.firstName|capitalize }} {{ comment.user.lastName|first|lower|capitalize  }}</h3>
+            <li>{{ comment.content }}</li>
+        {% endfor %}
 
-    <h2>Écoutes</h2>
-    <p>{{ track.nbListenings}}</p>
-
-    <h2>Téléchargements</h2>
-    <p>{{ track.nbDownloads}}</p>
-
-    <h2>Vues</h2>
-    <p>{{ track.nbViews}}</p>
-
-    <h2>Likes</h2>}}
-    <p>{{ track.nbLikes}}</p>
-
-    <h2>Commentaires</h2>
-    {% for comment in comments %}
-        <h3>{{ comment.user.firstName|capitalize }} {{ comment.user.lastName|first|lower|capitalize  }}</h3>
-        <li>{{ comment.content }}</li>
-    {% endfor %}
+    </section>
 {% endblock %}
