@@ -12,6 +12,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\Validator\Constraints as Assert; class Track
 {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->genres = new ArrayCollection();
+    }
 
     /**
      * @Assert\NotBlank(message="Please, upload the photo.")
@@ -19,15 +26,11 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
      */
     private $song;
 
-
-
     /**
      * @Assert\NotBlank(message="Please, upload the photo.")
      * @Assert\File(mimeTypes={ "image/jpg", "image/png","image/jpeg"})
      */
     private $songPicture;
-
-
 
     /**
      * @ORM\Id
@@ -142,18 +145,10 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
 
     /**
      * Many Tracks have Many Genres.
-     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="track",  cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="track", cascade={"remove"})
      * @ORM\JoinTable(name="track_genres")
      */
-    private $genre;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-
-    }
+    private $genres;
 
     /**
      * @return mixed
@@ -582,17 +577,17 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     /**
      * @return mixed
      */
-    public function getGenre()
+    public function getGenres()
     {
-        return $this->genre;
+        return $this->genres;
     }
 
     /**
-     * @param mixed $genre
+     * @param mixed $genres
      */
-    public function setGenre($genre)
+    public function setGenres($genres)
     {
-        $this->genre = $genre;
+        $this->genres = $genres;
     }
 
     public function getSong() {

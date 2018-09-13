@@ -39,9 +39,21 @@ class TrackController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $track = $em->getRepository('SoundBuzzBundle:Track')->findOneBy(
-            array('user' => $this->getUser())
-        );
+        $track = $em->getRepository('SoundBuzzBundle:Track')->find($id);
+
+        $genres = $track->getGenres();
+        dump($genres);
+
+        $tmp = [];
+
+        foreach ($genres as $genre) {
+            array_push($tmp, [
+                'foo' => $genre->getName(),
+            ]);
+        }
+
+        var_dump($tmp);
+
         $user= $track->getUser();
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
@@ -136,12 +148,12 @@ class TrackController extends Controller
             'edit_form' => $editForm->createView()
         ));
     }
-    
+
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $track = $em->getRepository(Track::class)->find($id);
-        
+
         $em->remove($track);
         $em->flush();
 
