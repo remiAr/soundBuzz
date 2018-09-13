@@ -52,3 +52,7 @@ track_edit:
 track_delete:
     path: /tracks/{id}/delete
     defaults: { _controller: SoundBuzzBundle:Track:delete }
+
+playlists_display:
+    path: /playlists
+    defaults: { _controller: SoundBuzzBundle:Playlist:userPlaylist }
