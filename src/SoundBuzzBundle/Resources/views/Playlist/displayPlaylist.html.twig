@@ -1,22 +1,27 @@
 {% extends "SoundBuzzBundle:Default:layout.html.twig" %}
-{% block title %} Accueil - SoundBuzz {% endblock %}
-
+{% block title %} Playlists - SoundBuzz {% endblock %}
+{%  block head %}
+    <link rel="stylesheet" href="{{ asset('css/track.css')}}">
+{% endblock %}
 {% block body %}
-
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-        {% for playlist in playlists %}
-     
-        <tr>
-            <td>{{ playlist.name }}</td>
-            <td>{{ playlist.description }}</td>
-       <td> <a href="{{ path('playlists_display_songs', { 'playlistId':playlist .id}) }}">Affichage de la playlist</a></td>
-        </tr>
-        {% endfor %}
-  
-    </table>
+    <div class="table-list">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                {#<th>Durée</th>#}
+                <th>Date de création</th>
+                <th>Action</th>
+            </tr>
+            {% for playlist in playlists %}
+                <tr>
+                    <td>{{ playlist.name }}</td>
+                    <td>{{ playlist.description }}</td>
+                    {#<td>{{ playlist.duration }}</td>#}
+                    <td>{{ playlist.createdat|date("d/m/Y") }}</td>
+                    <td> <a href="{{ path('playlists_display_songs', { 'playlistId':playlist .id}) }}">Affichage de la playlist</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

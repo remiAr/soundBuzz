@@ -2,18 +2,18 @@
 {% block title %}
 SoundBuzz - Musiques
 {% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('css/track.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/form.css')}}">
+{%  endblock %}
 {% block body %}
-    <h1>Track edit</h1>
-
+    <h2 class="titretrack">Modifier un morceau</h2>
+    <div class="addTracks">
+        <a href="{{ path('track_information', {'id': track.id}) }}">Annulé</a>
+        <a href="{{ path('track_delete', { 'id': track.id }) }}">Supprimer</a>
+    </div>
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('track_index') }}">Back to the list</a>
-        </li>
-        <a href="{{ path('track_delete', { 'id': track.id }) }}">Delete</a>
-    </ul>
 {% endblock %}

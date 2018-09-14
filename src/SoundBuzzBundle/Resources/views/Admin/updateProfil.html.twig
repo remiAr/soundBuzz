@@ -6,8 +6,20 @@
 {% endblock %}
 {% block body %}
     <div class="admin_forms">
-            <h2>Modification du profil</h2>
+        <h2 class="titretrack">Modification du profil</h2>
+        <div class="addTracks">
+            <a class="dropdown-item" href="{{ path('soundbuzz_profil', {'id': user.id}) }}">Retour</a>
+        </div>
+        <div style="clear:both"></div>
             {{ form(form) }}
         </div>
     </div>
+    <style>
+        footer {
+            position: relative;
+        }
+        #wrapper {
+            padding-bottom:0;
+        }
+    </style>
 {% endblock %}
