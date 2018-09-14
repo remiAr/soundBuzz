@@ -55,7 +55,6 @@ class TrackController extends Controller
 
         $newComment = new Comments();
         $addCommentForm = $this->createForm(AddComment::class, $newComment);
-
         $addCommentForm->handleRequest($request);
 
         if ($addCommentForm->isSubmitted() && $addCommentForm->isValid()) {
@@ -91,25 +90,22 @@ class TrackController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //GET DATA FORM
+            // GET DATA FORM
             $data = $form->getData();
 
-            //SONG
+            // SONG
             $fileSong = $track->getSong();
-            $fileNameSong =$fileSong->getClientOriginalName();
+            $fileNameSong = $fileSong->getClientOriginalName();
             $fileSong->move($this->getParameter('tracks_directory')."/". $user->getId(), $fileNameSong);
             $track->setSong($fileNameSong);
 
-
-            //PICTURE
+            // PICTURE
             $filePictureSong = $track->getSongPicture();
             $fileNamePictureSong =$filePictureSong->getClientOriginalName();
             $filePictureSong->move($this->getParameter('pictures_directory')."/". $user->getId(), $fileNamePictureSong);
             $track->setSongPicture($fileNamePictureSong);
 
-
-
-            //Query Doctrine
+            // Query Doctrine
             $track = new Track();
             $track->setExtension($fileSong->getClientOriginalExtension());
             $track->setTitle($data->getTitle());
@@ -131,6 +127,8 @@ class TrackController extends Controller
             $track->setIsValidated(0);
             $track->setUser($user);
             $track->setGenres($data->getGenres());
+
+            // Persist data in the DB
             $em = $this->getDoctrine()->getManager();
             $em->persist($track);
             $em->flush();
@@ -144,7 +142,6 @@ class TrackController extends Controller
 
         }
     }
-
 
     public function editAction(Request $request, Track $track)
     {
@@ -172,11 +169,7 @@ class TrackController extends Controller
         $em->remove($track);
         $em->flush();
 
-
         return $this->redirectToRoute('track_index');
     }
-
-
-    
 
 }

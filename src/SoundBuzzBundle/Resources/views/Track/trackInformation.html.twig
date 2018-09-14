@@ -20,13 +20,22 @@
         </div>
 
         <div class="bloc-info">
+<<<<<<< HEAD
             <div class="bg-audio" style="background: url('../../uploads/pictures/{{user.id}}/{{ track.urlPicture }}') no-repeat; background-size: cover">
                 <div class="controlMusic">
                     <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                     <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                 </div>
+=======
+            <<<<<<< HEAD
+            {#<img src="../../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="" title="" />#}
+            <div class="bg-audio" style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg') no-repeat; background-size: cover">
+>>>>>>> Various fixes
 
             </div>
+            =======
+            <img src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" alt="" title="" />
+            >>>>>>> Various fixes
             <table>
                 <tr>
                     <th>Titre</th>
@@ -42,7 +51,9 @@
                 </tr>
                 <tr>
                     <th>Genre</th>
-                    <td>genre.name</td>
+                    {% for genre in genres %}
+                        <td>{{ genre.name }}</td>
+                    {% endfor %}
                 </tr>
                 <tr>
                     <th>Description</th>
@@ -71,8 +82,10 @@
                     <td>{{ track.nbLikes}}</td>
                 </tr>
             </table>
-
         </div>
+        <audio controls src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}">
+            Your browser does not support the <code>audio</code> element.
+        </audio>
         <div id="coms">
             <div id="entete-coms">
                 <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
@@ -83,14 +96,14 @@
                 {{ form(addCommentForm) }}
             </div>
             {% for comment in comments %}
-            <div class="commentaires">
+                <div class="commentaires">
                     <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
                     <div>
                         <h5>{{ comment.user.firstName|capitalize }} {{ comment.user.lastName|first|lower|capitalize  }} - {{ comment.createdAt|date }}</h5>
                         <p>{{ comment.content }}</p>
                         <!--<button class="button-coms">Répondre</button>-->
                     </div>
-            </div>
+                </div>
             {% endfor %}
         </div>
     </section>
