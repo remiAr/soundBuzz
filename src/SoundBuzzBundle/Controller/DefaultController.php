@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DefaultController extends Controller
 {
+
     /**
      * @Route("/")
      */
@@ -14,29 +15,20 @@ class DefaultController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $tracks = $em->getRepository('SoundBuzzBundle:Tracks')->findBy( array('user' => $this->getUser()));
-
-
-
-
+        $tracks = $em->getRepository('SoundBuzzBundle:Track')->findAll();
+           
         $user = $this->get('security.token_storage')->getToken()->getUser();
         return $this->render('SoundBuzzBundle:Default:index.html.twig', [
             'user' => $user,
-            'playlists'=>$playlists,
             'tracks'=>$tracks
         ]);
-        return $this->render('SoundBuzzBundle:Default:index.html.twig');
+        /*return $this->render('SoundBuzzBundle:Default:index.html.twig');*/
     }
 
 
     public function likeAction()
     {
 
-
-
     }
-
-
-
 
 }

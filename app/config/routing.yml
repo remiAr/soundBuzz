@@ -56,3 +56,7 @@ track_delete:
 playlists_display:
     path: /playlists
     defaults: { _controller: SoundBuzzBundle:Playlist:userPlaylist }
+
+playlists_display_songs:
+    path: /playlists_songs
+    defaults: { _controller: SoundBuzzBundle:Playlist:userPlaylistSongs }
