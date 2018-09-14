@@ -608,4 +608,10 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->getTitle();
+
+    }
+
 }

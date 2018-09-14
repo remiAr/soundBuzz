@@ -23,19 +23,20 @@
         <tr>
             <td>{{ track.title }}</td>
             <td>{{ track.description }}</td>
-            <td><img src={{ track.urlPicture }}></td>
+            <td><img width="200" src="../uploads/pictures/{{user.id}}/{{ track.urlPicture }}"></td>
             <td>{{ track.compositor }}</td>
             <td>{{ track.duration }}</td>
             <td>{{ track.nbListenings }}</td>
             <td>{{ track.nbDownloads }}</td>
             <td>{{ track.nbLikes }} </td>
             <td>
-                <audio controls="controls" />
-                <source src="{{ track.urlTrack }}" type="audio/mp3" />
+                <audio controls src="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" controlsList="nodownload">
+                    Your browser does not support the <code>audio</code> element.
+                </audio>
             </td>
             <td>
-                <a href="{{ track.urlTrack }}" download> Download</a>
-                <a href="{{ track.urlTrack }}">LIKE</a>
+                <a href="{{ track.urlTrack }}" download>Download</a><br/>
+                <a href="{{ track.id }}">LIKE</a>
             </td>
         </tr>
         {% endfor %}

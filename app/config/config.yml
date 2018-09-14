@@ -92,6 +92,10 @@ easy_admin:
             class: SoundBuzzBundle\Entity\Comments
         Genre:
             class: SoundBuzzBundle\Entity\Genre
+            list:
+                fields:
+                    - id
+                    - name
         Playlist:
             class: SoundBuzzBundle\Entity\Playlist
         Track:
