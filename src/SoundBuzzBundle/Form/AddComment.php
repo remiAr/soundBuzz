@@ -15,7 +15,7 @@ class AddComment extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', TextType::class)
+            ->add('content', TextType::class, array('label' => 'Contenu'))
             ->add('save', SubmitType::class, array('label' => 'Ajouter le commentaire'));
     }
 
