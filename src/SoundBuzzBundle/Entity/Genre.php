@@ -24,7 +24,7 @@ class Genre
 
     /**
      * Many Genres have Many Tracks.
-     * @ORM\ManyToMany(targetEntity="Track", mappedBy="genre")
+     * @ORM\ManyToMany(targetEntity="Track", mappedBy="genres")
      * @ORM\JoinTable(name="track_genres")
      */
     private $track;
