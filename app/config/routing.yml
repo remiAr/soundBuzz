@@ -62,3 +62,8 @@ playlist_index:
 playlist_information:
     path: /playlists/{id}
     defaults: { _controller: SoundBuzzBundle:Playlist:userPlaylistSongs }
+
+### LIKE ###
+like_track:
+    path: /has-liked/{id}
+    defaults: { _controller: SoundBuzzBundle:Track:like }

@@ -32,22 +32,7 @@ class TrackController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $track = $em->getRepository('SoundBuzzBundle:Track')->find($id);
-
-        // Traitement de l'ArrayCollection $genres du track
-        $genres = $track->getGenres()->toArray();
-        /* dump($genres);
-
-        $tmp = [];
-
-        foreach ($genres as $genre) {
-            array_push($tmp, [
-                'name' => $genre->getName(),
-            ]);
-        }
-
-        dump($tmp[0]['name']); */
-        // ------------------------------------------------
-
+        $genres = $track->getGenres();
         $user= $track->getUser();
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
@@ -57,7 +42,8 @@ class TrackController extends Controller
         $addCommentForm = $this->createForm(AddComment::class, $newComment);
         $addCommentForm->handleRequest($request);
 
-        if ($addCommentForm->isSubmitted() && $addCommentForm->isValid()) {
+        if ($addCommentForm->isSubmitted() && $addCommentForm->isValid())
+        {
             $newComment = $addCommentForm->getData();
             $newComment->setUser($user);
             $newComment->setCreatedAt(
@@ -83,10 +69,10 @@ class TrackController extends Controller
     {
         $track = new Track();
 
-        //Get connected user
+        // Get connected user
         $user = $this->getUser();
 
-        $form= $this->createForm('SoundBuzzBundle\Form\TrackType', $track);
+        $form = $this->createForm('SoundBuzzBundle\Form\TrackType', $track);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -139,7 +125,6 @@ class TrackController extends Controller
                 'form' => $form->createView(),
                 'user' => $user,
             ));
-
         }
     }
 
@@ -172,4 +157,27 @@ class TrackController extends Controller
         return $this->redirectToRoute('track_index');
     }
 
+    public function likeAction($id)
+    {
+        /**
+         * TODO
+         * Generate a url without parameters (redirect to '/')
+         * Recalculate nbLikes after like is done
+         */
+        $em = $this->getDoctrine()->getManager();
+        $tracks = $em->getRepository(Track::class)->findAll();
+        $track = $em->getRepository(Track::class)->find($id);
+        $user = $this->getUser();
+
+        $track->setLikedByUsers($user);
+        $track->setNbLikes(sizeof($track->getLikedByUsers()));
+
+        $em->persist($track);
+        $em->flush();
+
+        return $this->render('SoundBuzzBundle:Default:index.html.twig', [
+            'user' => $user,
+            'tracks' => $tracks,
+        ]);
+    }
 }

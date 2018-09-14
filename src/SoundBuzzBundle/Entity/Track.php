@@ -2,15 +2,16 @@
 
 namespace SoundBuzzBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="track")
  */
-
-use Symfony\Component\Validator\Constraints as Assert; class Track
+class Track
 {
     /**
      * @Assert\NotBlank(message="Please, upload the photo.")
@@ -143,12 +144,20 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     private $genres;
 
     /**
+     * A Track can be liked by many Users.
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="likedTracks")
+     * @ORM\JoinTable(name="user_has_liked")
+     */
+    private $likedByUsers;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->genres = new ArrayCollection();
         $this->playlists = new ArrayCollection();
+        $this->likedByUsers = new ArrayCollection();
     }
 
     /**
@@ -612,7 +621,36 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     public function __toString()
     {
         return $this->getTitle();
-
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLikedByUsers()
+    {
+        return $this->likedByUsers;
+    }
+
+//    /**
+//     * @return Collection|User[]
+//     */
+//    public function getLikedByUsers(): Collection
+//    {
+//        return $this->likedByUsers;
+//    }
+
+    /**
+     * @param mixed $likedByUsers
+     * @return Track
+     */
+    public function setLikedByUsers($likedByUsers)
+    {
+//        $this->likedByUsers = $likedByUsers;
+        if (!$this->likedByUsers->contains($likedByUsers))
+        {
+            $this->likedByUsers[] = $likedByUsers;
+        }
+
+        return $this;
+    }
 }
