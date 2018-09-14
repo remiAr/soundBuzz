@@ -23,6 +23,7 @@
                     <th class="displayTD">Nb. téléchargement</th>
                     <th class="displayTD">Nb. vues</th>
                     <th class="displayTD">Nb. likes</th>
+                    <th class="displayTD">Player</th>
                     {#<th>Updatedat</th>
                     <th>Createdat</th>
                     <th>Nbcomments</th>
@@ -52,8 +53,13 @@
                     <td class="displayTD">{{ track.nbLikes }}</td>
                     {#<td>{% if track.updatedAt %}{{ track.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if track.createdAt %}{{ track.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{{ track.nbComments }}</td>
-                    <td>{% if track.isValidated %}Yes{% else %}No{% endif %}</td>#}
+                    <td>{{ track.nbComments }}</td>#}
+                    <td>
+                        <audio class="track" id="track_{{track.id}}" controls src="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" controlsList="nodownload">
+                            Your browser does not support the <code>audio</code> element.
+                        </audio>
+                    </td>
+                    {# <td>{% if track.isValidated %}Yes{% else %}No{% endif %}</td> #}
                     <td>
                         <ul>
                             <li>
@@ -61,11 +67,9 @@
                             </li>
                             <li>
                                 <a href="{{ path('track_edit', { 'id': track.id }) }}">Modifier</a>
-
                             </li>
-                             <li>
-                                <a href="https://archive.org/download/testmp3testfile/testmp3testfile_64kb.m3u">Télécharger</a>
-
+                            <li>
+                                <a href="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" download>Télécharger</a>
                             </li>
                         </ul>
                     </td>
@@ -74,4 +78,38 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        {# var element = document.getElementById("track_13");
+        element.addEventListener("play", function(elem) {
+            console.log('test');
+            var timer = setInterval(()=>{
+                if(elem.target.currentTime > 10){
+                    alert("update");
+                }
+                else{
+                    clearInterval(timer);
+                }
+            },1000);
+
+        }, true); #}
+        {# element = document.getElementById(superId);
+
+        var timer;
+        var updated = 0;
+        element.addEventListener("play", function() {
+            timer = setInterval(()=>{
+                if(element.currentTime > 10 && updated == 0){
+                    alert("update");
+                    updated = 1;
+                }
+            },1000);
+
+            timer();
+        }, true);
+            
+        element.addEventListener("pause", function() {
+            clearInterval(timer);
+        }, true); #}
+    </script>
 {% endblock %}

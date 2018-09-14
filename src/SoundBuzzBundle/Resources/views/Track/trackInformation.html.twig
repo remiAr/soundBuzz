@@ -14,7 +14,7 @@
 
         <h2>Information</h2>
         <div class="bloc-info">
-            <img src="../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="" title="" />
+            <img src="../../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="" title="" />
 
             <table>
                 <tr>
@@ -60,7 +60,11 @@
                     <td>{{ track.nbLikes}}</td>
                 </tr>
             </table>
+
         </div>
+             <audio controls src="../../uploads/tracks/{{user.id}}/{{track.urlTrack}}">
+                Your browser does not support the <code>audio</code> element.
+            </audio>
 
         <div id="coms">
             <div id="entete-coms">
