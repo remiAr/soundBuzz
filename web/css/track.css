@@ -1,27 +1,3 @@
-.bloc-info {
-    display: flex;
-    justify-content: space-around;
-    /*padding-bottom: 40px;
-    border-bottom: 1px solid rgba(0,0,0,0.20);*/
-    margin-bottom: 40px;
-}
-.bloc-info>img {
-    width:350px;
-    height: 350px;
-    border-radius: 300px;
-}
-.img-artist {
-    display: none;
-    margin: 0 auto;
-    width: 200px;
-    height: 200px;
-    border-radius: 200px;
-    margin-bottom:30px;
-}
-.bloc-info>table {
-    width:30%;
-    margin-left: 30px;
-}
 #content .table-list .table-tracks tr td, #content .table-list .table-tracks th {
     padding:0;
 }
@@ -47,36 +23,7 @@
     padding-top: 5px;
     list-style-type: none;
 }
-.bloc-info>table td, .bloc-info>table th {
-    padding: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, .10);
-}
-#content h2.titretrack {
-    margin-bottom: 10px;
-}
-.addTracks {
-    float: right;
-    margin-bottom:40px;
-}
-
-@media screen and (max-width: 1130px) {
-    .bloc-info>img {
-        width:250px;
-        height: 250px;
-        border-radius: 250px;
-    }
-}
 @media screen and (max-width: 1050px) {
-    .bloc-info>img {
-        display:none;
-    }
-    .bloc-info>table {
-        width: 49%;
-        margin-left: 0;
-    }
-    .bloc-info>table:last-of-type {
-        margin-left: 2%;
-    }
     #track>.img-artist {
         display: block;
     }
@@ -84,19 +31,5 @@
 @media screen and (max-width: 990px) {
     .displayTD {
         display:none;
-    }
-}
-@media screen and (max-width: 750px) {
-    .bloc-info {
-        flex-direction: column;
-    }
-    .bloc-info>table {
-        width: 100%;
-    }
-    .bloc-info>table:last-of-type {
-        margin-left: 0;
-    }
-    .bloc-info>table th {
-        width: 230px;
     }
 }

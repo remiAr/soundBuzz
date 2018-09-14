@@ -3,18 +3,34 @@
 {% block title %} SoundBuzz - Profil {% endblock %}
 
 {% block body %}
-    <div class="container profil">
+    <div class="profil">
         <div class="entete">
-            <h2>Profil</h2>
-            <a href="{{ path('soundbuzz_deleteuser', {'id': user.id}) }}">Supprimer</a>
-            <a href="{{ path('soundbuzz_updateprofil', {'id': user.id}) }}">Modifier</a>
+            <h2 class="titretrack">Profil</h2>
+            <div class="addTracks">
+                <a href="{{ path('soundbuzz_updateprofil', {'id': user.id}) }}">Modifier</a>
+                <a href="{{ path('soundbuzz_deleteuser', {'id': user.id}) }}">Supprimer</a>
+            </div>
         </div>
-        <img src="{{user.avatarUrl}}"/>
-        <ul>
-            <li><b>Nom :</b> {{ user.lastName }}</li>
-            <li><b>Prénom :</b> {{ user.firstname }}</li>
-            <li><b>Compte créé le :</b> {{ user.createdAt|date("d/m/Y") }}</li>
-            <li><b>Email :</b> {{ user.username }}</li>
-        </ul>
+        <div class="bloc-info">
+            <img src="{{user.avatarUrl}}"/>
+            <table>
+                <tr>
+                    <th>Nom :</th>
+                    <td>{{ user.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom :</th>
+                    <td>{{ user.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Compte créé le :</th>
+                    <td>{{ user.createdAt|date("d/m/Y") }}</td>
+                </tr>
+                <tr>
+                    <th>Email :</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 {% endblock %}

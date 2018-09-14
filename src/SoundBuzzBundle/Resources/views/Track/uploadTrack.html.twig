@@ -1,15 +1,16 @@
 {% extends "SoundBuzzBundle:Default:layout.html.twig" %}
 {% block title %}
     SoundBuzz - Ajouter une musique
-    {% endblock %}
+{% endblock %}
+{%  block head %}
+    <link rel="stylesheet" href="{{ asset('css/track.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/form.css')}}">
+{% endblock %}
 {% block body %}
+    <h2 class="titretrack"> Ajouter un nouveau morceau</h2>
+    <div class="addTracks">
+        <a href="{{ path('track_index') }}">Retour à la liste de mes musiques</a>
+    </div>
+    {{ form(form) }}
 
-<h1> Create a new track</h1>
-{{ form(form) }}
-
-<ul>
-        <li>
-            <a href="{{ path('track_index') }}">Back to the list</a>
-        </li>
-</ul>
-        {% endblock %}
+{% endblock %}
