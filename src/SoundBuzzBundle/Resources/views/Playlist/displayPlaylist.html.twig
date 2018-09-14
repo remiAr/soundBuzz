@@ -1,0 +1,22 @@
+{% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+{% block title %} Accueil - SoundBuzz {% endblock %}
+
+{% block body %}
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+        {% for playlist in playlists %}
+     
+        <tr>
+            <td>{{ playlist.name }}</td>
+            <td>{{ playlist.description }}</td>
+       <td> <a href="{{ path('playlists_display_songs', { 'playlistId':playlist .id}) }}">Affichage de la playlist</a></td>
+        </tr>
+        {% endfor %}
+  
+    </table>
+{% endblock %}

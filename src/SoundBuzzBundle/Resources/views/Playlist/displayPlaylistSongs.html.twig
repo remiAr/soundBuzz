@@ -15,11 +15,8 @@
             <th>Nombre de likes</th>
             <th></th>
         </tr>
-       
-
-      {% for track in tracks | slice ( 0 , 5 ) %} 
-
-
+        {% for playlist in playlists %}
+        {% for track in tracks %}
         <tr>
             <td>{{ track.title }}</td>
             <td>{{ track.description }}</td>
@@ -39,7 +36,8 @@
             </td>
         </tr>
         {% endfor %}
-        
-
+        {% endfor %}
     </table>
 {% endblock %}
+
+
