@@ -3,16 +3,11 @@
 namespace SoundBuzzBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-    
-
-use SoundBuzzBundle\Entity\Track;
-use SoundBuzzBundle\Form\TrackType;
-use Symfony\Component\Form\Extension\Core\Type\TextType; 
-use Symfony\Component\Form\Extension\Core\Type\FileType; 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;  
 
 class TrackType extends AbstractType
 {
@@ -23,7 +18,7 @@ class TrackType extends AbstractType
     {
         $builder
          ->add('title', TextType::class, array('label' => 'Titre'))
-            ->add('genre')
+            ->add('genres')
             ->add('description', TextType::class, array('label' => 'Description'))
            ->add('song', FileType::class, array('label' => 'Track'))
            ->add('songPicture', FileType::class, array('label' => 'Track picture'))  

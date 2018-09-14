@@ -5,10 +5,7 @@ namespace SoundBuzzBundle\Controller;
 use SoundBuzzBundle\Entity\Comments;
 use SoundBuzzBundle\Entity\Track;
 use SoundBuzzBundle\Form\AddComment;
-use SoundBuzzBundle\Form\TrackFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -86,14 +83,13 @@ class TrackController extends Controller
     {
         $track = new Track();
 
+        //Get connected user
+        $user = $this->getUser();
+
         $form= $this->createForm('SoundBuzzBundle\Form\TrackType', $track);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //Get connected user
-            $user = $this->getUser();
-
-
             //GET DATA FORM
             $data = $form->getData();
 
@@ -142,6 +138,7 @@ class TrackController extends Controller
         } else {
             return $this->render('SoundBuzzBundle:Track:uploadTrack.html.twig', array(
                 'form' => $form->createView(),
+                'user' => $user,
             ));
 
         }
@@ -161,7 +158,8 @@ class TrackController extends Controller
 
         return $this->render('SoundBuzzBundle:Track:edit.html.twig', array(
             'track' => $track,
-            'edit_form' => $editForm->createView()
+            'edit_form' => $editForm->createView(),
+            'user' => $this->getUser(),
         ));
     }
 
