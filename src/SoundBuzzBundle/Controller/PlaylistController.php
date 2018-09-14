@@ -4,6 +4,7 @@ namespace SoundBuzzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class PlaylistController extends Controller
 {
@@ -11,7 +12,7 @@ class PlaylistController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        //dump($this->getUser()->getId());
+        dump($this->getUser()->getId());
 
         $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
       
@@ -28,13 +29,18 @@ class PlaylistController extends Controller
      
     }
 
-    public function userPlaylistSongsAction()
+    public function userPlaylistSongsAction(Request $request)
     {
+
+
+        $playlistId = $request->query->get('playlistId');
+
+        dump($playlistId);
 
         $em = $this->getDoctrine()->getManager();
         //dump($this->getUser()->getId());
 
-        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
+        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('id' => $this->getUser()));
         $tracks = $playlists;
         //dump($playlists);
         foreach($playlists as $p) {
@@ -43,7 +49,7 @@ class PlaylistController extends Controller
         }
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        return $this->render('SoundBuzzBundle:Playlist:displayPlaylist.html.twig', [
+        return $this->render('SoundBuzzBundle:Playlist:displayPlaylistSongs.html.twig', [
             'user' => $user,
             'playlists'=>$playlists,
             'tracks'=>$tracks

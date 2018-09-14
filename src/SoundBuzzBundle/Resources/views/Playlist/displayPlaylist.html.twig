@@ -7,13 +7,14 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            <th></th>
         </tr>
         {% for playlist in playlists %}
      
         <tr>
             <td>{{ playlist.name }}</td>
             <td>{{ playlist.description }}</td>
-        <a href="{{ path('playlists_songs', { 'id': playlist.id }) }}">Affichage de la playlist</a>
+       <td> <a href="{{ path('playlists_display_songs', { 'playlistId':playlist .id}) }}">Affichage de la playlist</a></td>
         </tr>
         {% endfor %}
   
