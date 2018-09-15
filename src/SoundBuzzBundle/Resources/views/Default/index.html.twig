@@ -1,46 +1,42 @@
 {% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+
 {% block title %} Accueil - SoundBuzz {% endblock %}
 
 {% block body %}
-
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Urlpicture</th>
-            <th>Compositor</th>
-            <th>Durée</th>
-            <th>Nombre d'écoutes</th>
-            <th>Nombre de telechargements</th>
-            <th>Nombre de likes</th>
-            <th></th>
-        </tr>
-       
-
-      {% for track in tracks | slice ( 0 , 5 ) %} 
-
-
-        <tr>
-            <td>{{ track.title }}</td>
-            <td>{{ track.description }}</td>
-            <td><img width="200" src="../uploads/pictures/{{user.id}}/{{ track.urlPicture }}"></td>
-            <td>{{ track.compositor }}</td>
-            <td>{{ track.duration }}</td>
-            <td>{{ track.nbListenings }}</td>
-            <td>{{ track.nbDownloads }}</td>
-            <td>{{ track.nbLikes }} </td>
-            <td>
-                <audio controls src="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" controlsList="nodownload">
-                    Your browser does not support the <code>audio</code> element.
-                </audio>
-            </td>
-            <td>
-                <a href="{{ track.urlTrack }}" download>Download</a><br/>
-                <a href="{{ track.id }}">LIKE</a>
-            </td>
-        </tr>
-        {% endfor %}
-        
-
-    </table>
+    <div class="table-list">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Urlpicture</th>
+                <th>Compositor</th>
+                <th>Durée</th>
+                <th>Nombre d'écoutes</th>
+                <th>Nombre de telechargements</th>
+                <th>Nombre de likes</th>
+                <th></th>
+            </tr>
+            {% for track in tracks | slice ( 0 , 5 ) %}
+                <tr>
+                    <td>{{ track.title }}</td>
+                    <td>{{ track.description }}</td>
+                    <td><img width="200" src="../uploads/pictures/{{user.id}}/{{ track.urlPicture }}"></td>
+                    <td>{{ track.compositor }}</td>
+                    <td>{{ track.duration }}</td>
+                    <td>{{ track.nbListenings }}</td>
+                    <td>{{ track.nbDownloads }}</td>
+                    <td>{{ track.nbLikes }} </td>
+                    <td>
+                        <audio controls src="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" controlsList="nodownload">
+                            Your browser does not support the <code>audio</code> element.
+                        </audio>
+                    </td>
+                    <td>
+                        <a href="{{ track.urlTrack }}" download>Download</a><br/>
+                        <a href="{{ track.id }}">LIKE</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

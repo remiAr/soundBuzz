@@ -1,10 +1,12 @@
 {% extends "SoundBuzzBundle:Default:layout.html.twig" %}
-{% block title %} Playlist - SoundBuzz {% endblock %}
+
+{% block title %} Playlist songs - SoundBuzz {% endblock %}
 {% block head %}
     <link rel="stylesheet" href="{{ asset('css/track.css')}}">
-{%  endblock %}
+{% endblock %}
+
 {% block body %}
-    <h2>Playlist : {{ playlists }}</h2>
+    <h2>Playlist : {{ playlist.name }}</h2>
     <div class="table-list">
         <table>
             <tr>
@@ -22,7 +24,7 @@
                 <tr>
                     <td><a href="{{ path('track_information', {'id': track.id}) }}" {{ track.title }}</td>
                     <td>{{ track.description }}</td>
-                    <td><img src={{ track.urlPicture }}></td>
+                    <td><img src={{ track.urlPicture }} style="max-width:100px;" /></td>
                     <td>{{ track.compositor }}</td>
                     <td>{{ track.duration }}</td>
                     <td>{{ track.nbListenings }}</td>
@@ -40,7 +42,4 @@
             {% endfor %}
         </table>
     </div>
-
 {% endblock %}
-
-

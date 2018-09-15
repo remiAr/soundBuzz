@@ -2,6 +2,7 @@
 
 namespace SoundBuzzBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,12 +23,12 @@ class Playlist
      * @ORM\Column(type="string")
      */
     private $name;
-    
+
     /**
      * @ORM\Column(type="string")
      */
     private $description;
-    
+
     /**
      * @ORM\Column(type="datetime")
      */
@@ -51,18 +52,19 @@ class Playlist
 
     /**
      * Many Playlists have Many Tracks.
-     * @ORM\ManyToMany(targetEntity="Track", inversedBy="playlist", fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="Track", inversedBy="playlists")
      * @ORM\JoinTable(name="playlist_tracks")
      */
-    private $track;
+    private $tracks;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-
+        $this->tracks = new ArrayCollection();
     }
+
     /**
      * Set name
      *
@@ -84,7 +86,7 @@ class Playlist
     {
         return $this->name;
     }
-   
+
     /**
      * Set description
      *
@@ -198,17 +200,17 @@ class Playlist
     /**
      * @return mixed
      */
-    public function getTrack()
+    public function getTracks()
     {
-        return $this->track;
+        return $this->tracks;
     }
 
     /**
-     * @param mixed $track
+     * @param mixed $tracks
      */
-    public function setTrack($track)
+    public function setTracks($tracks)
     {
-        $this->track = $track;
+        $this->tracks = $tracks;
     }
-   
+
 }

@@ -13,14 +13,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert; class Track
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->genres = new ArrayCollection();
-    }
-
-    /**
      * @Assert\NotBlank(message="Please, upload the photo.")
      * @Assert\File(mimeTypes={ "audio/mp3", "audio/mpeg","audio/mp4" })
      */
@@ -137,18 +129,27 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
 
     /**
      * Many Tracks have Many Playlists.
-     * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="track", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="tracks")
      * @ORM\JoinTable(name="playlist_tracks")
      *
      */
-    private $playlist;
+    private $playlists;
 
     /**
      * Many Tracks have Many Genres.
-     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="track", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="tracks")
      * @ORM\JoinTable(name="track_genres")
      */
     private $genres;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->genres = new ArrayCollection();
+        $this->playlists = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -561,17 +562,17 @@ use Symfony\Component\Validator\Constraints as Assert; class Track
     /**
      * @return mixed
      */
-    public function getPlaylist()
+    public function getPlaylists()
     {
-        return $this->playlist;
+        return $this->playlists;
     }
 
     /**
-     * @param mixed $playlist
+     * @param mixed $playlists
      */
-    public function setPlaylist($playlist)
+    public function setPlaylists($playlists)
     {
-        $this->playlist = $playlist;
+        $this->playlists = $playlists;
     }
 
     /**

@@ -10,8 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class UserController extends Controller
 {
-
-     /**
+    /**
      * @Route("/profil/{id}")
      */
     public function getProfilAction($id)
@@ -20,7 +19,7 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('SoundBuzzBundle:User');
 
-        $profil = $repository->find($id);	
+        $profil = $repository->find($id);
 
         return $this->render('SoundBuzzBundle:Admin:profil.html.twig', [
             'user' => $profil,
@@ -35,21 +34,20 @@ class UserController extends Controller
         $form =$this->createForm(UpdateUserType::class, $profil);
 
         if($request->isMethod('POST')) {
-
             $form->handleRequest($request);
 
             $em = $this->getDoctrine()->getManager();
-
             $em->persist($profil);
-
             $em->flush();
 
             return $this->redirectToRoute('soundbuzz_profil', ['id' => $profil->getId()]);
         }
 
         return $this->render('SoundBuzzBundle:Admin:updateProfil.html.twig', [
-            'user' => $profil,
-            'form' => $form->createView()]);
+                'user' => $profil,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     public function deleteUserAction($id) {
@@ -61,7 +59,6 @@ class UserController extends Controller
         $user = $repository->find($id);
 
         $em->remove($user);
-
         $em->flush();
 
         return $this->redirectToRoute('soundbuzz_homepage');
@@ -69,16 +66,15 @@ class UserController extends Controller
 
     public function getplaylists() {
         $em = $this->getDoctrine()->getManager();
-        dump($this->getUser()->getId());
 
         $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
-        //$tracks = $playlists;
-        //dump($playlists);
-        foreach($playlists as $p) {
-            $tracks =$p->getTrack()->toArray();
 
+        foreach($playlists as $p) {
+            $tracks =$p->getTracks()->toArray();
         }
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
         return $this->render('SoundBuzzBundle:Default:index.html.twig', [
             'user' => $user,
             'playlists'=>$playlists,

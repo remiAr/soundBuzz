@@ -17,7 +17,7 @@ class Comments
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string")
      */
@@ -44,9 +44,9 @@ class Comments
      */
     public function __construct()
     {
-        
+
     }
-    
+
     /**
      * Set content
      *

@@ -27,7 +27,7 @@ class Genre
      * @ORM\ManyToMany(targetEntity="Track", mappedBy="genres")
      * @ORM\JoinTable(name="track_genres")
      */
-    private $track;
+    private $tracks;
 
     /**
      * Constructor
@@ -70,17 +70,17 @@ class Genre
     /**
      * @return mixed
      */
-    public function getTrack()
+    public function getTracks()
     {
-        return $this->track;
+        return $this->tracks;
     }
 
     /**
-     * @param mixed $track
+     * @param mixed $tracks
      */
-    public function setTrack($track)
+    public function setTracks($tracks)
     {
-        $this->track = $track;
+        $this->tracks = $tracks;
     }
 
     public function __toString()
