@@ -1,19 +1,38 @@
 {% extends "SoundBuzzBundle:Default:layout.html.twig" %}
 
 {% block title %} Playlists - SoundBuzz {% endblock %}
-{% block head %}
-    <link rel="stylesheet" href="{{ asset('css/track.css')}}">
+{%  block head %}
+    <link rel="stylesheet" href="{{ asset('css/home.css')}}">
 {% endblock %}
 
 {% block body %}
+    <div class="listsimg">
+        <h2>Mes playlists</h2>
+        <ul>
+            {% for playlist in playlists %}
+                <li style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg')">
+                    <h4>
+                        <a href="{{ path('playlist_information', { 'id': playlist.id }) }}">{{ playlist.name }}</a>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    </h4>
+                    <audio controls="controls" />
+                    <source src="{#{{ track.urlTrack }}#}" type="audio/mp3" />
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+    {#
     <div class="table-list">
         <table>
             <tr>
+                <th></th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Durée</th>
+                #}{#<th>Durée</th>#}{#
                 <th>Date de création</th>
-                <th>Action</th>
             </tr>
             {% for playlist in playlists %}
                 <tr>
@@ -23,10 +42,18 @@
                         </a>
                     </td>
                     <td>{{ playlist.description }}</td>
-                    <td>{#{{ playlist.duration }}#}</td>
+                    <td>{#{{ playlist.duration }}
+    </td>
                     <td>{{ playlist.duration|date("d/m/Y") }}</td>
                 </tr>
             {% endfor %}
+        </table><td><i class="fa fa-heart" aria-hidden="true"></i></td>
+                    <td><a href="{{ path('playlists_display_songs', { 'playlistId':playlist .id}) }}">{{ playlist.name }}</a></td>
+                    <td>{{ playlist.description }}</td>
+    </div>#}
+    {#<td>{{ playlist.duration }}</td>#}{#
+                    <td>{{ playlist.createdat|date("d/m/Y") }}</td>
+                </tr>
+            {% endfor %}
         </table>
-    </div>
-{% endblock %}
+    </div>#}

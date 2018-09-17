@@ -10,17 +10,25 @@
 
 {% block body %}
     <section id="track">
-        <img class="img-artist" src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" />
-
-        <h2 class="titretrack">Information sur le morceau</h2>
+        {#<img class="img-artist" src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" />
+#}
+        <h2 class="titretrack">{#Information#}{{ track.title }} <i class="fa fa-heart" aria-hidden="true"></i></h2>
         <div class="addTracks">
             <a href="{{ path('track_edit', { 'id': track.id }) }}">Modifier</a>
             <a href="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" download>Télécharger</a>
             <a href="{{ path('track_delete', { 'id': track.id }) }}">Supprimer</a>
         </div>
-        <div class="bloc-info">
-            <img src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" alt="" title="" />
 
+        <div class="bloc-info">
+            {#<img src="../../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="" title="" />#}
+            <div class="bg-audio" style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg') no-repeat; background-size: cover">
+
+                {#            <img class="img-artist" src="" alt="" title="" />#}
+
+                <audio controls src="../../uploads/tracks/{{user.id}}/{{track.urlTrack}}">
+                    Your browser does not support the <code>audio</code> element.
+                </audio>
+            </div>
             <table>
                 <tr>
                     <th>Titre</th>
@@ -67,29 +75,25 @@
             </table>
 
         </div>
-             <audio controls src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}">
-                Your browser does not support the <code>audio</code> element.
-            </audio>
-
         <div id="coms">
             <div id="entete-coms">
-                {#<div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>#}
+                <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
                 {#<form>#}
                 {#<textarea></textarea>#}
                 {#<button type="submit" class="btn-outline-success">Envoyer</button>#}
                 {#</form>#}
                 {{ form(addCommentForm) }}
             </div>
+            {% for comment in comments %}
             <div class="commentaires">
-                {% for comment in comments %}
                     <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
                     <div>
                         <h5>{{ comment.user.firstName|capitalize }} {{ comment.user.lastName|first|lower|capitalize  }} - {{ comment.createdAt|date }}</h5>
                         <p>{{ comment.content }}</p>
                         <!--<button class="button-coms">Répondre</button>-->
                     </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

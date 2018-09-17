@@ -8,7 +8,7 @@
     padding:0;
     width: 50px;
 }
-#content .table-list .table-tracks tr td:first-of-type img, #content .table-list .table-tracks th:first-of-type img {
+#content .table-list .table-tracks tr td:first-of-type img, #content .table-list .table-tracks th:first-of-type img, .img-list {
     width: 70px;
     height:70px;
     border-radius:75px;
@@ -17,6 +17,15 @@
 .table-list .table-tracks ul {
     padding: 0;
     margin: 0;
+}
+.titretrack i {
+    float: right;
+    padding-top: 5px;
+    font-size: 90%;
+}
+.titretrack i:hover {
+    color: #FF9601;
+    cursor: pointer;
 }
 .table-list .table-tracks ul li {
     padding-bottom: 8px;

@@ -27,6 +27,7 @@
     margin-bottom: 10px;
 }
 #coms form button {
+    color: #FF9601;
     background: #383838;
     float: right;
     display: inline-block;
@@ -51,7 +52,7 @@
     display: flex;
 }
 .commentaires:nth-child(2n+0) {
-    background: #f1f1f1;
+    background: #f9f9f9;
 }
 .commentaires>div:first-of-type {
     margin-right: 2%;
@@ -73,6 +74,9 @@
         margin-left: 2%;
         margin-right: 2%;
     }
+}
+#add_comment label {
+    display: none;
 }
 /*.button-coms {
     color: #FF9601;
