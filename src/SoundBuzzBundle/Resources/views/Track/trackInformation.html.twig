@@ -14,20 +14,18 @@
 #}
         <h2 class="titretrack">{#Information#}{{ track.title }} <i class="fa fa-heart" aria-hidden="true"></i></h2>
         <div class="addTracks">
-            <a href="{{ path('track_edit', { 'id': track.id }) }}">Modifier</a>
-            <a href="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" download>Télécharger</a>
-            <a href="{{ path('track_delete', { 'id': track.id }) }}">Supprimer</a>
+            <a href="{{ path('track_edit', { 'id': track.id }) }}"><i class="fas fa-edit"></i> Modifier</a>
+            <a href="../uploads/tracks/{{user.id}}/{{track.urlTrack}}"><i class="fas fa-download"></i> Télécharger</a>
+            <a href="{{ path('track_delete', { 'id': track.id }) }}"><i class="fas fa-trash"></i> Supprimer</a>
         </div>
 
         <div class="bloc-info">
-            {#<img src="../../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="" title="" />#}
-            <div class="bg-audio" style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg') no-repeat; background-size: cover">
+            <div class="bg-audio" style="background: url('../../uploads/pictures/{{user.id}}/{{ track.urlPicture }}') no-repeat; background-size: cover">
+                <div class="controlMusic">
+                    <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                    <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                </div>
 
-                {#            <img class="img-artist" src="" alt="" title="" />#}
-
-                <audio controls src="../../uploads/tracks/{{user.id}}/{{track.urlTrack}}">
-                    Your browser does not support the <code>audio</code> element.
-                </audio>
             </div>
             <table>
                 <tr>
@@ -44,7 +42,7 @@
                 </tr>
                 <tr>
                     <th>Genre</th>
-                    <td>track.genre</td>
+                    <td>genre.name</td>
                 </tr>
                 <tr>
                     <th>Description</th>
