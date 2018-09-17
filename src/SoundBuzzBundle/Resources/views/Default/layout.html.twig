@@ -132,8 +132,22 @@
         <script>
 
             $(document).ready(function(){
+
+                var elem = document.getElementById("playerGlobal");
+                
                 $('.playTrack').on('click', function(element){
-                    $("#playerGlobal").attr('src', element.target.getAttribute("data-src"));
+                    if(elem.currentTime == 0){
+                        $("#playerGlobal").attr('src', element.target.getAttribute("data-src"));
+                    }
+                    elem.play();
+                    $(this).hide();
+                    $(this).next().show();
+                });
+
+                $('.pauseTrack').on('click', function(element){
+                    elem.pause();
+                    $(this).hide();
+                    $(this).prev().show();
                 });
             });
 
