@@ -55,9 +55,10 @@
                     <td>{% if track.createdAt %}{{ track.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ track.nbComments }}</td>#}
                     <td>
-                        <audio class="track" id="track_{{track.id}}" controls src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" controlsList="nodownload">
+                    <span class="playTrack" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}">toto</span>
+                        {# <audio class="track" id="track_{{track.id}}" controls src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" controlsList="nodownload">
                             Your browser does not support the <code>audio</code> element.
-                        </audio>
+                        </audio> #}
                     </td>
                     {# <td>{% if track.isValidated %}Yes{% else %}No{% endif %}</td> #}
                     <td>
