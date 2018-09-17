@@ -134,10 +134,15 @@
             $(document).ready(function(){
 
                 var elem = document.getElementById("playerGlobal");
-                
+                var track;
+
                 $('.playTrack').on('click', function(element){
+                    track = $(this).attr("data-src");
                     if(elem.currentTime == 0){
-                        $("#playerGlobal").attr('src', element.target.getAttribute("data-src"));
+                        $("#playerGlobal").attr('src', track);
+                    }
+                    if( $("#playerGlobal").attr('src') != track ){
+                        $("#playerGlobal").attr('src', track);
                     }
                     elem.play();
                     $(this).hide();

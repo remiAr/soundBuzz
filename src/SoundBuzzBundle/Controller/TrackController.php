@@ -130,7 +130,7 @@ class TrackController extends Controller
             $track->setNbComments(0);
             $track->setIsValidated(0);
             $track->setUser($user);
-            $track->setGenre($data->getGenre());
+            $track->setGenres($data->getGenres());
             $em = $this->getDoctrine()->getManager();
             $em->persist($track);
             $em->flush();
