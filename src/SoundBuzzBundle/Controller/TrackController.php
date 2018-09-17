@@ -34,8 +34,8 @@ class TrackController extends Controller
         $track = $em->getRepository('SoundBuzzBundle:Track')->find($id);
 
         // Traitement de l'ArrayCollection $genres du track
-        $genres = $track->getGenres();
-        dump($genres);
+        $genres = $track->getGenres()->toArray();
+        /* dump($genres);
 
         $tmp = [];
 
@@ -45,7 +45,7 @@ class TrackController extends Controller
             ]);
         }
 
-        dump($tmp[0]['name']);
+        dump($tmp[0]['name']); */
         // ------------------------------------------------
 
         $user= $track->getUser();
@@ -75,6 +75,7 @@ class TrackController extends Controller
             'track' => $track,
             'user' => $user,
             'comments' => $comments,
+            'genres' => $genres,
             'addCommentForm' => $addCommentForm->createView(),
         ));
     }

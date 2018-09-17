@@ -38,7 +38,7 @@
             <tbody>
             {% for track in tracks %}
                 <tr>
-                    <td><img src="../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" /> </td>
+                    <td><img src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" /> </td>
                     <td><a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a></td>
                     <td>{{ track.extension }}</td>
                     <td class="displayTD">{{ track.description }}</td>
@@ -55,7 +55,7 @@
                     <td>{% if track.createdAt %}{{ track.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ track.nbComments }}</td>#}
                     <td>
-                        <audio class="track" id="track_{{track.id}}" controls src="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" controlsList="nodownload">
+                        <audio class="track" id="track_{{track.id}}" controls src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" controlsList="nodownload">
                             Your browser does not support the <code>audio</code> element.
                         </audio>
                     </td>
@@ -69,7 +69,7 @@
                                 <a href="{{ path('track_edit', { 'id': track.id }) }}">Modifier</a>
                             </li>
                             <li>
-                                <a href="../uploads/tracks/{{user.id}}/{{track.urlTrack}}" download>Télécharger</a>
+                                <a href="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" download>Télécharger</a>
                             </li>
                         </ul>
                     </td>

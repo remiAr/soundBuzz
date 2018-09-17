@@ -19,7 +19,7 @@
             <a href="{{ path('track_delete', { 'id': track.id }) }}">Supprimer</a>
         </div>
         <div class="bloc-info">
-            <img src="../../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="" title="" />
+            <img src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" alt="" title="" />
 
             <table>
                 <tr>
@@ -67,7 +67,7 @@
             </table>
 
         </div>
-             <audio controls src="../../uploads/tracks/{{user.id}}/{{track.urlTrack}}">
+             <audio controls src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}">
                 Your browser does not support the <code>audio</code> element.
             </audio>
 
