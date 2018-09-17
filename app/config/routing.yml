@@ -60,3 +60,7 @@ playlists_display:
 playlists_display_songs:
     path: /playlists_songs
     defaults: { _controller: SoundBuzzBundle:Playlist:userPlaylistSongs }
+
+search_display_songs:
+    path: /search_songs
+    defaults: { _controller: SoundBuzzBundle:Default:search }

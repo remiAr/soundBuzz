@@ -48,7 +48,14 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('playlists_display') }}"><i class="fa fa-list" aria-hidden="true"></i>
                                         Mes playlists</a>
+                                        
                                 </li>
+
+                                 
+
+
+
+                             
                                 {#<li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-cog" aria-hidden="true"></i>
                                         Mon compte</a>
@@ -74,13 +81,14 @@
                                           <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">Logout</a>
                                       {% else %}
                                           <a class="dropdown-item" href="{{ path('fos_user_security_login') }}">Login</a>
+                                          
                                       {% endif %}
                                   </div>
                                 </li>
                             </ul>
                             <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search" id="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0"  id="btnSearch">Search </button>
                             </form>
                         </div>
                     </nav>
@@ -89,6 +97,7 @@
             <div id="content">
                 {% block body %}
                 {% endblock %}
+
             </div>
 
             <footer>
@@ -126,5 +135,18 @@
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
             {% endblock %}
         </div>
+        <script>
+
+            document.querySelector("#btnSearch").addEventListener("click", function(event) {
+
+               location.href = "{{ path('search_display_songs') }}";
+
+               event.preventDefault();
+               console.log(document.getElementById("Search").value);
+
+           }, false);
+
+
+        </script>
     </body>
 </html>

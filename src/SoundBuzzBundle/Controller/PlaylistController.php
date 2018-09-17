@@ -48,6 +48,9 @@ class PlaylistController extends Controller
 
         }
 
+        dump($playlists);
+
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
         return $this->render('SoundBuzzBundle:Playlist:displayPlaylistSongs.html.twig', [
             'user' => $user,

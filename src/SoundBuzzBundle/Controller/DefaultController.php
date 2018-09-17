@@ -16,6 +16,9 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $tracks = $em->getRepository('SoundBuzzBundle:Track')->findAll();
+
+        
+      
            
         $user = $this->get('security.token_storage')->getToken()->getUser();
         return $this->render('SoundBuzzBundle:Default:index.html.twig', [
@@ -30,5 +33,24 @@ class DefaultController extends Controller
     {
 
     }
+
+    public function searchAction() {
+       
+        $searchterm = $searchString = $request->get('Search');
+    
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('select t.title from SoundBuzzBundle:Track t WHERE t.title LIKE :title')
+        ->setParameter('title','%'."HEY".'%');
+        $test = $query->getResult();
+    
+        dump($test);
+      
+        return $this->render('SoundBuzzBundle:Default:displaySearchingTracks.html.twig', [
+          
+            'tracks'=>$test
+        ]);
+    }
+
+
 
 }
