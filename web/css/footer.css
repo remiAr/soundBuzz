@@ -28,3 +28,8 @@ footer h3 img {
         display: none;
     }
 }
+@media screen and (max-width: 450px) {
+    footer {
+        padding-bottom: 50px;
+    }
+}
