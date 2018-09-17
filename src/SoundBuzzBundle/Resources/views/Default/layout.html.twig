@@ -167,6 +167,16 @@
                     });
 
                 }, true);
+
+                elem.addEventListener("ended", function() {
+                    $('.pauseTrack').each(function(index, elements){
+                        if(elements.getAttribute("data-src") == $("#playerGlobal").attr('src') ){
+                            $(this).hide();
+                            $(this).prev().show();
+                        }
+                    });
+
+                }, true);
             });
 
             
