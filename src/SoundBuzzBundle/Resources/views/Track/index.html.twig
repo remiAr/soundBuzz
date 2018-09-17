@@ -27,7 +27,7 @@
                     <th>Createdat</th>
                     <th>Nbcomments</th>
                     <th>Isvalidated</th>#}
-                    <th>Actions</th>
+                    <th class="iconsActions">Actions</th>
                     {#
                     <th>Explicitcontent</th>
                     <th>Downloadauthorization</th>
@@ -60,18 +60,12 @@
                     <td>{{ track.nbComments }}</td>#}
 
                     {# <td>{% if track.isValidated %}Yes{% else %}No{% endif %}</td> #}
-                    <td>
-                        <ul>
-                            <li>
-                              <a href="{{ path('track_delete', { 'id': track.id }) }}">Supprimer</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('track_edit', { 'id': track.id }) }}">Modifier</a>
-                            </li>
-                            <li>
-                                <a href="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" download>Télécharger</a>
-                            </li>
-                        </ul>
+                    <td class="iconsActions">
+                        <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                        <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                        <a href="{{ path('track_edit', { 'id': track.id }) }}" title="Modifier"><i class="fas fa-edit"></i></a>
+                        <a href="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" title="Télécharger"><i class="fas fa-download"></i></a>
+                        <a href="{{ path('track_delete', { 'id': track.id }) }}" title="Supprimer"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
             {% endfor %}

@@ -31,10 +31,14 @@
     height: 14%;
     margin-bottom: 0;
 }
+#content .listsimg h4 a {
+    font-weight: 500;
+}
 .listsimg .fa.fa-heart {
     font-size: 90%;
     padding-top: 5px;
     float: right;
+    cursor: pointer;
 }
 .listsimg .fa.fa-heart:hover {
     color: #FF9601;
@@ -59,6 +63,12 @@
     text-shadow: 1px 1px 2px #383838;
     border-bottom: none;
     height: auto;
+}
+.list-gender h4 a:hover {
+    text-decoration: none;
+}
+.list-gender h4 span:hover {
+    background: rgba(0,0,0, 0.5);
 }
 .list-gender h4 span {
     background: rgba(255,255,255, 0.5);
