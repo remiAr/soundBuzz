@@ -145,6 +145,8 @@
                         $("#playerGlobal").attr('src', track);
                     }
                     elem.play();
+                    $('.pauseTrack').hide();
+                    $('.playTrack').show();
                     $(this).hide();
                     $(this).next().show();
                 });
