@@ -1,5 +1,6 @@
 #content .table-list .table-tracks tr td, #content .table-list .table-tracks th {
     padding:0;
+    vertical-align: middle;
 }
 #content .table-list .table-tracks th {
     padding-bottom:20px;
@@ -31,6 +32,13 @@
     padding-bottom: 8px;
     padding-top: 5px;
     list-style-type: none;
+}
+.table-list .far.fa-play-circle, .table-list .far.fa-pause-circle {
+    font-size: 150%;
+    cursor: pointer;
+}
+.table-list .far.fa-play-circle:hover, .table-list .far.fa-pause-circle:hover {
+    color: #FF9601;
 }
 @media screen and (max-width: 1050px) {
     #track>.img-artist {

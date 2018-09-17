@@ -12,7 +12,7 @@
     border-radius: 50%;
 }
 .listsimg li {
-    min-height: 300px;
+    height: 300px;
     display: flex;
     border: 1px solid #FF9601;
     justify-content: space-between;
@@ -28,6 +28,8 @@
     border-bottom: 1px solid rgba(0,0,0,0.20);
     background: rgba(241,243,244, 0.9);
     padding:5px;
+    height: 14%;
+    margin-bottom: 0;
 }
 .listsimg .fa.fa-heart {
     font-size: 90%;
@@ -56,12 +58,29 @@
     font-size: 180%;
     text-shadow: 1px 1px 2px #383838;
     border-bottom: none;
+    height: auto;
 }
 .list-gender h4 span {
     background: rgba(255,255,255, 0.5);
     padding: 3px 20px;
     border-radius: 4px;
     border: 1px solid #FF9601;
+}
+@media screen and (max-width: 950px) {
+    #highlight {
+        flex-wrap: wrap;
+    }
+    #highlight>div:first-of-type {
+        margin-bottom: 30px;
+    }
+    #highlight>div {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 830px) {
+    #content h2.titreHighlight {
+        display: none;
+    }
 }
 @media screen and (max-width: 600px) {
     #highlight {

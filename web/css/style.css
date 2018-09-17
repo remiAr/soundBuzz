@@ -140,6 +140,54 @@ body {
 .profil .bloc-info {
     justify-content: flex-start;
 }
+#playerAudio {
+    position: fixed;
+    bottom: 0;
+    background: #f1f3f4;
+    border-top: 1px solid rgba(0,0,0,0.20);
+    width: 100%;
+    display: flex;
+    padding: 5px 10px;
+}
+#playerAudio img {
+    height: 50px;
+}
+#playerAudio h4 {
+    line-height: 50px;
+    margin-bottom: 0;
+}
+#playerAudio h4 a {
+    color: #FF9601;
+}
+.controlMusic {
+    margin: auto 0;
+    text-align: center;
+    height: 86%;
+}
+.controlMusic:hover {
+    background: rgba(0,0,0,0.30);
+}
+.controlMusic i {
+    cursor: pointer;
+    line-height: 235px;
+    font-size: 90px;
+}
+.controlMusic:hover i {
+    color: #FF9601;
+}
+.controlMusic i:hover {
+    color: #FF9601;
+}
+
+@media screen and (max-width: 1200px) {
+    #content .listsimg ul li {
+        width: 24%;
+        margin-bottom:15px;
+    }
+    #content .listsimg ul li:last-of-type {
+        display: none;
+    }
+}
 @media screen and (max-width: 1130px) {
     .bloc-info>img {
         width:250px;
@@ -155,6 +203,16 @@ body {
         min-height: 250px;
     }
 }
+@media screen and (max-width: 1100px) {
+    #content .listsimg ul {
+        flex-wrap: wrap;
+    }
+    #content .listsimg ul li {
+        width: 48%;
+        /*height: auto;*/
+        margin-bottom: 20px;
+    }
+}
 @media screen and (max-width: 1050px) {
     .bloc-info>img {
         display:none;
@@ -166,19 +224,10 @@ body {
     .bloc-info>table:last-of-type {
         margin-left: 2%;
     }
+
 }
 
-@media screen and (max-width: 800px) {
-    #content .listsimg ul li {
-        width: 48%;
-        height: auto;
-        margin-bottom: 20px;
-    }
-    
-    #content .listsimg ul {
-        flex-wrap: wrap;
-    }
-}
+
 @media screen and (max-width: 750px) {
     .bloc-info {
         flex-direction: column;
@@ -193,9 +242,30 @@ body {
         width: 230px;
     }
 }
+@media screen and (max-width: 600px) {
+    /*#playerAudio {
+        flex-direction: column;
+        justify-content: center;
+    }*/
+    #playerAudio img {
+        display: none;
+    }
+
+    #content .music-home ul li {
+        width: 100%;
+    }
+}
 @media screen and (max-width: 450px) {
     #content .listsimg ul li {
         width: 100%;
     }
-    
+    #playerAudio {
+        flex-direction: column-reverse;
+    }
+    #playerAudio h4 {
+        line-height: normal;
+        margin-bottom: 0;
+        padding-left: 20px;
+        padding-top: 5px;
+    }
 }
