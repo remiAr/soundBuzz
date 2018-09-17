@@ -11,12 +11,12 @@
         <ul>
             {% for playlist in playlists %}
                 <li style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg')">
-                    <h4>
-                        <a href="{{ path('playlist_information', { 'id': playlist.id }) }}">{{ playlist.name }}</a>
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                    </h4>
-                    <audio controls="controls" />
-                    <source src="{#{{ track.urlTrack }}#}" type="audio/mp3" />
+                    <h4><a href="{{ path('playlist_information', { 'id': playlist.id }) }}">{{ playlist.name }}</a> <i class="fa fa-heart" aria-hidden="true"></i></h4>
+
+                    <div class="controlMusic">
+                        <i class="playTrack far fa-play-circle"></i>
+                        <i style="display: none" class="pauseTrack far fa-pause-circle"></i>
+                    </div>
 
                 </li>
             {% endfor %}
