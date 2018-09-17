@@ -25,79 +25,75 @@
                     <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                     <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                 </div>
-                {#<img src="../../uploads/pictures/{{user.id}}/{{ track.urlPicture }}" alt="" title="" />#}
-                <div class="bg-audio" style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg') no-repeat; background-size: cover">
-                </div>
-                <img src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" alt="" title="" />
-                <table>
-                    <tr>
-                        <th>Titre</th>
-                        <td>{{ track.title }}</td>
-                    </tr>
-                    <tr>
-                        <th>Auteur</th>
-                        <td>{{ user.firstName|capitalize }} {{ user.lastName|first|lower|capitalize }}</td>
-                    </tr>
-                    <tr>
-                        <th>Compositeur</th>
-                        <td>{{ track.compositor|capitalize }}</td>
-                    </tr>
-                    <tr>
-                        <th>Genre</th>
-                        {% for genre in genres %}
-                            <td>{{ genre.name }}</td>
-                        {% endfor %}
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>{{ track.description }}</td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <th>Durée</th>
-                        <td>{{ track.duration }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombre d'écoutes</th>
-                        <td>{{ track.nbListenings }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombre de téléchargements</th>
-                        <td>{{ track.nbDownloads }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombre de vues</th>
-                        <td>{{ track.nbViews }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombre de coup de coeur</th>
-                        <td>{{ track.nbLikes}}</td>
-                    </tr>
-                </table>
+
             </div>
-            <audio controls src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}">
-                Your browser does not support the <code>audio</code> element.
-            </audio>
-            <div id="coms">
-                <div id="entete-coms">
+            <table>
+                <tr>
+                    <th>Titre</th>
+                    <td>{{ track.title }}</td>
+                </tr>
+                <tr>
+                    <th>Auteur</th>
+                    <td>{{ user.firstName|capitalize }} {{ user.lastName|first|lower|capitalize }}</td>
+                </tr>
+                <tr>
+                    <th>Compositeur</th>
+                    <td>{{ track.compositor|capitalize }}</td>
+                </tr>
+                <tr>
+                    <th>Genre</th>
+                    {% for genre in genres %}
+                        <td>{{ genre.name }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ track.description }}</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Durée</th>
+                    <td>{{ track.duration }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre d'écoutes</th>
+                    <td>{{ track.nbListenings }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de téléchargements</th>
+                    <td>{{ track.nbDownloads }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de vues</th>
+                    <td>{{ track.nbViews }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de coup de coeur</th>
+                    <td>{{ track.nbLikes}}</td>
+                </tr>
+            </table>
+
+        </div>
+        <div id="coms">
+            <div id="entete-coms">
+                <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
+                {#<form>#}
+                {#<textarea></textarea>#}
+                {#<button type="submit" class="btn-outline-success">Envoyer</button>#}
+                {#</form>#}
+                {{ form(addCommentForm) }}
+            </div>
+            {% for comment in comments %}
+                <div class="commentaires">
                     <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
-                    {#<form>#}
-                    {#<textarea></textarea>#}
-                    {#<button type="submit" class="btn-outline-success">Envoyer</button>#}
-                    {#</form>#}
-                    {{ form(addCommentForm) }}
-                </div>
-                {% for comment in comments %}
-                    <div class="commentaires">
-                        <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
-                        <div>
-                            <h5>{{ comment.user.firstName|capitalize }} {{ comment.user.lastName|first|lower|capitalize  }} - {{ comment.createdAt|date }}</h5>
-                            <p>{{ comment.content }}</p>
-                            <!--<button class="button-coms">Répondre</button>-->
-                        </div>
+                    <div>
+                        <h5>{{ comment.user.firstName|capitalize }} {{ comment.user.lastName|first|lower|capitalize  }} - {{ comment.createdAt|date }}</h5>
+                        <p>{{ comment.content }}</p>
+                        <!--<button class="button-coms">Répondre</button>-->
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
+        </div>
     </section>
 {% endblock %}
