@@ -39,7 +39,11 @@
                 <tr>
                     <td><img src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" />
                     </td>
-                    <td><a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a></td>
+                    <td>
+                        <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                        <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                        <a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a>
+                    </td>
                     <td>{{ track.extension }}</td>
                     <td class="displayTD">{{ track.description }}</td>
                     <td>{{ track.compositor }}</td>
