@@ -29,8 +29,12 @@
             <ul>
                 {% for track in tracks | slice ( 0 , 5 ) %}
                     <li style="background: url('{{ track.urlPicture }}')"><h4>{{ track.title }} <i class="fa fa-heart" aria-hidden="true"></i></h4>
-                        <audio controls="controls" />
-                        <source src="{{ track.urlTrack }}" type="audio/mp3" />
+                       {# <audio controls="controls" />
+                        <source src="{{ track.urlTrack }}" type="audio/mp3" />#}
+                        <div class="controlMusic">
+                            <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}"></i>
+                            <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}"></i>
+                        </div>
 
                     </li>
                 {% endfor %}
