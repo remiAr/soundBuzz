@@ -1,0 +1,57 @@
+{% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+{% block title %}
+    SoundBuzz - Mes Musiques
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('css/track.css')}}">
+{%  endblock %}
+{% block body %}
+    <h2>Toutes les musiques </h2>
+    <div class="table-list">
+        <table class="table-tracks">
+            <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th>Titre</th>
+                <th>Extension</th>
+                <th class="displayTD">Description</th>
+                {#<th>Urlpicture</th>#}
+                <th>Compositeur</th>
+                <th>Duration</th>
+                <th class="displayTD">Nb. écoute</th>
+                <th class="displayTD">Nb. téléchargement</th>
+                <th class="displayTD">Nb. vues</th>
+                <th class="displayTD">Nb. likes</th>
+                <th class="iconsActions">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for track in tracks %}
+                <tr>
+                    <td class="likeTD">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    </td>
+                    <td class="img-table-list">
+                        <img src="{{ asset('uploads/pictures/') }}{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" />
+                    </td>
+                    <td>
+                        <a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a>
+                    </td>
+                    <td>{{ track.extension }}</td>
+                    <td class="displayTD">{{ track.description }}</td>
+                    <td>{{ track.compositor }}</td>
+                    <td>{{ track.duration }}</td>
+                    <td class="displayTD">{{ track.nbListenings }}</td>
+                    <td class="displayTD">{{ track.nbDownloads }}</td>
+                    <td class="displayTD">{{ track.nbViews }}</td>
+                    <td class="displayTD">{{ track.nbLikes }}</td>
+                    <td class="iconsActions">
+                        <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                        <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
