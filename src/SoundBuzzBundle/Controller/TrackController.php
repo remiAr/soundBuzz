@@ -180,4 +180,24 @@ class TrackController extends Controller
             'tracks' => $tracks,
         ]);
     }
+
+    public function downloadAction($id)
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+        $track = $em->getRepository(Track::class)->find($id);
+
+        $currentNumber = $track->getNbDownloads();
+
+        $track->setNbDownloads( $currentNumber + 1 );
+
+        $em->persist($track);
+        $em->flush();
+
+        $user = $this->getUser();
+        $tracks = $em->getRepository(Track::class)->findAll();
+        
+        return $this->redirectToRoute('track_information', array('id' => $track->getId()));
+
+    }
 }

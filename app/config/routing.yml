@@ -54,6 +54,10 @@ track_delete:
     path: /tracks/{id}/delete
     defaults: { _controller: SoundBuzzBundle:Track:delete }
 
+dl_track:
+    path: /tracks/{id}/download
+    defaults: { _controller: SoundBuzzBundle:Track:download }
+
 ### PLAYLIST ###
 playlist_index:
     path: /playlists
