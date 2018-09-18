@@ -76,17 +76,19 @@
 
         </div>
         <div id="coms">
+            {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
             <div id="entete-coms">
-                <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
+                <div><img src="{{ user.avatarUrl }}" alt="" title="" /></div>
                 {#<form>#}
                 {#<textarea></textarea>#}
                 {#<button type="submit" class="btn-outline-success">Envoyer</button>#}
                 {#</form>#}
                 {{ form(addCommentForm) }}
             </div>
+            {% endif %}
             {% for comment in comments %}
                 <div class="commentaires">
-                    <div><img src="https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg" alt="" title="" /></div>
+                    <div><img src="{{ comment.user.avatarUrl }}" alt="" title="" /></div>
                     <div>
                         <h5>{{ comment.user.firstName|capitalize }} {{ comment.user.lastName|first|lower|capitalize  }} - {{ comment.createdAt|date }}</h5>
                         <p>{{ comment.content }}</p>

@@ -42,6 +42,10 @@ track_index:
     path: /tracks
     defaults: { _controller: SoundBuzzBundle:Track:index }
 
+track_alltracks:
+    path: /AllTracks
+    defaults: { _controller: SoundBuzzBundle:Track:getAllTracks }
+
 track_information:
     path: /tracks/{id}
     defaults: { _controller: SoundBuzzBundle:Track:getTrack }
