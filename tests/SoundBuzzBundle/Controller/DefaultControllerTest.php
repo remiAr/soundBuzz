@@ -1,6 +1,7 @@
 <?php
 
-namespace SoundBuzzBundle\Tests\Controller;
+// tests/SoundBuzzBundle/Controller/DefaultControllerTest.php
+namespace Tests\SoundBuzzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -12,6 +13,7 @@ class DefaultControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/');
 
-        $this->assertContains('Hello World', $client->getResponse()->getContent());
+        $this->assertContains(htmlentities("Nouvelles&nbsp;musiques"), $client->getResponse()->getContent());
+        $this->assertContains('Genres', $client->getResponse()->getContent());
     }
 }

@@ -3,7 +3,7 @@
 namespace SoundBuzzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
@@ -16,7 +16,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $tracks = $em->getRepository('SoundBuzzBundle:Track')->findAll();
-           
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
         return $this->render('SoundBuzzBundle:Default:index.html.twig', [
             'user' => $user,

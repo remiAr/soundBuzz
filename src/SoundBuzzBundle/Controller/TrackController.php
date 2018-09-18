@@ -14,7 +14,6 @@ class TrackController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        dump($this->getUser()->getId());
 
         $tracks = $em->getRepository('SoundBuzzBundle:Track')->findBy(
             array('user' => $this->getUser())
