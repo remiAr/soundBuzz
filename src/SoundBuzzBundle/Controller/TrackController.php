@@ -82,13 +82,13 @@ class TrackController extends Controller
             // SONG
             $fileSong = $track->getSong();
             $fileNameSong = $fileSong->getClientOriginalName();
-            $fileSong->move($this->getParameter('tracks_directory')."/". $user->getId(), $fileNameSong);
+            $fileSong->move($this->getParameter('tracks_directory')."/", $fileNameSong);
             $track->setSong($fileNameSong);
 
             // PICTURE
             $filePictureSong = $track->getSongPicture();
             $fileNamePictureSong =$filePictureSong->getClientOriginalName();
-            $filePictureSong->move($this->getParameter('pictures_directory')."/". $user->getId(), $fileNamePictureSong);
+            $filePictureSong->move($this->getParameter('pictures_directory')."/", $fileNamePictureSong);
             $track->setSongPicture($fileNamePictureSong);
 
             // Query Doctrine
@@ -179,5 +179,25 @@ class TrackController extends Controller
             'user' => $user,
             'tracks' => $tracks,
         ]);
+    }
+
+    public function downloadAction($id)
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+        $track = $em->getRepository(Track::class)->find($id);
+
+        $currentNumber = $track->getNbDownloads();
+
+        $track->setNbDownloads( $currentNumber + 1 );
+
+        $em->persist($track);
+        $em->flush();
+
+        $user = $this->getUser();
+        $tracks = $em->getRepository(Track::class)->findAll();
+        
+        return $this->redirectToRoute('track_information', array('id' => $track->getId()));
+
     }
 }
