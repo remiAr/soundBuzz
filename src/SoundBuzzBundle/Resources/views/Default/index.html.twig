@@ -33,50 +33,14 @@
                         {# <audio controls="controls" />
                          <source src="{{ track.urlTrack }}" type="audio/mp3" />#}
                         <div class="controlMusic">
-                            <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
-                            <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                            <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{ user.id}} {% endif %}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{user.id}}{% endif %}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                            <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{ user.id }}{% endif %}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{user.id}}{% endif %}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
         </div>
     </section>
-    {#<table>
-        <tr>
-            <th></th>
-            <th>Image</th>
-            <th>Titre</th>
-            <th>Description</th>
-            <th>Compositor</th>
-            <th>Durée</th>
-            <th>Nombre d'écoutes</th>
-            <th>Nombre de telechargements</th>
-            <th>Nombre de likes</th>
-            <th></th>
-        </tr>
-        {% for track in tracks | slice ( 0 , 5 ) %}
-            <tr>
-                <td>{{ track.title }}</td>
-                <td>{{ track.description }}</td>
-                <td><img width="200" src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}"></td>
-                <td>{{ track.compositor }}</td>
-                <td>{{ track.duration }}</td>
-                <td>{{ track.nbListenings }}</td>
-                <td>{{ track.nbDownloads }}</td>
-                <td>{{ track.nbLikes }} </td>
-                <td>
-                    <audio controls src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" controlsList="nodownload">
-                        Your browser does not support the <code>audio</code> element.
-                    </audio>
-                </td>
-                <td>
-                    <a href="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" download>Download</a><br/>
-                    <a href="{{ track.id }}">LIKE</a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-</div>
 {% endblock %}
         </tr>#}
     {#
