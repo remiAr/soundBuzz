@@ -165,7 +165,7 @@ body {
     text-align: center;
     height: 86%;
 }
-.controlMusic:hover {
+.controlMusic:hover, .linkHighlight:hover {
     background: rgba(0,0,0,0.30);
 }
 .controlMusic i {
@@ -178,6 +178,11 @@ body {
 }
 .controlMusic i:hover {
     color: #FF9601;
+}
+.linkHighlight {
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
