@@ -82,13 +82,13 @@ class TrackController extends Controller
             // SONG
             $fileSong = $track->getSong();
             $fileNameSong = $fileSong->getClientOriginalName();
-            $fileSong->move($this->getParameter('tracks_directory')."/". $user->getId(), $fileNameSong);
+            $fileSong->move($this->getParameter('tracks_directory')."/", $fileNameSong);
             $track->setSong($fileNameSong);
 
             // PICTURE
             $filePictureSong = $track->getSongPicture();
             $fileNamePictureSong =$filePictureSong->getClientOriginalName();
-            $filePictureSong->move($this->getParameter('pictures_directory')."/". $user->getId(), $fileNamePictureSong);
+            $filePictureSong->move($this->getParameter('pictures_directory')."/", $fileNamePictureSong);
             $track->setSongPicture($fileNamePictureSong);
 
             // Query Doctrine
