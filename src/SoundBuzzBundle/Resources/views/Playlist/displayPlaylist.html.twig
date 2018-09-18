@@ -7,7 +7,10 @@
 
 {% block body %}
     <div class="listsimg">
-        <h2>Mes playlists</h2>
+        <h2 class="titretrack">Mes playlists</h2>
+        <div class="addTracks">
+            <a href="#"><i class="fas fa-plus-circle"></i> Ajouter une playlist</a>
+        </div>
         <ul>
             {% for playlist in playlists %}
                 <li style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg')">

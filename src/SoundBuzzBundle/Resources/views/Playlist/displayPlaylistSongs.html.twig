@@ -6,7 +6,12 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Playlist : {{ playlist.name }}</h2>
+    <h2 class="titretrack">Playlist : {{ playlist.name }}</h2>
+    <div class="addTracks">
+        <a href="#"><i class="fas fa-plus-circle"></i> Ajouter un morceau</a>
+        <a href="#"><i class="fas fa-edit"></i> Modifier la playlist</a>
+        <a href="#"><i class="fas fa-trash"></i> Supprimer</a>
+    </div>
     <div class="table-list">
         <table>
             <tr>
