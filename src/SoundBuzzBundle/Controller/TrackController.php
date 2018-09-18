@@ -32,22 +32,7 @@ class TrackController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $track = $em->getRepository('SoundBuzzBundle:Track')->find($id);
-
-        // Traitement de l'ArrayCollection $genres du track
-        $genres = $track->getGenres()->toArray();
-        /* dump($genres);
-
-        $tmp = [];
-
-        foreach ($genres as $genre) {
-            array_push($tmp, [
-                'name' => $genre->getName(),
-            ]);
-        }
-
-        dump($tmp[0]['name']); */
-        // ------------------------------------------------
-
+        $genres = $track->getGenres();
         $user= $track->getUser();
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
@@ -55,10 +40,10 @@ class TrackController extends Controller
 
         $newComment = new Comments();
         $addCommentForm = $this->createForm(AddComment::class, $newComment);
-
         $addCommentForm->handleRequest($request);
 
-        if ($addCommentForm->isSubmitted() && $addCommentForm->isValid()) {
+        if ($addCommentForm->isSubmitted() && $addCommentForm->isValid())
+        {
             $newComment = $addCommentForm->getData();
             $newComment->setUser($user);
             $newComment->setCreatedAt(
@@ -84,32 +69,29 @@ class TrackController extends Controller
     {
         $track = new Track();
 
-        //Get connected user
+        // Get connected user
         $user = $this->getUser();
 
-        $form= $this->createForm('SoundBuzzBundle\Form\TrackType', $track);
+        $form = $this->createForm('SoundBuzzBundle\Form\TrackType', $track);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //GET DATA FORM
+            // GET DATA FORM
             $data = $form->getData();
 
-            //SONG
+            // SONG
             $fileSong = $track->getSong();
-            $fileNameSong =$fileSong->getClientOriginalName();
+            $fileNameSong = $fileSong->getClientOriginalName();
             $fileSong->move($this->getParameter('tracks_directory')."/". $user->getId(), $fileNameSong);
             $track->setSong($fileNameSong);
 
-
-            //PICTURE
+            // PICTURE
             $filePictureSong = $track->getSongPicture();
             $fileNamePictureSong =$filePictureSong->getClientOriginalName();
             $filePictureSong->move($this->getParameter('pictures_directory')."/". $user->getId(), $fileNamePictureSong);
             $track->setSongPicture($fileNamePictureSong);
 
-
-
-            //Query Doctrine
+            // Query Doctrine
             $track = new Track();
             $track->setExtension($fileSong->getClientOriginalExtension());
             $track->setTitle($data->getTitle());
@@ -131,6 +113,8 @@ class TrackController extends Controller
             $track->setIsValidated(0);
             $track->setUser($user);
             $track->setGenres($data->getGenres());
+
+            // Persist data in the DB
             $em = $this->getDoctrine()->getManager();
             $em->persist($track);
             $em->flush();
@@ -141,10 +125,8 @@ class TrackController extends Controller
                 'form' => $form->createView(),
                 'user' => $user,
             ));
-
         }
     }
-
 
     public function editAction(Request $request, Track $track)
     {
@@ -172,11 +154,30 @@ class TrackController extends Controller
         $em->remove($track);
         $em->flush();
 
-
         return $this->redirectToRoute('track_index');
     }
 
+    public function likeAction($id)
+    {
+        /**
+         * TODO
+         * Generate a url without parameters (redirect to '/')
+         * Recalculate nbLikes after like is done
+         */
+        $em = $this->getDoctrine()->getManager();
+        $tracks = $em->getRepository(Track::class)->findAll();
+        $track = $em->getRepository(Track::class)->find($id);
+        $user = $this->getUser();
 
-    
+        $track->setLikedByUsers($user);
+        $track->setNbLikes(sizeof($track->getLikedByUsers()));
 
+        $em->persist($track);
+        $em->flush();
+
+        return $this->render('SoundBuzzBundle:Default:index.html.twig', [
+            'user' => $user,
+            'tracks' => $tracks,
+        ]);
+    }
 }

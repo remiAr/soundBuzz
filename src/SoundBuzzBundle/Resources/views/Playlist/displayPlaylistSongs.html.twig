@@ -10,33 +10,42 @@
     <div class="table-list">
         <table>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Urlpicture</th>
-                <th>Compositor</th>
-                <th>Durée</th>
-                <th>Nombre d'écoutes</th>
-                <th>Nombre de telechargements</th>
-                <th>Nombre de likes</th>
-                <th></th>
+                <th colspan="2"></th>
+                <th>Titre</th>
+                <th>Extension</th>
+                <th class="displayTD">Description</th>
+                {#<th>Urlpicture</th>#}
+                <th>Compositeur</th>
+                <th>Duration</th>
+                <th class="displayTD">Nb. écoute</th>
+                <th class="displayTD">Nb. téléchargement</th>
+                <th class="displayTD">Nb. vues</th>
+                <th class="displayTD">Nb. likes</th>
+                <th class="iconsActions">Actions</th>
             </tr>
             {% for track in tracks %}
                 <tr>
-                    <td><a href="{{ path('track_information', {'id': track.id}) }}" {{ track.title }}</td>
-                    <td>{{ track.description }}</td>
-                    <td><img src={{ track.urlPicture }} style="max-width:100px;" /></td>
+                    <td class="likeTD">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    </td>
+                    <td class="img-table-list">{#{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}#}
+                        <img src="{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" style="height: 70px" />
+                    </td>
+                    <td><a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a></td>
+                    <td>{{ track.extension }}</td>
+                    <td class="displayTD">{{ track.description }}</td>
                     <td>{{ track.compositor }}</td>
                     <td>{{ track.duration }}</td>
-                    <td>{{ track.nbListenings }}</td>
-                    <td>{{ track.nbDownloads }}</td>
-                    <td>{{ track.nbLikes }} </td>
-                    <td>
-                        <audio controls="controls" />
-                        <source src="{{ track.urlTrack }}" type="audio/mp3" />
-                    </td>
-                    <td>
-                        <a href="{{ track.urlTrack }}" download> Download</a>
-                        <a href="{{ track.urlTrack }}">LIKE</a>
+                    <td class="displayTD">{{ track.nbListenings }}</td>
+                    <td class="displayTD">{{ track.nbDownloads }}</td>
+                    <td class="displayTD">{{ track.nbViews }}</td>
+                    <td class="displayTD">{{ track.nbLikes }}</td>
+                    <td class="iconsActions">
+                        <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                        <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                        <a href="{{ path('track_edit', { 'id': track.id }) }}" title="Modifier"><i class="fas fa-edit"></i></a>
+                        <a href="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" title="Télécharger"><i class="fas fa-download"></i></a>
+                        <a href="{{ path('track_delete', { 'id': track.id }) }}" title="Supprimer"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
             {% endfor %}

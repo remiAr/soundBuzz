@@ -7,12 +7,12 @@
 {%  endblock %}
 {% block body %}
     <h2 class="titretrack">Mes musiques </h2>
-    <div class="addTracks"><a href="{{ path('track_new') }}">Ajouter un nouveau morceau</a></div>
+    <div class="addTracks"><a href="{{ path('track_new') }}"><i class="fas fa-plus-circle"></i> Ajouter un nouveau morceau</a></div>
     <div class="table-list">
         <table class="table-tracks">
             <thead>
                 <tr>
-                    <th></th>
+                    <th colspan="2"></th>
                     <th>Titre</th>
                     <th>Extension</th>
                     <th class="displayTD">Description</th>
@@ -37,7 +37,11 @@
             <tbody>
             {% for track in tracks %}
                 <tr>
-                    <td><img src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" />
+                    <td class="likeTD">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    </td>
+                    <td class="img-table-list">
+                        <img src="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" />
                     </td>
                     <td>
                         <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{user.id}}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
