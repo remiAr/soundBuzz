@@ -9,7 +9,6 @@ class PlaylistController extends Controller
     public function userPlaylistAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
