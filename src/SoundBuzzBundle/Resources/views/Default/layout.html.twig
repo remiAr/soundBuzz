@@ -88,6 +88,7 @@
             </nav>
         </div>
     </header>
+
     <div id="content">
         {% block body %}
         {% endblock %}
@@ -97,14 +98,13 @@
         <h3><img src="{{ asset('img/logo.png') }}" alt="SoundBuzz" title="SoundBuzz" /></h3>
         <div style="height: 40px;"></div>
         <div id="playerAudio">
-            <img alt="" title="" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350" />
+            <img id="imagePlayerGlobal" alt="" title="" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350" />
             <audio id="playerGlobal" controls src="" controlsList="nodownload">
                 Your browser does not support the <code>audio</code> element.
             </audio>
-            <h4><a href="">titre</a> - <a href="">artiste</a></h4>
+            <h4><a id="titlePlayerGlobal" href="">titre</a> - <a id="authorPlayerGlobal" href="">artiste</a></h4>
         </div>
     </footer>
-
 
     {% block JS %}
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -115,17 +115,29 @@
             $(document).ready(function(){
 
                 var elem = document.getElementById("playerGlobal");
-                var track;
+                var track, title, author, picture;
 
                 $('.playTrack').on('click', function(element){
                     track = $(this).attr("data-src");
+                    title = $(this).attr("data-title");
+                    picture = $(this).attr("data-picture");
+                    author = $(this).attr("data-author");
                     if(elem.currentTime == 0){
                         $("#playerGlobal").attr('src', track);
+                        $("#imagePlayerGlobal").attr('src', picture);
+                        $("#titlePlayerGlobal").html(title);
+                        $("#authorPlayerGlobal").html(author);
                     }
                     if( $("#playerGlobal").attr('src') != track ){
                         $("#playerGlobal").attr('src', track);
+                        $("#imagePlayerGlobal").attr('src', picture);
+                        $("#titlePlayerGlobal").attr('src', title);
+                        $("#titlePlayerGlobal").html(title);
+                        $("#authorPlayerGlobal").html(author);
                     }
                     elem.play();
+                    $('.pauseTrack').hide();
+                    $('.playTrack').show();
                     $(this).hide();
                     $(this).next().show();
                 });
@@ -135,7 +147,39 @@
                     $(this).hide();
                     $(this).prev().show();
                 });
+
+                elem.addEventListener("pause", function() {
+                    $('.pauseTrack').each(function(index, elements){
+                        if(elements.getAttribute("data-src") == $("#playerGlobal").attr('src') ){
+                            $(this).hide();
+                            $(this).prev().show();
+                        }
+                    });
+
+                }, true);
+
+                elem.addEventListener("play", function() {
+                    $('.playTrack').each(function(index, elements){
+                        if(elements.getAttribute("data-src") == $("#playerGlobal").attr('src') ){
+                            $(this).hide();
+                            $(this).next().show();
+                        }
+                    });
+
+                }, true);
+
+                elem.addEventListener("ended", function() {
+                    $('.pauseTrack').each(function(index, elements){
+                        if(elements.getAttribute("data-src") == $("#playerGlobal").attr('src') ){
+                            $(this).hide();
+                            $(this).prev().show();
+                        }
+                    });
+
+                }, true);
             });
+
+            
 
         </script>
     {% endblock %}

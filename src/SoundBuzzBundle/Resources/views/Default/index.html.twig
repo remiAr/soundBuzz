@@ -8,17 +8,17 @@
     <section>
         <h2 class="titreHighlight">Nouvelles musiques</h2>
         <div id="highlight">
-        {% for track in tracks | slice ( 0 , 2 ) %}
-            <div style="background: url('{{ track.urlPicture }}') no-repeat;background-size: cover;">
-            </div>
+            {% for track in tracks | slice ( 0 , 2 ) %}
+                <div style="background: url('{{ track.urlPicture }}') no-repeat;background-size: cover;">
+                </div>
                 {#<img src="{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" />#}
-        {% endfor %}
+            {% endfor %}
         </div>
         <div class="listsimg">
             <h2>Genres</h2>
             <ul class="list-gender">
                 {% for track in tracks | slice ( 0 , 5 ) %}
-                    <li style="background: url('{{ track.urlPicture }}')">
+                    <li style="background: url('{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}')">
                        <h4><a href="#"><span>Rap</span></a></h4>
                     </li>
                 {% endfor %}
@@ -28,18 +28,43 @@
             <h2>Musiques conseillé</h2>
             <ul>
                 {% for track in tracks | slice ( 0 , 5 ) %}
-                    <li style="background: url('{{ track.urlPicture }}')">
+                    <li style="background: url('{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}')">
                         <h4><a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a> <i class="fa fa-heart" aria-hidden="true"></i></h4>
-                       {# <audio controls="controls" />
-                        <source src="{{ track.urlTrack }}" type="audio/mp3" />#}
+                        {# <audio controls="controls" />
+                         <source src="{{ track.urlTrack }}" type="audio/mp3" />#}
                         <div class="controlMusic">
                             <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{ user.id}} {% endif %}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{user.id}}{% endif %}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                             <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{ user.id }}{% endif %}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{user.id}}{% endif %}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                         </div>
-
                     </li>
                 {% endfor %}
             </ul>
         </div>
     </section>
+{% endblock %}
+        </tr>#}
+    {#
+              {% for track in tracks | slice ( 0 , 5 ) %}
+                #}{#<tr>
+                    <td><a href="{{ track.urlTrack }}"><i class="fa fa-heart" aria-hidden="true"></i></a></td>
+                    <td>#}{#
+                  <img class="img-list" alt="{{ track.title }}" title="{{ track.title }}" src={{ track.urlPicture }}></td>
+                  #}{#  <td>{{ track.title }}</td>
+                    <td>{{ track.description }}</td>
+                    <td>{{ track.compositor }}</td>
+                    <td>{{ track.duration }}</td>
+                    <td>{{ track.nbListenings }}</td>
+                    <td>{{ track.nbDownloads }}</td>
+                    <td>{{ track.nbLikes }} </td>
+                    <td>
+                  #}{#      <audio controls="controls" />
+                        <source src="{{ track.urlTrack }}" type="audio/mp3" />
+                    </td>
+                    <td>
+                        <a href="{{ track.urlTrack }}" download> Download</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>#}
 {% endblock %}

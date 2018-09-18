@@ -2,10 +2,11 @@
 
 namespace SoundBuzzBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\GroupInterface;
 use FOS\UserBundle\Model\User as BaseUser;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
@@ -20,32 +21,39 @@ class User extends BaseUser
      */
     protected $id;
 
-     /**
+    /**
      * @ORM\Column(type="string")
      */
     private $firstName;
 
     /**
-    * @ORM\Column(type="string")
-    */
+     * @ORM\Column(type="string")
+     */
     private $lastName;
-    
+
     /**
-    * @ORM\Column(type="string")
-    */
+     * @ORM\Column(type="string")
+     */
     private $avatarUrl;
-    
+
     /**
-    * @ORM\Column(type="string")
-    */
+     * @ORM\Column(type="string")
+     */
     private $createdAt;
+
+    /**
+     * A User can like many Tracks.
+     * @ORM\ManyToMany(targetEntity="Track", mappedBy="likedByUsers")
+     * @ORM\JoinTable(name="user_has_liked")
+     */
+    private $likedTracks;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        
+        $this->likedTracks = new ArrayCollection();
     }
 
     /**
@@ -133,7 +141,7 @@ class User extends BaseUser
         return $this;
     }
 
-     /**
+    /**
      * Overridden so that username is now optional
      *
      * @param string $email
@@ -155,10 +163,30 @@ class User extends BaseUser
 
     /**
      * @param string $username
+     * @return User
      */
     public function setUsername($username)
     {
         $this->username = $username;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLikedTracks()
+    {
+        return $this->likedTracks;
+    }
+
+    /**
+     * @param mixed $likedTracks
+     * @return User
+     */
+    public function setLikedTracks($likedTracks)
+    {
+        $this->likedTracks = $likedTracks;
+        return $this;
     }
 
 }
