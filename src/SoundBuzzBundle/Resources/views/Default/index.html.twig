@@ -9,7 +9,7 @@
         <h2 class="titreHighlight">Nouvelles musiques</h2>
         <div id="highlight">
             {% for track in tracks | slice ( 0 , 2 ) %}
-                <div style="background: url('{{ asset('uploads/pictures/') }}{{user.id}}/{{ track.urlPicture }}') no-repeat;background-size: cover;">
+                <div style="background: url('{{ asset('uploads/pictures/') }}{{ track.urlPicture }}') no-repeat;background-size: cover;">
                     <a class="linkHighlight" href="{{ path('track_information', {'id': track.id}) }}"></a>
                 </div>
                 {#<img src="{{ track.urlPicture }}" alt="{{ track.title }}" title="{{ track.title }}" />#}
