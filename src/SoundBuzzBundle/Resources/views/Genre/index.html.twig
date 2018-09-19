@@ -6,8 +6,7 @@
 <link rel="stylesheet" href="{{ asset('css/track.css')}}">
 {%  endblock %}
 {% block body %}
-    <h2 class="titretrack">Mes musiques </h2>
-    <div class="addTracks"><a href="{{ path('track_new') }}"><i class="fas fa-plus-circle"></i> Ajouter un nouveau morceau</a></div>
+    <h2>{{ genre.name }} musiques</h2>
     <div class="table-list">
         <table class="table-tracks">
             <thead>
@@ -15,23 +14,13 @@
                     <th colspan="2"></th>
                     <th>Titre</th>
                     <th>Extension</th>
-                    {#<th class="displayTD">Description</th>#}
-                    {#<th>Urlpicture</th>#}
                     <th>Compositeur</th>
                     <th>Duration</th>
                     <th class="displayTD">Nb. écoute</th>
                     <th class="displayTD">Nb. téléchargement</th>
                     <th class="displayTD">Nb. vues</th>
                     <th class="displayTD">Nb. likes</th>
-                    {#<th>Updatedat</th>
-                    <th>Createdat</th>
-                    <th>Nbcomments</th>
-                    <th>Isvalidated</th>#}
                     <th class="iconsActions">Actions</th>
-                    {#
-                    <th>Explicitcontent</th>
-                    <th>Downloadauthorization</th>
-                    <th>Transferredat</th>#}
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +36,6 @@
                         <a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a>
                     </td>
                     <td>{{ track.extension }}</td>
-                    {#<td class="displayTD">{{ track.description }}</td>#}
                     <td>
                         {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
                             <a href="{{ path('soundbuzz_profil', {'id': track.user.id }) }}">{{ track.compositor }}</a></td>
@@ -58,11 +46,6 @@
                     <td class="displayTD">{{ track.nbDownloads }}</td>
                     <td class="displayTD">{{ track.nbViews }}</td>
                     <td class="displayTD">{{ track.nbLikes }}</td>
-                    {#<td>{% if track.updatedAt %}{{ track.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{% if track.createdAt %}{{ track.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{{ track.nbComments }}</td>#}
-
-                    {# <td>{% if track.isValidated %}Yes{% else %}No{% endif %}</td> #}
                     <td class="iconsActions">
                         <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                         <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>

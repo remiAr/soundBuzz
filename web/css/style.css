@@ -37,6 +37,18 @@ body {
     flex-wrap: wrap;
     clear: both;
 }
+#content .listsimg ul.list-gender {
+    justify-content: flex-start;
+}
+#content .listsimg ul.list-gender li {
+    background: #535353;
+}
+#content .listsimg ul.list-gender li:nth-child(4n+2) {
+    background: #868686;
+}
+#content .listsimg ul.list-gender li:nth-child(4n+3) {
+    background: #262626;
+}
 #content .listsimg ul li {
     list-style-type: none;
     width: 19%;
@@ -183,8 +195,15 @@ body {
     height: 100%;
     width: 100%;
 }
-
+@media screen and (max-width: 1300px) {
+    #content .listsimg ul.list-gender li {
+        width: 32%;
+    }
+}
 @media screen and (max-width: 1200px) {
+    #content .listsimg ul.list-gender li {
+        width: 32%;
+    }
     #content .listsimg ul li {
         width: 24%;
         margin-bottom:15px;
@@ -211,6 +230,9 @@ body {
 @media screen and (max-width: 1100px) {
     #content .listsimg ul {
         flex-wrap: wrap;
+    }
+    #content .listsimg ul.list-gender li {
+        width: 48%;
     }
     #content .listsimg ul li {
         width: 48%;
@@ -256,7 +278,7 @@ body {
         display: none;
     }
 
-    #content .music-home ul li {
+    #content .music-home ul li, #content .listsimg ul.list-gender li {
         width: 100%;
     }
 }

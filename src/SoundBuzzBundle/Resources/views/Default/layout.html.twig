@@ -64,7 +64,7 @@
                                     <a class="dropdown-item" href="{{ path('soundbuzz_profil', {'id': user.id}) }}">Profil</a>
                                 {% endif %}
                                 {% if is_granted('ROLE_ADMIN') %}
-                                    <a class="dropdown-item" href="/soundBuzz/web/app_dev.php/admin">Admin</a>
+                                    <a target="_blank" class="dropdown-item" href="/soundBuzz/web/app_dev.php/admin">Admin</a>
                                 {% endif %}
                                 {% if is_granted('ROLE_USER') %}
                                     <div class="dropdown-divider"></div>
@@ -120,7 +120,7 @@
         <h3><img src="{{ asset('img/logo.png') }}" alt="SoundBuzz" title="SoundBuzz" /></h3>
         <div style="height: 40px;"></div>
         <div id="playerAudio">
-            <img id="imagePlayerGlobal" alt="" title="" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350" />
+            <img id="imagePlayerGlobal" alt="" title="" src="{{ asset('img/logo.png') }}" />
             <audio id="playerGlobal" controls src="" controlsList="nodownload">
                 Your browser does not support the <code>audio</code> element.
             </audio>
