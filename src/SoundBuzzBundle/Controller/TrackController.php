@@ -177,11 +177,6 @@ class TrackController extends Controller
 
     public function likeAction($id)
     {
-        /**
-         * TODO
-         * Generate a url without parameters (redirect to '/')
-         * Recalculate nbLikes after like is done
-         */
         $em = $this->getDoctrine()->getManager();
         $track = $em->getRepository(Track::class)->find($id);
         $user = $this->getUser();
@@ -192,10 +187,7 @@ class TrackController extends Controller
         $em->persist($track);
         $em->flush();
 
-        return $this->render('SoundBuzzBundle:Default:index.html.twig', [
-            'user' => $user,
-            'tracks' => $em->getRepository(Track::class)->findAll(),
-        ]);
+        return $this->redirectToRoute('liked_tracks');
     }
 
     public function downloadAction($id)
@@ -215,9 +207,8 @@ class TrackController extends Controller
         ));
     }
 
-    public function getTrackByGenreAction($id){
-
-        
+    public function getTrackByGenreAction($id)
+    {
         $user = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
@@ -227,6 +218,19 @@ class TrackController extends Controller
         return $this->render('SoundBuzzBundle:Genre:index.html.twig', [
             'genre' => $genre,
             'tracks' => $tracks,
+            'user' => $user,
+        ]);
+    }
+
+    public function getLikedTracksAction()
+    {
+        $user = $this->getUser();
+
+        $likedTracks = $user->getLikedTracks();
+        dump($likedTracks);
+
+        return $this->render('SoundBuzzBundle:Track:likedTracks.html.twig', [
+            'tracks' => $likedTracks,
             'user' => $user,
         ]);
     }

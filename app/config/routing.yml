@@ -66,6 +66,10 @@ dl_track:
     path: /tracks/{id}/download
     defaults: { _controller: SoundBuzzBundle:Track:download }
 
+liked_tracks:
+    path: /liked-tracks
+    defaults: { _controller: SoundBuzzBundle:Track:getLikedTracks }
+
 ### PLAYLIST ###
 playlist_allplaylists:
     path: /AllPlaylists
@@ -102,11 +106,12 @@ playlist_add_tracks_track_added:
         id: '\d+'
         trackId: '\d+'
 
-track_by_genre:
-    path: /genre/{id}
-    defaults: { _controller: SoundBuzzBundle:Track:getTrackByGenre }
-
 ### LIKE ###
 like_track:
     path: /has-liked/{id}
     defaults: { _controller: SoundBuzzBundle:Track:like }
+
+### GENRE ###
+track_by_genre:
+    path: /genre/{id}
+    defaults: { _controller: SoundBuzzBundle:Track:getTrackByGenre }
