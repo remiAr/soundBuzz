@@ -1,0 +1,11 @@
+{% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+
+{% block title %} Playlists - SoundBuzz {% endblock %}
+{%  block head %}
+    <link rel="stylesheet" href="{{ asset('css/home.css')}}">
+{% endblock %}
+
+{% block body %}
+    <h2>Ajouter une playlist</h2>
+    {{ form(addPlaylistForm) }}
+{% endblock %}
