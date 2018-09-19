@@ -70,6 +70,12 @@ playlist_index:
 playlist_information:
     path: /playlists/{id}
     defaults: { _controller: SoundBuzzBundle:Playlist:userPlaylistSongs }
+    requirements:
+        id: '\d+'
+
+playlist_add:
+    path: /playlists/add
+    defaults: { _controller: SoundBuzzBundle:Playlist:addPlaylist }
 
 ### LIKE ###
 like_track:

@@ -9,7 +9,7 @@
     <div class="listsimg">
         <h2 class="titretrack">Mes playlists</h2>
         <div class="addTracks">
-            <a href="#"><i class="fas fa-plus-circle"></i> Ajouter une playlist</a>
+            <a href="{{ path('playlist_add') }}"><i class="fas fa-plus-circle"></i>Ajouter une playlist</a>
         </div>
         <ul>
             {% for playlist in playlists %}

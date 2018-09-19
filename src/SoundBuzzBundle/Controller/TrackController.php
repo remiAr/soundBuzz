@@ -192,7 +192,7 @@ class TrackController extends Controller
 
     public function downloadAction($id)
     {
-        
+
         $em = $this->getDoctrine()->getManager();
         $track = $em->getRepository(Track::class)->find($id);
 
@@ -205,7 +205,7 @@ class TrackController extends Controller
 
         $user = $this->getUser();
         $tracks = $em->getRepository(Track::class)->findAll();
-        
+
         return $this->redirectToRoute('track_information', array('id' => $track->getId()));
 
     }
