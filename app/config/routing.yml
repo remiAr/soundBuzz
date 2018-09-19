@@ -14,6 +14,12 @@ soundbuzz_homepage:
     path: /
     defaults: { _controller: SoundBuzzBundle:Default:index }
 
+### EASYADMIN ###
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin
+
 ### USER ###
 soundbuzz_profil:
     path: /profil/{id}
@@ -27,12 +33,6 @@ soundbuzz_deleteuser:
     path:     /profil/delete/{id}
     defaults: { _controller:SoundBuzzBundle:User:deleteuser }
 
-### EASYADMIN ###
-easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/AdminController.php"
-    type:     annotation
-    prefix:   /admin
-
 ### TRACK ###
 track_new:
     path: /trackUpload
@@ -45,6 +45,10 @@ track_index:
 track_alltracks:
     path: /AllTracks
     defaults: { _controller: SoundBuzzBundle:Track:getAllTracks }
+
+track_alltrack:
+    path: /AllTrack
+    defaults: { _controller: SoundBuzzBundle:Track:getAllTracksConec }
 
 track_information:
     path: /tracks/{id}
@@ -63,6 +67,14 @@ dl_track:
     defaults: { _controller: SoundBuzzBundle:Track:download }
 
 ### PLAYLIST ###
+playlist_allplaylists:
+    path: /AllPlaylists
+    defaults: { _controller: SoundBuzzBundle:Playlist:getAllPlaylists }
+
+playlist_allplaylist:
+    path: /AllPlaylist
+    defaults: { _controller: SoundBuzzBundle:Playlist:getAllPlaylistsConec }
+
 playlist_index:
     path: /playlists
     defaults: { _controller: SoundBuzzBundle:Playlist:userPlaylist }

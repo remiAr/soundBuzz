@@ -1,0 +1,28 @@
+{% extends "SoundBuzzBundle:Default:layout.html.twig" %}
+
+{% block title %} Playlists - SoundBuzz {% endblock %}
+{%  block head %}
+    <link rel="stylesheet" href="{{ asset('css/home.css')}}">
+{% endblock %}
+
+{% block body %}
+    <div class="listsimg">
+        <h2 class="titretrack">Mes playlists</h2>
+        <div class="addTracks">
+            <a href="#"><i class="fas fa-plus-circle"></i> Ajouter une playlist</a>
+        </div>
+        <ul>
+            {% for playlist in playlists %}
+                <li style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg')">
+                    <h4><a href="{{ path('playlist_information', { 'id': playlist.id }) }}">{{ playlist.name }}</a> <i class="fa fa-heart" aria-hidden="true"></i></h4>
+
+                    <div class="controlMusic">
+                        <i class="playTrack far fa-play-circle"></i>
+                        <i style="display: none" class="pauseTrack far fa-pause-circle"></i>
+                    </div>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

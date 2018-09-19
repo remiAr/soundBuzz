@@ -35,6 +35,15 @@ class TrackController extends Controller
             'tracks' => $tracks,
         ));
     }
+    public function getAllTracksConecAction() {
+        $em = $this->getDoctrine()->getManager();
+        $tracks = $em->getRepository('SoundBuzzBundle:Track')->findAll();
+        $user= $this->getUser();
+        return $this->render('SoundBuzzBundle:Track:allTracks.html.twig', array(
+            'user' => $user,
+            'tracks' => $tracks,
+        ));
+    }
 
     public function getTrackAction(Request $request, $id)
     {

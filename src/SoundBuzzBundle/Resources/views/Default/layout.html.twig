@@ -60,17 +60,13 @@
                                 {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
                                     {#<span class="dropdown-item">{{user.firstName}}</span>#}
                                     <a class="dropdown-item" href="{{ path('soundbuzz_profil', {'id': user.id}) }}">Profil</a>
-                                {% else %}
-                                    <a class="dropdown-item" href="{{ path('fos_user_registration_register') }}">Register</a>
                                 {% endif %}
-                                {#{% if is_granted('ROLE_ADMIN') %}
-                                    <a class="dropdown-item" href="{{ path('') }}">Admin</a>
-                                {% endif %}#}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a class="dropdown-item" href="/soundBuzz/web/app_dev.php/admin">Admin</a>
+                                {% endif %}
                                 {% if is_granted('ROLE_USER') %}
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-                                {% else %}
-                                    <a class="dropdown-item" href="{{ path('fos_user_security_login') }}">Connexion</a>
                                 {% endif %}
                             </div>
                         </li>
@@ -86,7 +82,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('playlist_index') }}">
+                                <a class="nav-link" href="{{ path('playlist_allplaylists') }}">
                                     <i class="fa fa-list" aria-hidden="true"></i>
                                     Playlists
                                 </a>

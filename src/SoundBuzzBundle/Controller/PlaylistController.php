@@ -21,7 +21,22 @@ class PlaylistController extends Controller
             'playlists' => $playlists,
         ]);
     }
-
+    public function getAllPlaylistsAction() {
+        $em = $this->getDoctrine()->getManager();
+        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findAll();
+        return $this->render('SoundBuzzBundle:Playlist:allPlaylists.html.twig', array(
+            'playlists' => $playlists,
+        ));
+    }
+    public function getAllPlaylistsConecAction() {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findAll();
+        return $this->render('SoundBuzzBundle:Playlist:allPlaylists.html.twig', array(
+            'user' => $user,
+            'playlists' => $playlists,
+        ));
+    }
     public function userPlaylistSongsAction($id)
     {
         $em = $this->getDoctrine()->getManager();
