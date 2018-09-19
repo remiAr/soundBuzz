@@ -183,7 +183,6 @@ class TrackController extends Controller
          * Recalculate nbLikes after like is done
          */
         $em = $this->getDoctrine()->getManager();
-        $tracks = $em->getRepository(Track::class)->findAll();
         $track = $em->getRepository(Track::class)->find($id);
         $user = $this->getUser();
 
@@ -195,13 +194,12 @@ class TrackController extends Controller
 
         return $this->render('SoundBuzzBundle:Default:index.html.twig', [
             'user' => $user,
-            'tracks' => $tracks,
+            'tracks' => $em->getRepository(Track::class)->findAll(),
         ]);
     }
 
     public function downloadAction($id)
     {
-
         $em = $this->getDoctrine()->getManager();
         $track = $em->getRepository(Track::class)->find($id);
 
@@ -212,11 +210,9 @@ class TrackController extends Controller
         $em->persist($track);
         $em->flush();
 
-        $user = $this->getUser();
-        $tracks = $em->getRepository(Track::class)->findAll();
-
-        return $this->redirectToRoute('track_information', array('id' => $track->getId()));
-
+        return $this->redirectToRoute('track_information', array(
+            'id' => $track->getId(),
+        ));
     }
 
     public function getTrackByGenreAction($id){

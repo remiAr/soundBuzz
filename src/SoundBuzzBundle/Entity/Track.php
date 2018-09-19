@@ -645,7 +645,6 @@ class Track
      */
     public function setLikedByUsers($likedByUsers)
     {
-//        $this->likedByUsers = $likedByUsers;
         if (!$this->likedByUsers->contains($likedByUsers))
         {
             $this->likedByUsers[] = $likedByUsers;

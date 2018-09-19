@@ -77,6 +77,7 @@ class Playlist
         $this->name = $name;
         return $this;
     }
+
     /**
      * Get name
      *
@@ -99,6 +100,7 @@ class Playlist
         $this->description = $description;
         return $this;
     }
+
     /**
      * Get description
      *
@@ -108,6 +110,7 @@ class Playlist
     {
         return $this->description;
     }
+
     /**
      * Set duration
      *
@@ -120,11 +123,13 @@ class Playlist
         $this->duration = $duration;
         return $this;
     }
+
     /**
      * Get duration
      *
      * @return \DateTime
      */
+
     public function getDuration()
     {
         return $this->duration;
@@ -141,6 +146,7 @@ class Playlist
         $this->createdAt = $createdAt;
         return $this;
     }
+
     /**
      * Get createdAt
      *
@@ -150,6 +156,7 @@ class Playlist
     {
         return $this->createdAt;
     }
+
     /**
      * Set updatedAt
      *
@@ -162,6 +169,7 @@ class Playlist
         $this->updatedAt = $updatedAt;
         return $this;
     }
+
     /**
      * Get updatedAt
      *
@@ -171,6 +179,7 @@ class Playlist
     {
         return $this->updatedAt;
     }
+
     /**
      * Get id
      *
@@ -191,10 +200,13 @@ class Playlist
 
     /**
      * @param mixed $user
+     * @return Playlist
      */
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
     }
 
     /**
@@ -206,11 +218,30 @@ class Playlist
     }
 
     /**
-     * @param mixed $tracks
+     * @param $track
+     * @return Playlist
      */
-    public function setTracks($tracks)
+    public function setTracks($track)
     {
-        $this->tracks = $tracks;
+        if (!$this->tracks->contains($track))
+        {
+            $this->tracks[] = $track;
+        }
+
+        return $this;
     }
 
+    /**
+     * @param $track
+     * @return boolean
+     */
+    public function playlistContainsTrack($track)
+    {
+        if ($this->tracks->contains($track))
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

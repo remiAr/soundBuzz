@@ -3,6 +3,7 @@
 namespace SoundBuzzBundle\Controller;
 
 use SoundBuzzBundle\Entity\Playlist;
+use SoundBuzzBundle\Entity\Track;
 use SoundBuzzBundle\Form\AddPlaylist;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,39 +15,42 @@ class PlaylistController extends Controller
         $em = $this->getDoctrine()->getManager();
         $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findBy( array('user' => $this->getUser()));
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
         return $this->render('SoundBuzzBundle:Playlist:displayPlaylist.html.twig', [
-            'user' => $user,
+            'user' => $this->get('security.token_storage')->getToken()->getUser(),
             'playlists' => $playlists,
         ]);
     }
-    public function getAllPlaylistsAction() {
+
+    public function getAllPlaylistsAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findAll();
+
         return $this->render('SoundBuzzBundle:Playlist:allPlaylists.html.twig', array(
             'playlists' => $playlists,
         ));
     }
-    public function getAllPlaylistsConecAction() {
+
+    public function getAllPlaylistsConecAction()
+    {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findAll();
+
         return $this->render('SoundBuzzBundle:Playlist:allPlaylists.html.twig', array(
-            'user' => $user,
+            'user' => $this->get('security.token_storage')->getToken()->getUser(),
             'playlists' => $playlists,
         ));
     }
+
     public function userPlaylistSongsAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $playlist = $em->getRepository('SoundBuzzBundle:Playlist')->find($id);
         $tracks = $playlist->getTracks()->toArray();
-        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         return $this->render('SoundBuzzBundle:Playlist:displayPlaylistSongs.html.twig', [
-            'user' => $user,
+            'user' => $this->get('security.token_storage')->getToken()->getUser(),
             'playlist' => $playlist,
             'tracks' => $tracks
         ]);
@@ -84,6 +88,40 @@ class PlaylistController extends Controller
         return $this->render('SoundBuzzBundle:Playlist:addPlaylist.html.twig', array(
             'addPlaylistForm' => $addPlaylistForm->createView(),
             'user' => $user,
+        ));
+    }
+
+    public function addTracksAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $playlist = $em->getRepository(Playlist::class)->find($id);
+        $tracks = $em->getRepository(Track::class)->findAll();
+        $tracks = array_filter($tracks, function($track) use($playlist) {
+            return !$playlist->playlistContainsTrack($track);
+        });
+
+        return $this->render('SoundBuzzBundle:Playlist:addTracks.html.twig', array(
+            'playlist' => $playlist,
+            'tracks' => $tracks,
+            'user' => $this->getUser(),
+        ));
+    }
+
+    public function trackAddedAction($id, $trackId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $playlist = $em->getRepository(Playlist::class)->find($id);
+        $track = $em->getRepository(Track::class)->find($trackId);
+
+        $playlist->setTracks($track);
+
+        $em->persist($playlist);
+        $em->flush();
+
+        return $this->render('SoundBuzzBundle:Playlist:displayPlaylistSongs.html.twig', array(
+            'playlist' => $playlist,
+            'tracks' => $playlist->getTracks()->toArray(),
+            'user' => $this->getUser(),
         ));
     }
 }

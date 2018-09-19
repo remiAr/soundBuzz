@@ -88,11 +88,23 @@ playlist_information:
 playlist_add:
     path: /playlists/add
     defaults: { _controller: SoundBuzzBundle:Playlist:addPlaylist }
+    
+playlist_add_tracks:
+    path: /playlists/{id}/add-tracks
+    defaults: { _controller: SoundBuzzBundle:Playlist:addTracks }
+    requirements:
+        id: '\d+'
+
+playlist_add_tracks_track_added:
+    path: /playlists/{id}/add-tracks/{trackId}
+    defaults: { _controller: SoundBuzzBundle:Playlist:trackAdded }
+    requirements:
+        id: '\d+'
+        trackId: '\d+'
 
 track_by_genre:
     path: /genre/{id}
     defaults: { _controller: SoundBuzzBundle:Track:getTrackByGenre }
-    
 
 ### LIKE ###
 like_track:
