@@ -89,6 +89,11 @@ playlist_add:
     path: /playlists/add
     defaults: { _controller: SoundBuzzBundle:Playlist:addPlaylist }
 
+track_by_genre:
+    path: /genre/{id}
+    defaults: { _controller: SoundBuzzBundle:Track:getTrackByGenre }
+    
+
 ### LIKE ###
 like_track:
     path: /has-liked/{id}
