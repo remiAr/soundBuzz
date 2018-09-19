@@ -12,7 +12,7 @@
             <a href="{{ path('playlist_allplaylist') }}"><i class="far fa-eye"></i> Voir toutes les playlists</a>
             <a href="{{ path('playlist_add') }}"><i class="fas fa-plus-circle"></i>Ajouter une playlist</a>
         </div>
-        <ul>
+        <ul class="playlist">
             {% for playlist in playlists %}
                 <li style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg')">
                     <h4><a href="{{ path('playlist_information', { 'id': playlist.id }) }}">{{ playlist.name }}</a> <i class="fa fa-heart" aria-hidden="true"></i></h4>

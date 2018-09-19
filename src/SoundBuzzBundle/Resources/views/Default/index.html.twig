@@ -31,11 +31,23 @@
                 {% for track in tracks | slice ( 0 , 5 ) %}
                     <li style="background: url('{{ asset('uploads/pictures/') }}{{ track.urlPicture }}')">
                         <h4><a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a> <i class="fa fa-heart" aria-hidden="true"></i></h4>
-                        {# <audio controls="controls" />
-                         <source src="{{ track.urlTrack }}" type="audio/mp3" />#}
                         <div class="controlMusic">
                             <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{ user.id}} {% endif %}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{user.id}}{% endif %}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                             <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{ user.id }}{% endif %}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{user.id}}{% endif %}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="listsimg music-home">
+            <h2>Playlists conseillés</h2>
+            <ul>
+                {% for playlist in playlists | slice ( 0 , 5 ) %}
+                    <li style="background: url('https://d2wnje91xuggzh.cloudfront.net/assets/online-magazine-fr/reiki-channeling/spiritualite/signification-couleur-orange/signification-couleur-orange2.jpg')">
+                        <h4><a href="{{ path('track_information', {'id': playlist.id}) }}"> {{ playlist.name }}</a> <i class="fa fa-heart" aria-hidden="true"></i></h4>
+                        <div class="controlMusic">
+                            <i class="playTrack far fa-play-circle"></i>
+                            <i style="display: none" class="pauseTrack far fa-pause-circle"></i>
                         </div>
                     </li>
                 {% endfor %}

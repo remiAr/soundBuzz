@@ -36,7 +36,7 @@ div>input {
 .submit_form {
     display: flex;
 }
-.submit_form input, #login_form input[type="submit"], #update_user button[type="submit"], #soundbuzzbundle_track_save {
+.submit_form input, #login_form input[type="submit"], #update_user button[type="submit"], #soundbuzzbundle_track_save, #add_playlist_save {
     width: 20%;
     min-width: 200px;
     margin: 0 auto;
@@ -49,11 +49,11 @@ div>input {
     border: 1px solid #FF9601;
     padding: 10px 20px;
 }
-#soundbuzzbundle_track_save {
+#soundbuzzbundle_track_save, #add_playlist_save {
     display: block;
     margin-top:20px;
 }
-.submit_form input:hover, #login_form input[type="submit"]:hover, #update_user button[type="submit"]:hover, #soundbuzzbundle_track_save:hover {
+.submit_form input:hover, #login_form input[type="submit"]:hover, #update_user button[type="submit"]:hover, #soundbuzzbundle_track_save:hover, #add_playlist_save:hover {
     color: white;
     background: #FF9601;
 }
@@ -78,7 +78,7 @@ div>input {
 !*    clear: both;*!
     margin-top:60px;
 }*/
-#soundbuzzbundle_track {
+#soundbuzzbundle_track, #add_playlist {
     clear: both;
     display: flex;
     justify-content: center;
@@ -88,7 +88,7 @@ div>input {
     width: 40%;
     margin: 0 30%;
 }
-#soundbuzzbundle_track>div {
+#soundbuzzbundle_track>div, #add_playlist>div {
     width:80%;
     margin:0 10%;
     text-align: center;

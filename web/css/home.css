@@ -11,6 +11,13 @@
 #content .home-img {
     border-radius: 50%;
 }
+#content ul.playlist {
+  justify-content: flex-start;
+}
+#content ul.playlist>li {
+    margin-right: 1%;
+    margin-bottom: 20px;
+}
 .listsimg li {
     height: 300px;
     display: flex;
