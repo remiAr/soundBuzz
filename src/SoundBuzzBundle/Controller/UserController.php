@@ -11,10 +11,12 @@ class UserController extends Controller
     public function getProfilAction($id)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('SoundBuzzBundle:User');
-        $profil = $repository->find($id);
+        $userProfile = $repository->find($id);
+        $userConnected = $this->getUser();
 
         return $this->render('SoundBuzzBundle:Admin:profil.html.twig', [
-            'user' => $profil,
+            'user' => $userProfile,
+            'userIsConnected' => $userProfile->getId() === $userConnected->getId(),
         ]);
     }
 

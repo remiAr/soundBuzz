@@ -5,11 +5,13 @@
 {% block body %}
     <div class="profil">
         <div class="entete">
-            <h2 class="titretrack">Profil</h2>
+            <h2 {% if (userIsConnected) %}class="titretrack"{% endif %}>Profil</h2>
+            {% if (userIsConnected) %}
             <div class="addTracks">
                 <a href="{{ path('soundbuzz_updateprofil', {'id': user.id}) }}"><i class="fas fa-edit"></i> Modifier</a>
                 <a href="{{ path('soundbuzz_deleteuser', {'id': user.id}) }}"><i class="fas fa-trash"></i> Supprimer</a>
             </div>
+            {% endif %}
         </div>
         <div class="bloc-info">
             <img src="{{user.avatarUrl}}"/>
@@ -28,7 +30,7 @@
                 </tr>
                 <tr>
                     <th>Email :</th>
-                    <td>{{ user.username }}</td>
+                    <td><a href="mailto:{{ user.username }}">{{ user.username }}</a></td>
                 </tr>
             </table>
         </div>

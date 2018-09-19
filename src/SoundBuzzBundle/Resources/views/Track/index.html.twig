@@ -17,7 +17,7 @@
                     <th colspan="2"></th>
                     <th>Titre</th>
                     <th>Extension</th>
-                    <th class="displayTD">Description</th>
+                    {#<th class="displayTD">Description</th>#}
                     {#<th>Urlpicture</th>#}
                     <th>Compositeur</th>
                     <th>Duration</th>
@@ -49,8 +49,12 @@
                         <a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a>
                     </td>
                     <td>{{ track.extension }}</td>
-                    <td class="displayTD">{{ track.description }}</td>
-                    <td>{{ track.compositor }}</td>
+                    {#<td class="displayTD">{{ track.description }}</td>#}
+                    <td>
+                        {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('soundbuzz_profil', {'id': track.user.id }) }}">{{ track.compositor }}</a></td>
+                        {% endif %}
+                    </td>
                     <td>{{ track.duration }}</td>
                     <td class="displayTD">{{ track.nbListenings }}</td>
                     <td class="displayTD">{{ track.nbDownloads }}</td>

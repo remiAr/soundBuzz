@@ -34,11 +34,17 @@
                 </tr>
                 <tr>
                     <th>Auteur</th>
-                    <td>{{ user.firstName|capitalize }} {{ user.lastName|first|lower|capitalize }}</td>
+                    <td>{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('soundbuzz_profil', {'id': track.user.id }) }}">{{ user.firstName|capitalize }} {{ user.lastName|first|lower|capitalize }}</td>
+                        {% endif %}
                 </tr>
                 <tr>
                     <th>Compositeur</th>
-                    <td>{{ track.compositor|capitalize }}</td>
+                    <td>
+                        {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('soundbuzz_profil', {'id': track.user.id }) }}">{{ track.compositor|capitalize }}</a></td>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <th>Genre</th>

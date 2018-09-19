@@ -14,7 +14,7 @@
                 <th colspan="2"></th>
                 <th>Titre</th>
                 <th>Extension</th>
-                <th class="displayTD">Description</th>
+                {#<th class="displayTD">Description</th>#}
                 {#<th>Urlpicture</th>#}
                 <th>Compositeur</th>
                 <th>Duration</th>
@@ -38,7 +38,7 @@
                         <a href="{{ path('track_information', {'id': track.id}) }}"> {{ track.title }}</a>
                     </td>
                     <td>{{ track.extension }}</td>
-                    <td class="displayTD">{{ track.description }}</td>
+                    {#<td class="displayTD">{{ track.description }}</td>#}
                     <td>{{ track.compositor }}</td>
                     <td>{{ track.duration }}</td>
                     <td class="displayTD">{{ track.nbListenings }}</td>

@@ -27,37 +27,3 @@
         </ul>
     </div>
 {% endblock %}
-    {#
-    <div class="table-list">
-        <table>
-            <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Durée</th>
-                #}{#<th>Durée</th>#}{#
-                <th>Date de création</th>
-            </tr>
-            {% for playlist in playlists %}
-                <tr>
-                    <td>
-                        <a href="{{ path('playlist_information', { 'id': playlist.id }) }}">
-                            {{ playlist.name }}
-                        </a>
-                    </td>
-                    <td>{{ playlist.description }}</td>
-                    <td>{#{{ playlist.duration }}
-    </td>
-                    <td>{{ playlist.duration|date("d/m/Y") }}</td>
-                </tr>
-            {% endfor %}
-        </table><td><i class="fa fa-heart" aria-hidden="true"></i></td>
-                    <td><a href="{{ path('playlists_display_songs', { 'playlistId':playlist .id}) }}">{{ playlist.name }}</a></td>
-                    <td>{{ playlist.description }}</td>
-    </div>#}
-    {#<td>{{ playlist.duration }}</td>#}{#
-                    <td>{{ playlist.createdat|date("d/m/Y") }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-    </div>#}
