@@ -18,9 +18,9 @@
         <div class="listsimg">
             <h2>Genres</h2>
             <ul class="list-gender">
-                {% for track in tracks | slice ( 0 , 5 ) %}
-                    <li style="background: url('{{ asset('uploads/pictures/') }}{{ track.urlPicture }}')">
-                       <h4><a href="#"><span>Rap</span></a></h4>
+                {% for genre in genres %}
+                    <li>
+                       <h4><a href="{{ path('track_by_genre', {'id': genre.id}) }}"><span>{{genre.name}}</span></a></h4>
                     </li>
                 {% endfor %}
             </ul>

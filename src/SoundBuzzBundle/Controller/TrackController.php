@@ -218,4 +218,20 @@ class TrackController extends Controller
         return $this->redirectToRoute('track_information', array('id' => $track->getId()));
 
     }
+
+    public function getTrackByGenreAction($id){
+
+        
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $genre = $em->getRepository('SoundBuzzBundle:Genre')->find($id);
+        $tracks = $genre->getTracks()->toArray();
+
+        return $this->render('SoundBuzzBundle:Genre:index.html.twig', [
+            'genre' => $genre,
+            'tracks' => $tracks,
+            'user' => $user,
+        ]);
+    }
 }
