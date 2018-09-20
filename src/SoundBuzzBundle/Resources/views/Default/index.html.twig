@@ -16,14 +16,15 @@
             {% endfor %}
         </div>
         <div class="listsimg">
-            <h2>Genres</h2>
-            <ul class="list-gender">
+            <h2>Genres <button id="smallDeviceDisplayBtn"><i id="arrowUp" class="fas fa-arrow-up"></i><i style="display: none" id="arrowDown" class="fas fa-arrow-down"></i></button></h2>
+            <ul class="list-gender" id="smallDeviceDisplay">
                 {% for genre in genres %}
                     <li>
                         <h4><a href="{{ path('track_by_genre', {'id': genre.id}) }}"><span>{{genre.name}}</span></a></h4>
                     </li>
                 {% endfor %}
             </ul>
+
         </div>
         <div class="listsimg music-home">
             <h2>Musique conseillée</h2>

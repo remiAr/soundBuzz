@@ -64,6 +64,23 @@
     color: #FF9601;
     margin: 8px 5px;
 }
+button#smallDeviceDisplayBtn {
+    float: right;
+    cursor: pointer;
+    font-size: 75%;
+    background: white;
+    color: #383838;
+    border: 1px solid #FF9601;
+}
+button#smallDeviceDisplayBtn:hover {
+    background: #FF9601;
+    /*border: 1px solid rgba(0,0,0,0.2);*/
+
+}
+#smallDeviceDisplayBtn i {
+    padding: 5px 20px;
+}
+
 .list-gender h4 {
     text-transform: uppercase;
     text-align: center;

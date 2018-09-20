@@ -120,7 +120,7 @@
         <h3><img src="{{ asset('img/logo.png') }}" alt="SoundBuzz" title="SoundBuzz" /></h3>
         <div style="height: 40px;"></div>
         <div id="playerAudio">
-            <img id="imagePlayerGlobal" alt="" title="" src="{{ asset('img/logo.png') }}" />
+            <img id="imagePlayerGlobal" alt="" title="" src="{{ asset('img/logo2.png') }}" />
             <audio id="playerGlobal" controls src="" controlsList="nodownload">
                 Your browser does not support the <code>audio</code> element.
             </audio>
@@ -202,7 +202,19 @@
                 }, true);
             });
 
-            
+            $( "#smallDeviceDisplayBtn" ).click(function() {
+                var btn = $("#smallDeviceDisplay").css("display");
+                console.log(btn);
+                if (btn == "none") {
+                    $("#smallDeviceDisplay").css("display", "flex");
+                    $("#arrowDown").css("display", "none");
+                    $("#arrowUp").css("display", "inline-block");
+                } else if (btn == "flex") {
+                    $("#smallDeviceDisplay").css("display", "none");
+                    $("#arrowUp").css("display", "none");
+                    $("#arrowDown").css("display", "inline-block");
+                }
+            });
 
         </script>
     {% endblock %}
