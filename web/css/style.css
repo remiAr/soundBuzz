@@ -195,6 +195,21 @@ body {
     height: 100%;
     width: 100%;
 }
+.lang {
+    margin-top: -50px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0 0;
+    background: white;
+}
+.lang p {
+    font-size: 80%;
+    margin: 0;
+}
+.lang img {
+    padding-top: 5px;
+    padding-left: 15px;
+}
 @media screen and (max-width: 1300px) {
     #content .listsimg ul.list-gender li {
         width: 32%;
