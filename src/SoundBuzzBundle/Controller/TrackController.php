@@ -72,6 +72,8 @@ class TrackController extends Controller
 
             $em->persist($newComment);
             $em->flush();
+
+            return $this->redirectToRoute('track_information', ['id' => $track->getId()]);
         }
 
         return $this->render('SoundBuzzBundle:Track:trackInformation.html.twig', array(

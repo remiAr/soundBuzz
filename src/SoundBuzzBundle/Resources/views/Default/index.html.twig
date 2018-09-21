@@ -16,14 +16,15 @@
             {% endfor %}
         </div>
         <div class="listsimg">
-            <h2>Genres</h2>
-            <ul class="list-gender">
+            <h2>Genres <button id="smallDeviceDisplayBtn"><i id="arrowUp" class="fas fa-arrow-up"></i><i style="display: none" id="arrowDown" class="fas fa-arrow-down"></i></button></h2>
+            <ul class="list-gender" id="smallDeviceDisplay">
                 {% for genre in genres %}
                     <li>
                         <h4><a href="{{ path('track_by_genre', {'id': genre.id}) }}"><span>{{genre.name}}</span></a></h4>
                     </li>
                 {% endfor %}
             </ul>
+
         </div>
         <div class="listsimg music-home">
             <h2>Musique conseillée</h2>
@@ -31,13 +32,13 @@
                 {% for track in tracks | slice ( 0 , 5 ) %}
                     <li style="background: url('{{ asset('uploads/pictures/') }}{{ track.urlPicture }}')">
                         <h4><a href="{{ path('track_information', {'id': track.id}) }}">{{ track.title }}</a>
-                            <a href="{{ path('liked_tracks') }}">
+                            <a href="{{ path('like_track', { 'id': track.id }) }}">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                             </a>
                         </h4>
                         <div class="controlMusic">
-                            <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{ user.id}} {% endif %}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{user.id}}{% endif %}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
-                            <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{ user.id }}{% endif %}/{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}{{user.id}}{% endif %}/{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                            <i class="playTrack far fa-play-circle" data-src="{{ asset('uploads/tracks/') }}{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
+                            <i style="display: none" class="pauseTrack far fa-pause-circle" data-src="{{ asset('uploads/tracks/') }}{{ track.urlTrack }}" data-title="{{ track.title }}" data-picture="{{ asset('uploads/pictures/') }}{{ track.urlPicture }}" data-author="{{ track.compositor }}"></i>
                         </div>
                     </li>
                 {% endfor %}

@@ -12,7 +12,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $tracks = $em->getRepository('SoundBuzzBundle:Track')->findAll();
+        $tracks = $em->getRepository('SoundBuzzBundle:Track')->findBy(array(), array('id' => 'desc'));
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $genres = $em->getRepository('SoundBuzzBundle:Genre')->findAll();
         $playlists = $em->getRepository('SoundBuzzBundle:Playlist')->findAll();
